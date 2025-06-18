@@ -18,7 +18,7 @@ export const GRP_SUPPORTED_CHAINS = [
   CHAIN_ID_OPTIMISM,
   CHAIN_ID_POLYGON,
   CHAIN_ID_BINANCE,
-  CHAIN_ID_FANTOM,
+  // CHAIN_ID_FANTOM,
 ].filter(isTruthy);
 
 export const GRP_V2_SUPPORTED_CHAINS_STAKING = new Set([
