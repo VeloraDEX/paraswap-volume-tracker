@@ -7,6 +7,7 @@ import StakesTracker from './staking/stakes-tracker';
 import { validateTransactions } from './transactions-validation/validateTransactions';
 import { fetchRefundableTransactionsAllChains } from './transactions-indexing/fetchRefundableTransactionsAllChains';
 import { loadEpochMetaData } from '../../src/lib/gas-refund/epoch-helpers';
+import { trackRootUpdate } from '../../src/lib/track-root-update';
 
 const logger = global.LOGGER('GRP');
 
@@ -25,6 +26,8 @@ async function startComputingGasRefundAllChains() {
   await loadEpochMetaData();
 
   return Database.sequelize.transaction(async () => {
+    await trackRootUpdate();
+
     await StakesTracker.getInstance().loadHistoricalStakes();
 
     await fetchRefundableTransactionsAllChains();
