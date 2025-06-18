@@ -87,7 +87,7 @@ async function loadDataFromIpfsAndUpdateDb(
   const { data } = await axios.get(url);
 
   const { root, proofs: proofsByUser } = data;
-  debugger;
+
   const distributionData: GasRefundDistributionData = {
     epoch: epoch,
     chainId,
