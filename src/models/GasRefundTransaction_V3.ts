@@ -57,19 +57,19 @@ export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData> {
   gasUsedUSD: string; // @debug
 
   @Column(DataType.DECIMAL)
-  pspUsd: number;
+  vlrUsd: number;
 
   @Column(DataType.DECIMAL)
   chainCurrencyUsd: number; // @debug
 
   @Column(DataType.DECIMAL)
-  pspChainCurrency: number; // @debug
+  vlrChainCurrency: number; // @debug
 
   @Column(DataType.DECIMAL)
-  totalStakeAmountPSP: string; // @debug
+  totalStakeAmountVLR: string; // @debug
 
   @Column(DataType.DECIMAL)
-  refundedAmountPSP: string;
+  refundedAmountVLR: string;
 
   @Column(DataType.DECIMAL)
   refundedAmountUSD: string;
