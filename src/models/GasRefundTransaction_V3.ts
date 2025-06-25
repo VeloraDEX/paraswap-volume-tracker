@@ -44,26 +44,11 @@ export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData> {
   @Column(DataType.INTEGER)
   timestamp: number;
 
-  @Column(DataType.BIGINT)
-  gasUsed: string; // @debug
-
-  @Column(DataType.BIGINT)
-  gasPrice: string; // debug
-
-  @Column(DataType.DECIMAL)
-  gasUsedChainCurrency: string; // @debug
-
   @Column(DataType.DECIMAL)
   gasUsedUSD: string; // @debug
 
   @Column(DataType.DECIMAL)
   vlrUsd: number;
-
-  @Column(DataType.DECIMAL)
-  chainCurrencyUsd: number; // @debug
-
-  @Column(DataType.DECIMAL)
-  vlrChainCurrency: number; // @debug
 
   @Column(DataType.DECIMAL)
   totalStakeAmountVLR: string; // @debug
