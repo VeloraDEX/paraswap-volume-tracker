@@ -45,13 +45,13 @@ export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData> {
   timestamp: number;
 
   @Column(DataType.DECIMAL)
-  gasUsedUSD: string; // @debug
+  gasUsedUSD: string;
 
   @Column(DataType.DECIMAL)
   vlrUsd: number;
 
   @Column(DataType.DECIMAL)
-  totalStakeAmountVLR: string; // @debug
+  totalStakeAmountVLR: string;
 
   @Column(DataType.DECIMAL)
   refundedAmountVLR: string;
