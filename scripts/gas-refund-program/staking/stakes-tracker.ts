@@ -120,7 +120,9 @@ export default class StakesTracker {
           ),
         ),
       );
-    } else if (epoch >= GasRefundV2EpochFlip) {
+    }
+
+    if (epoch >= GasRefundV2EpochFlip) {
       let startTimeStakeV2 = await getEpochStartCalcTime(
         epochToStartFrom || GasRefundV2EpochFlip,
       );
