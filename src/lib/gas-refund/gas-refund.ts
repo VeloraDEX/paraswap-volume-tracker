@@ -52,7 +52,6 @@ export const GasRefundV2PIP55 = 56;
 // TODO: change it to 57. Had 56 here to test previous distribution as if it was already done on v3 staking system
 export const GasRefundV3EpochFlip = 56;
 
-
 interface BaseGasRefundData {
   epoch: number;
   address: string;
@@ -153,6 +152,23 @@ export interface GasRefundTransactionData {
   paraBoostFactor: number;
 }
 
+export interface GasRefundTransactionData_V3 {
+  epoch: number;
+  address: string;
+  chainId: number;
+  hash: string;
+  block: number;
+  timestamp: number;
+  gasUsedUSD: string;
+  vlrUsd: number;
+  totalStakeAmountVLR: string;
+  refundedAmountVLR: string;
+  refundedAmountUSD: string;
+  contract: string;
+  status: TransactionStatus;
+  paraBoostFactor: number;
+}
+
 //                                                  psp decimals
 const scale = (num: number) => new BigNumber(num).multipliedBy(1e18);
 
@@ -233,10 +249,9 @@ export const getRefundPercent = (
   stakedAmount: string,
 ): number | undefined => {
   // TODO: fallback to V2 formula. V3 is currently used just for tests
-  if(epoch > GasRefundV3EpochFlip) 
-    return getRefundPercentV3(stakedAmount);
+  if (epoch > GasRefundV3EpochFlip) return getRefundPercentV3(stakedAmount);
 
-  return (epoch < GasRefundV2EpochFlip ? getRefundPercentV1 : getRefundPercentV2)(
-    stakedAmount,
-  );
-}
+  return (
+    epoch < GasRefundV2EpochFlip ? getRefundPercentV1 : getRefundPercentV2
+  )(stakedAmount);
+};
