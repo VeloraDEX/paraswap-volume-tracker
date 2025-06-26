@@ -21,11 +21,10 @@ export const grp2GlobalConfig: GRPV2GlobalConfig = {
   sePSP2PowerMultiplier: 2.5,
 };
 
-
-// epoch 56 from/to: 1734955200	1737374400	12/23/2024 12:00:00	1/20/2025 12:00:00	
+// epoch 56 from/to: 1734955200	1737374400	12/23/2024 12:00:00	1/20/2025 12:00:00
 // epoch 57 from/to: 1737374400	1739793600	1/20/2025 12:00:00	2/17/2025 12:00:00
 // TODO: set correct epoch when time comes, for now setting it to 56 to test previous distribution as if it happened on v3 staking
-export const STAKING_V3_TIMESTAMP = 1734955200
+export const STAKING_V3_TIMESTAMP = 1734955200;
 
 type GRPV3GlobalConfig = {
   startEpochTimestamp: number;
@@ -36,7 +35,7 @@ type GRPV3GlobalConfig = {
 export const grp3GlobalConfig: GRPV3GlobalConfig = {
   startEpochTimestamp: STAKING_V3_TIMESTAMP,
   epochDuration: 4 * 7 * 24 * 60 * 60,
-  seXYZPowerMultiplier: 2.5,  
+  seXYZPowerMultiplier: 2.5,
 };
 
 type GRP2ConfigByChain = {
@@ -53,25 +52,25 @@ export const grp2CConfigParticularities: {
   },
 };
 
-
-
-
 export const grpConfigParticularities_V3: {
   [network: number]: GRP2ConfigByChain;
 } = {
   // @TODO: adjust here
-  [CHAIN_ID_MAINNET]: {},
+  [CHAIN_ID_MAINNET]: {
+    stakingStartCalcTimestamp:
+      Math.round(new Date('May-14-2025 06:47:47 AM UTC').getTime() / 1000) + 5, // tx that deploys seVLR https://etherscan.io/tx/0xc6f5077dc180b570211fd3e381bbe2b568466bfd46aa3f0c68310d8e2bfd7efc
+  },
   [CHAIN_ID_BASE]: {
-    // TODO: umock here. Mock contract deploy tx: https://basescan.org/tx/0x9a844fda2e343a21d565041d9649a09d32ae504a3ca61f14ac4cb1e724bd141e
-    stakingStartCalcTimestamp: Math.round(new Date('Feb-06-2025 08:18:59 AM +00').getTime()/1000)+5,
+    stakingStartCalcTimestamp:
+      Math.round(new Date('May-14-2025 07:01:57 AM UTC').getTime() / 1000) + 5, // tx that deploys seVLR https://basescan.org/tx/0x4321c740351edb99a794df750ce4eaca04f798fdc20ff5ea82d63cb98e838744
   },
   [CHAIN_ID_OPTIMISM]: {
-    // TODO: unmock here. Mock contract deploy tx: https://optimistic.etherscan.io/tx/0x98f705f6b286096405a3afc77bcb82c486338616cc27b1f4878740ecdcf93fcf
-    stakingStartCalcTimestamp: Math.round(new Date('Jan-20-2025 05:44:37 PM +00').getTime()/1000)+5,
+    stakingStartCalcTimestamp:
+      Math.round(new Date('May-14-2025 07:04:53 AM UTC').getTime() / 1000) + 5, // tx that deploys seVLR https://optimistic.etherscan.io/tx/0xfc19542ceccbdf6e0f1e7e62930f834600f7941b4204aaec52b0c38dc37bbe02
   },
 };
 
-console.log(grpConfigParticularities_V3)
+console.log(grpConfigParticularities_V3);
 type GRPV2ConfigByChain = {
   sePSP1: string;
   sePSP2: string;
@@ -82,10 +81,9 @@ type GRPV2ConfigByChain = {
 };
 
 type GRPV2ConfigByChain_V3 = {
-  seXYZ: string;  
+  seXYZ: string;
   bpt: string;
-  poolId: string;
-  // psp1ToPsp2Migrator?: string;  // unlike with v1->v2, we don't refund migration v2->v3 txs   
+  // psp1ToPsp2Migrator?: string;  // unlike with v1->v2, we don't refund migration v2->v3 txs
 };
 
 const l = (s: string) => s.toLowerCase();
@@ -127,31 +125,22 @@ export const grp2ConfigByChain: {
 export const grp2ConfigByChain_V3: {
   [chainId: number]: GRPV2ConfigByChain_V3;
 } = {
-  // [CHAIN_ID_MAINNET]: {
-    
-  //   seXYZ: l(''),
-  //   bpt: l(''),
-  //   poolId: l(
-  //     '',
-  //   ),        
-  // },
+  [CHAIN_ID_MAINNET]: {
+    seXYZ: l('0x53fE8d8C00F9FBF55C4276b9cf8451f586D21055'),
+    bpt: l('0x01b3F3aabFf34e266A98e771438320DF98d447dD'),
+  },
   [CHAIN_ID_OPTIMISM]: {
-    seXYZ: l('0x8C934b7dBc782568d14ceaBbEAeDF37cB6348615'),    
-    bpt: l('0xBe8dDA0753EF6992A28759282585209c98C25de2'),
-    poolId: l(
-      '0xbe8dda0753ef6992a28759282585209c98c25de2000200000000000000000161',
-    ),    
+    seXYZ: l('0xCbed2888F7F969841a2df28DDA972D40264FCcda'),
+    bpt: l('0x4291b31b17511A26E4131da396145Ef6A5f83875'),
   },
   [CHAIN_ID_BASE]: {
-    seXYZ: l('0x9D3a624085a4A8bcE0057D1c17eB363073aC3f49'),    
-    bpt: l('0xf80c528ecf45efefff5e4bc6d9f11ed1f6e5f09d'),
-    poolId: l(
-      '0xf80c528ecf45efefff5e4bc6d9f11ed1f6e5f09d0002000000000000000001bd',
-    ),    
+    seXYZ: l('0xa85A6Ccff277a69B80FCd33Bec7DE066147ABF75'),
+    bpt: l('0xEe1e5301dc293E1468fAc27B9b53F309f0AE8344'),
   },
 };
 
-export const STAKING_CHAIN_IDS_V3 = Object.keys(grp2ConfigByChain_V3).map(Number)
+export const STAKING_CHAIN_IDS_V3 =
+  Object.keys(grp2ConfigByChain_V3).map(Number);
 
 const twistChains = (chain1: number, chain2: number) => (chainId: number) =>
   chainId === chain1 ? chain2 : chain2;
