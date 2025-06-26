@@ -168,162 +168,185 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
   // adjust to populate eth balance too
   async resolveBPTPoolXYZBalanceChangesFromLP() {
-    let events = (await queryFilterBatched(
-      this.bVaultContract,
-      this.bVaultContract.filters.PoolBalanceChanged(
-        Balancer_80XYZ_20WETH_poolId[this.chainId],
-      ),
-      this.startBlock,
-      this.endBlock,
-      { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-    )) as PoolBalanceChanged[];
+    try {
+      let events = (await queryFilterBatched(
+        this.bVaultContract,
+        this.bVaultContract.filters.PoolBalanceChanged(
+          Balancer_80XYZ_20WETH_poolId[this.chainId],
+        ),
+        this.startBlock,
+        this.endBlock,
+        { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+      )) as PoolBalanceChanged[];
 
-    const blockNumToTimestamp = await fetchBlockTimestampForEvents(
-      this.chainId,
-      events,
-    );
-
-    events.forEach(e => {
-      const timestamp = blockNumToTimestamp[e.blockNumber];
-      assert(timestamp, 'block timestamp should be defined');
-
-      assert(
-        e.event === 'PoolBalanceChanged',
-        'can only be poolBalanceChanged event',
-      );
-      const [, , _tokens, amountsInOrOut, paidProtocolSwapFeeAmounts] = e.args;
-      const tokens = _tokens.map(t => t.toLowerCase());
-
-      const isXYZToken0 = tokens[0] === XYZ_ADDRESS[this.chainId].toLowerCase();
-
-      assert(
-        tokens.includes(XYZ_ADDRESS[this.chainId].toLowerCase()),
-        'xyz should be either token0 or token 1',
+      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+        this.chainId,
+        events,
       );
 
-      const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
-        ? [amountsInOrOut, paidProtocolSwapFeeAmounts]
-        : [imReverse(amountsInOrOut), imReverse(paidProtocolSwapFeeAmounts)];
+      events.forEach(e => {
+        const timestamp = blockNumToTimestamp[e.blockNumber];
+        assert(timestamp, 'block timestamp should be defined');
 
-      this.differentialStates.xyzBalance.push({
-        timestamp,
-        value: new BigNumber(xyzAmount.toString()).minus(xyzFees.toString()),
+        assert(
+          e.event === 'PoolBalanceChanged',
+          'can only be poolBalanceChanged event',
+        );
+        const [, , _tokens, amountsInOrOut, paidProtocolSwapFeeAmounts] =
+          e.args;
+        const tokens = _tokens.map(t => t.toLowerCase());
+
+        const isXYZToken0 =
+          tokens[0] === XYZ_ADDRESS[this.chainId].toLowerCase();
+
+        assert(
+          tokens.includes(XYZ_ADDRESS[this.chainId].toLowerCase()),
+          'xyz should be either token0 or token 1',
+        );
+
+        const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
+          ? [amountsInOrOut, paidProtocolSwapFeeAmounts]
+          : [imReverse(amountsInOrOut), imReverse(paidProtocolSwapFeeAmounts)];
+
+        this.differentialStates.xyzBalance.push({
+          timestamp,
+          value: new BigNumber(xyzAmount.toString()).minus(xyzFees.toString()),
+        });
+
+        this.differentialStates.ethBalance.push({
+          timestamp,
+          value: new BigNumber(ethAmount.toString()).minus(ethFees.toString()),
+        });
       });
 
-      this.differentialStates.ethBalance.push({
-        timestamp,
-        value: new BigNumber(ethAmount.toString()).minus(ethFees.toString()),
-      });
-    });
-
-    this.differentialStates.xyzBalance.sort(timeseriesComparator);
-    this.differentialStates.ethBalance.sort(timeseriesComparator);
+      this.differentialStates.xyzBalance.sort(timeseriesComparator);
+      this.differentialStates.ethBalance.sort(timeseriesComparator);
+    } catch (e) {
+      debugger;
+      throw new Error(
+        `Error resolving BPT pool XYZ balance changes from LP for chain ${this.chainId}`,
+      );
+    }
   }
 
   async resolveBPTPoolXYZBalanceChangesFromSwaps() {
-    const events = (await queryFilterBatched(
-      this.bVaultContract,
-      this.bVaultContract.filters.Swap(
-        Balancer_80XYZ_20WETH_poolId[this.chainId],
-      ),
-      this.startBlock,
-      this.endBlock,
-      { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-    )) as Swap[];
+    try {
+      const events = (await queryFilterBatched(
+        this.bVaultContract,
+        this.bVaultContract.filters.Swap(
+          Balancer_80XYZ_20WETH_poolId[this.chainId],
+        ),
+        this.startBlock,
+        this.endBlock,
+        { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+      )) as Swap[];
 
-    const blockNumToTimestamp = await fetchBlockTimestampForEvents(
-      this.chainId,
-      events,
-    );
-
-    events.forEach(e => {
-      const timestamp = blockNumToTimestamp[e.blockNumber];
-      assert(timestamp, 'block timestamp should be defined');
-      assert(e.event === 'Swap', 'can only be Swap Event event');
-
-      const [, tokenIn, tokenOut, amountIn, amountOut] = e.args;
-
-      const isXYZTokenIn =
-        tokenIn.toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();
-      const isXYZTokenOut =
-        tokenOut.toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();
-
-      assert(
-        isXYZTokenIn || isXYZTokenOut,
-        'logic error XYZ should be in token in or out',
+      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+        this.chainId,
+        events,
       );
 
-      const isEthTokenIn = isXYZTokenOut;
+      events.forEach(e => {
+        const timestamp = blockNumToTimestamp[e.blockNumber];
+        assert(timestamp, 'block timestamp should be defined');
+        assert(e.event === 'Swap', 'can only be Swap Event event');
 
-      this.differentialStates.xyzBalance.push({
-        timestamp,
-        value: isXYZTokenIn
-          ? new BigNumber(amountIn.toString())
-          : new BigNumber(amountOut.toString()).negated(),
+        const [, tokenIn, tokenOut, amountIn, amountOut] = e.args;
+
+        const isXYZTokenIn =
+          tokenIn.toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();
+        const isXYZTokenOut =
+          tokenOut.toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();
+
+        assert(
+          isXYZTokenIn || isXYZTokenOut,
+          'logic error XYZ should be in token in or out',
+        );
+
+        const isEthTokenIn = isXYZTokenOut;
+
+        this.differentialStates.xyzBalance.push({
+          timestamp,
+          value: isXYZTokenIn
+            ? new BigNumber(amountIn.toString())
+            : new BigNumber(amountOut.toString()).negated(),
+        });
+
+        this.differentialStates.ethBalance.push({
+          timestamp,
+          value: isEthTokenIn
+            ? new BigNumber(amountIn.toString())
+            : new BigNumber(amountOut.toString()).negated(),
+        });
       });
 
-      this.differentialStates.ethBalance.push({
-        timestamp,
-        value: isEthTokenIn
-          ? new BigNumber(amountIn.toString())
-          : new BigNumber(amountOut.toString()).negated(),
-      });
-    });
-
-    this.differentialStates.xyzBalance.sort(timeseriesComparator);
-    this.differentialStates.ethBalance.sort(timeseriesComparator);
+      this.differentialStates.xyzBalance.sort(timeseriesComparator);
+      this.differentialStates.ethBalance.sort(timeseriesComparator);
+    } catch (e) {
+      debugger;
+      throw new Error(
+        `Error resolving BPT pool XYZ balance changes from swaps for chain ${this.chainId}`,
+      );
+    }
   }
 
   async resolveBPTPoolSupplyChanges() {
-    const events = (
-      await Promise.all([
-        queryFilterBatched(
-          this.bptAsERC20,
-          this.bptAsERC20.filters.Transfer(NULL_ADDRESS),
-          this.startBlock,
-          this.endBlock,
-          { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-        ),
-        queryFilterBatched(
-          this.bptAsERC20,
-          this.bptAsERC20.filters.Transfer(null, NULL_ADDRESS),
-          this.startBlock,
-          this.endBlock,
-          { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-        ),
-      ])
-    ).flat() as Transfer[];
+    try {
+      const events = (
+        await Promise.all([
+          queryFilterBatched(
+            this.bptAsERC20,
+            this.bptAsERC20.filters.Transfer(NULL_ADDRESS),
+            this.startBlock,
+            this.endBlock,
+            { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+          ),
+          queryFilterBatched(
+            this.bptAsERC20,
+            this.bptAsERC20.filters.Transfer(null, NULL_ADDRESS),
+            this.startBlock,
+            this.endBlock,
+            { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+          ),
+        ])
+      ).flat() as Transfer[];
 
-    const blockNumToTimestamp = await fetchBlockTimestampForEvents(
-      this.chainId,
-      events,
-    );
-
-    const totalSupplyChanges = events.map(e => {
-      const timestamp = blockNumToTimestamp[e.blockNumber];
-      assert(timestamp, 'block timestamp should be defined');
-      assert(e.event === 'Transfer', 'can only be Transfer event');
-
-      const [from, to, amount] = e.args;
-
-      assert(
-        from === NULL_ADDRESS || to === NULL_ADDRESS,
-        'can only be mint or burn',
+      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+        this.chainId,
+        events,
       );
 
-      const isMint = from === NULL_ADDRESS;
+      const totalSupplyChanges = events.map(e => {
+        const timestamp = blockNumToTimestamp[e.blockNumber];
+        assert(timestamp, 'block timestamp should be defined');
+        assert(e.event === 'Transfer', 'can only be Transfer event');
 
-      const value = new BigNumber(amount.toString());
+        const [from, to, amount] = e.args;
 
-      return {
-        timestamp,
-        value: isMint ? value : value.negated(),
-      };
-    });
+        assert(
+          from === NULL_ADDRESS || to === NULL_ADDRESS,
+          'can only be mint or burn',
+        );
 
-    this.differentialStates.totalSupply =
-      this.differentialStates.totalSupply.concat(totalSupplyChanges);
-    this.differentialStates.totalSupply.sort(timeseriesComparator);
+        const isMint = from === NULL_ADDRESS;
+
+        const value = new BigNumber(amount.toString());
+
+        return {
+          timestamp,
+          value: isMint ? value : value.negated(),
+        };
+      });
+
+      this.differentialStates.totalSupply =
+        this.differentialStates.totalSupply.concat(totalSupplyChanges);
+      this.differentialStates.totalSupply.sort(timeseriesComparator);
+    } catch (e) {
+      debugger;
+      throw new Error(
+        `Error resolving BPT pool supply changes for chain ${this.chainId}`,
+      );
+    }
   }
 
   getBPTState(timestamp: number) {
