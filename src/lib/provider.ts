@@ -32,7 +32,7 @@ export class Provider {
                     delay: DELAY_MS,
                     timeout: TIMEOUT_MS,
                     logger: msg => {
-                      logger.warn(msg.substring(0, 200), { network });
+                      logger.error(msg.substring(0, 200), { network });
                     },
                   })(...args);
                 } catch (e) {
