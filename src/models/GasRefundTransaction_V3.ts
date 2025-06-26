@@ -9,7 +9,7 @@ import {
   Default,
 } from 'sequelize-typescript';
 import {
-  GasRefundTransactionData,
+  GasRefundTransactionData_V3,
   TransactionStatus,
 } from '../lib/gas-refund/gas-refund';
 
@@ -19,7 +19,7 @@ import {
 } from '../lib/sql-data-types';
 
 @Table
-export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData> {
+export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData_V3> {
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)
