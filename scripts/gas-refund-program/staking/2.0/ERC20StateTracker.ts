@@ -74,83 +74,102 @@ export default class ERC20StateTracker extends AbstractStateTracker {
   }
 
   async loadStates() {
-    await Promise.all([this.loadInitialState(), this.loadStateChanges()]);
+    try {
+      await Promise.all([this.loadInitialState(), this.loadStateChanges()]);
+    } catch (e) {
+      debugger;
+      throw e;
+    }
   }
 
   async loadInitialState() {
-    logger.info('Loading initial state');
-    const initBlock = this.startBlock - 1;
+    try {
+      logger.info('Loading initial state');
+      const initBlock = this.startBlock - 1;
 
-    const options = {
-      token: this.contractAddress,
-      chainId: this.chainId,
-      blockHeight: String(initBlock),
-    };
+      const options = {
+        token: this.contractAddress,
+        chainId: this.chainId,
+        blockHeight: String(initBlock),
+      };
 
-    const stakes = await getTokenHolders(options);
+      const stakes = await getTokenHolders(options);
 
-    this.initState.balance = stakes.reduce<{
-      [accountAddress: string]: BigNumber;
-    }>((acc, curr) => {
-      acc[curr.address.toLowerCase()] = new BigNumber(curr.balance);
-      return acc;
-    }, {});
+      this.initState.balance = stakes.reduce<{
+        [accountAddress: string]: BigNumber;
+      }>((acc, curr) => {
+        acc[curr.address.toLowerCase()] = new BigNumber(curr.balance);
+        return acc;
+      }, {});
+    } catch (e) {
+      debugger;
+      throw new Error(
+        `Error loading initial state for contract ${this.contractAddress} on chain ${this.chainId}: ${e.message}`,
+      );
+    }
   }
 
   async loadStateChanges() {
-    logger.info(
-      `loadStateChanges: loading psp balance related events for all pools`,
-    );
+    try {
+      logger.info(
+        `loadStateChanges: loading token ${this.contract.address} balance related events for all pools`,
+      );
 
-    this.transferEvents = (await queryFilterBatched(
-      this.contract,
-      this.contract.filters.Transfer(),
-      this.startBlock,
-      this.endBlock,
-      { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId]}
-    )) as Transfer[];
+      this.transferEvents = (await queryFilterBatched(
+        this.contract,
+        this.contract.filters.Transfer(),
+        this.startBlock,
+        this.endBlock,
+        { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+      )) as Transfer[];
 
-    logger.info(
-      `loadStateChanges: completed loading ${this.transferEvents.length} psp balance related events for all pools`,
-    );
+      logger.info(
+        `loadStateChanges: completed loading ${this.transferEvents.length} token ${this.contract.address} balance related events for all pools`,
+      );
 
-    logger.info(`loadStateChanges: loading blockNumToTimestamp`);
-    const blockNumToTimestamp = await fetchBlockTimestampForEvents(
-      this.chainId,
-      this.transferEvents,
-    );
-    logger.info(`loadStateChanges: completed loading blockNumToTimestamp`);
+      logger.info(`loadStateChanges: loading blockNumToTimestamp`);
+      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+        this.chainId,
+        this.transferEvents,
+      );
+      logger.info(`loadStateChanges: completed loading blockNumToTimestamp`);
 
-    this.transferEvents.forEach(e => {
-      const timestamp = blockNumToTimestamp[e.blockNumber];
-      const [_from, _to, _value] = e.args;
-      const from = _from.toLowerCase();
-      const to = _to.toLowerCase();
-      const value = new BigNumber(_value.toString());
+      this.transferEvents.forEach(e => {
+        const timestamp = blockNumToTimestamp[e.blockNumber];
+        const [_from, _to, _value] = e.args;
+        const from = _from.toLowerCase();
+        const to = _to.toLowerCase();
+        const value = new BigNumber(_value.toString());
 
-      if (!this.differentialStates.balance)
-        this.differentialStates.balance = {};
+        if (!this.differentialStates.balance)
+          this.differentialStates.balance = {};
 
-      if (!this.differentialStates.balance[from])
-        this.differentialStates.balance[from] = [];
+        if (!this.differentialStates.balance[from])
+          this.differentialStates.balance[from] = [];
 
-      if (!this.differentialStates.balance[to])
-        this.differentialStates.balance[to] = [];
+        if (!this.differentialStates.balance[to])
+          this.differentialStates.balance[to] = [];
 
-      this.differentialStates.balance[from].push({
-        timestamp,
-        value: value.negated(),
+        this.differentialStates.balance[from].push({
+          timestamp,
+          value: value.negated(),
+        });
+
+        this.differentialStates.balance[to].push({
+          timestamp,
+          value,
+        });
       });
 
-      this.differentialStates.balance[to].push({
-        timestamp,
-        value,
-      });
-    });
-
-    logger.info(
-      `loadStateChanges: completed handling psp balance related events for all pools`,
-    );
+      logger.info(
+        `loadStateChanges: completed handling token ${this.contract.address} balance related events for all pools`,
+      );
+    } catch (e) {
+      debugger;
+      throw new Error(
+        `Error loading state changes for contract ${this.contractAddress} on chain ${this.chainId}: ${e.message}`,
+      );
+    }
   }
 
   getBalance(timestamp: number, account: string) {

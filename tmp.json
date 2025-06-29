@@ -1,0 +1,3564 @@
+[
+  {
+    "account": "0xaa778c77e61b6feff66a6aa290adb4bfb5fc8ee4",
+    "chainId": 1,
+    "amount": "6.609385239331047335391e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6609385239331047335391",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6.609385239331047335391e+21"
+    }
+  },
+  {
+    "account": "0xe8078ffa8b9acb9cf314a9d9e6c148181e6c8851",
+    "chainId": 1,
+    "amount": "271999709165531413500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "271999709165531413500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "271999709165531413500"
+    }
+  },
+  {
+    "account": "0x4461d605a73f4f0ea2d52b89c8b36ec78d7f56fd",
+    "chainId": 1,
+    "amount": "1.24843508690698711865e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1248435086906987118650",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.24843508690698711865e+21"
+    }
+  },
+  {
+    "account": "0xfaec284e854d963c5598aa6ba099bbf8f0b8f96d",
+    "chainId": 1,
+    "amount": "13308314265186903021",
+    "amountsByProgram": {
+      "paraswapGasRefund": "13308314265186903021",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "13308314265186903021"
+    }
+  },
+  {
+    "account": "0x03d9bea66996d23d7cfd573c29c2f7131146d5d1",
+    "chainId": 1,
+    "amount": "3.799185921378244193562e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3799185921378244193562",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3.799185921378244193562e+21"
+    }
+  },
+  {
+    "account": "0x743d7b30661d65b41960bf6b5d1bb93cf7972a73",
+    "chainId": 1,
+    "amount": "1.883916627820575851258e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1883916627820575851258",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.883916627820575851258e+21"
+    }
+  },
+  {
+    "account": "0xb734ec7a75d65406fde5bcf9156cab673ba1e1c5",
+    "chainId": 1,
+    "amount": "2.332105401130735704568e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2332105401130735704568",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.332105401130735704568e+21"
+    }
+  },
+  {
+    "account": "0xc4d306776aa91b3db685038d2188cc4e6ceaef63",
+    "chainId": 1,
+    "amount": "1.1559711286925171801924e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "11559711286925171801924",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.1559711286925171801924e+22"
+    }
+  },
+  {
+    "account": "0xfc4b2a62a06cb2e1c6a743e9ae327bb16977e4c1",
+    "chainId": 1,
+    "amount": "105927108119348609042",
+    "amountsByProgram": {
+      "paraswapGasRefund": "105927108119348609042",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "105927108119348609042"
+    }
+  },
+  {
+    "account": "0xc50c77dd954f6366e034da86e8f3fe9958cc6418",
+    "chainId": 1,
+    "amount": "156864224474598111828",
+    "amountsByProgram": {
+      "paraswapGasRefund": "156864224474598111828",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "156864224474598111828"
+    }
+  },
+  {
+    "account": "0x194109eb949bcf58da52409d74d7d4e22aca944c",
+    "chainId": 1,
+    "amount": "5.239312760264952362937e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5239312760264952362937",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5.239312760264952362937e+21"
+    }
+  },
+  {
+    "account": "0xb5d04b75a5144323d8e9cd5397b459b63ea9f83c",
+    "chainId": 1,
+    "amount": "2.122205235647614387511e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2122205235647614387511",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.122205235647614387511e+21"
+    }
+  },
+  {
+    "account": "0xa0a2bcc1435fdf1e8bbcc4c09bc6ca8acf1bc405",
+    "chainId": 1,
+    "amount": "4.547627035500375444973e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4547627035500375444973",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4.547627035500375444973e+21"
+    }
+  },
+  {
+    "account": "0xd3ac786fc0a87a75690cef3087de8aba368605ec",
+    "chainId": 1,
+    "amount": "530495077615026948406",
+    "amountsByProgram": {
+      "paraswapGasRefund": "530495077615026948406",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "530495077615026948406"
+    }
+  },
+  {
+    "account": "0xe746bcd11d041022d732c114e8e5429457ffc890",
+    "chainId": 1,
+    "amount": "2.3635068113720758734346e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "23635068113720758734346",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.3635068113720758734346e+22"
+    }
+  },
+  {
+    "account": "0x62960ee4991f695c97b821abe70a78d9b2891b12",
+    "chainId": 1,
+    "amount": "2.2417771831176639892193e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "22417771831176639892193",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.2417771831176639892193e+22"
+    }
+  },
+  {
+    "account": "0xaadf465695b80d5f8a1079b6646ba0bdbbaa4307",
+    "chainId": 1,
+    "amount": "314091871302934446684",
+    "amountsByProgram": {
+      "paraswapGasRefund": "314091871302934446684",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "314091871302934446684"
+    }
+  },
+  {
+    "account": "0x65a8f07bd9a8598e1b5b6c0a88f4779dbc077675",
+    "chainId": 1,
+    "amount": "3.468337882211252540772e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3468337882211252540772",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3.468337882211252540772e+21"
+    }
+  },
+  {
+    "account": "0x9c5a5bf1c40b50eae0c0bdfa044427661aac2cd0",
+    "chainId": 1,
+    "amount": "1.9478413434337111517e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1947841343433711151700",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.9478413434337111517e+21"
+    }
+  },
+  {
+    "account": "0x5fa07227d05774c2ff11c2425919d14225a38dbb",
+    "chainId": 1,
+    "amount": "2.0155884171879530653e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2015588417187953065300",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.0155884171879530653e+21"
+    }
+  },
+  {
+    "account": "0xecb032df1ab4fb7cdd486afbd5d1445c7b2e220f",
+    "chainId": 1,
+    "amount": "893171006453214339706",
+    "amountsByProgram": {
+      "paraswapGasRefund": "893171006453214339706",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "893171006453214339706"
+    }
+  },
+  {
+    "account": "0x755beec673f546446990a52ebf1df858d9c74231",
+    "chainId": 1,
+    "amount": "1.054186988690888258514e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1054186988690888258514",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.054186988690888258514e+21"
+    }
+  },
+  {
+    "account": "0x39ac88bc800c707a0f86aaeddb09494cc4e85189",
+    "chainId": 1,
+    "amount": "896102164696198452000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "896102164696198452000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "896102164696198452000"
+    }
+  },
+  {
+    "account": "0x5824bc16a730aa05372f06af67f238992459da4b",
+    "chainId": 1,
+    "amount": "1.06040447943181079035e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1060404479431810790350",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.06040447943181079035e+21"
+    }
+  },
+  {
+    "account": "0x4e8ffddb1403cf5306c6c7b31dc72ef5f44bc4f5",
+    "chainId": 1,
+    "amount": "255717518507810430000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "255717518507810430000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "255717518507810430000"
+    }
+  },
+  {
+    "account": "0x0814e631a0e518bb73bc757ad9965186da2dd875",
+    "chainId": 1,
+    "amount": "1.977119962459092474087e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1977119962459092474087",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.977119962459092474087e+21"
+    }
+  },
+  {
+    "account": "0xcd6dd1f0664f0fc4ccbad471c32c265c55bcea64",
+    "chainId": 1,
+    "amount": "124416827832665045000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "124416827832665045000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "124416827832665045000"
+    }
+  },
+  {
+    "account": "0x48a2a59990c145e996d0c93edf22d8dce8c7d2bb",
+    "chainId": 1,
+    "amount": "245275997807540671718",
+    "amountsByProgram": {
+      "paraswapGasRefund": "245275997807540671718",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "245275997807540671718"
+    }
+  },
+  {
+    "account": "0x9c4d592042f959254485d443bbc337d29572264f",
+    "chainId": 1,
+    "amount": "3.294509212573570905608e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3294509212573570905608",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3.294509212573570905608e+21"
+    }
+  },
+  {
+    "account": "0x46f173f638fc8c07034601023184ba751a944ae5",
+    "chainId": 1,
+    "amount": "494279827068441243607",
+    "amountsByProgram": {
+      "paraswapGasRefund": "494279827068441243607",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "494279827068441243607"
+    }
+  },
+  {
+    "account": "0x431b5ddb0ace97ebc3d936403ea25831bad832b6",
+    "chainId": 1,
+    "amount": "47173395469912090166",
+    "amountsByProgram": {
+      "paraswapGasRefund": "47173395469912090166",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "47173395469912090166"
+    }
+  },
+  {
+    "account": "0xb21731d830b7e8460e5d6c66dc1ccc0a5d0a6b87",
+    "chainId": 1,
+    "amount": "254300404446523275414",
+    "amountsByProgram": {
+      "paraswapGasRefund": "254300404446523275414",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "254300404446523275414"
+    }
+  },
+  {
+    "account": "0xc1c79c6378e5a72895c8ea15fc6dd59ffddc8dee",
+    "chainId": 1,
+    "amount": "580521946674730398744",
+    "amountsByProgram": {
+      "paraswapGasRefund": "580521946674730398744",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "580521946674730398744"
+    }
+  },
+  {
+    "account": "0x37b5bf8199d878bf9ff809b59c788ff5db0f2de8",
+    "chainId": 1,
+    "amount": "803491012109485298500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "803491012109485298500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "803491012109485298500"
+    }
+  },
+  {
+    "account": "0x445bab4342fafcfee8baaec5bd7d6030770d4011",
+    "chainId": 1,
+    "amount": "4194943762604217238",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4194943762604217238",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4194943762604217238"
+    }
+  },
+  {
+    "account": "0xbf16fdee32279772903ceefa843e0d950aba5d94",
+    "chainId": 1,
+    "amount": "9.366586745888900685088e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "9366586745888900685088",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "9.366586745888900685088e+21"
+    }
+  },
+  {
+    "account": "0x90763cf0ceb2d3ea37702d69db885e498eee14fb",
+    "chainId": 1,
+    "amount": "167799623134826457262",
+    "amountsByProgram": {
+      "paraswapGasRefund": "167799623134826457262",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "167799623134826457262"
+    }
+  },
+  {
+    "account": "0x3afb0b4ca9ab60165e207cb14067b07a04114413",
+    "chainId": 1,
+    "amount": "6.92124993963685929625e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6921249939636859296250",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6.92124993963685929625e+21"
+    }
+  },
+  {
+    "account": "0x9b81306f55eaf6e4b4b451b5df53769b9d827db9",
+    "chainId": 1,
+    "amount": "1.586071490410578057134e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1586071490410578057134",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.586071490410578057134e+21"
+    }
+  },
+  {
+    "account": "0x67eeae0a8946f5456002a7ea1a2d0547975336d8",
+    "chainId": 1,
+    "amount": "275895158069442132842",
+    "amountsByProgram": {
+      "paraswapGasRefund": "275895158069442132842",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "275895158069442132842"
+    }
+  },
+  {
+    "account": "0xd37f7b32a541d9e423f759dff1dd63181651bd04",
+    "chainId": 1,
+    "amount": "604869844412837613500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "604869844412837613500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "604869844412837613500"
+    }
+  },
+  {
+    "account": "0x277834ffb8f94908ee6ea5eeae28bdbf995ef4e0",
+    "chainId": 1,
+    "amount": "4.973143855699778804075e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4973143855699778804075",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4.973143855699778804075e+21"
+    }
+  },
+  {
+    "account": "0x66bb7c182672a4b4a1c5891b9fd708b241ef3622",
+    "chainId": 1,
+    "amount": "588418473805013846834",
+    "amountsByProgram": {
+      "paraswapGasRefund": "588418473805013846834",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "588418473805013846834"
+    }
+  },
+  {
+    "account": "0x22d41133029283337ede262782a60365a73d06f0",
+    "chainId": 1,
+    "amount": "399074532815527534039",
+    "amountsByProgram": {
+      "paraswapGasRefund": "399074532815527534039",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "399074532815527534039"
+    }
+  },
+  {
+    "account": "0xdd2c3f62e3deafdea2f10f51fd3cd6020bcca2fe",
+    "chainId": 1,
+    "amount": "601773709212546128899",
+    "amountsByProgram": {
+      "paraswapGasRefund": "601773709212546128899",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "601773709212546128899"
+    }
+  },
+  {
+    "account": "0x9bcf840f44186f1b1da9228553ee651172e3633f",
+    "chainId": 1,
+    "amount": "1.090013259149089246975e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1090013259149089246975",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.090013259149089246975e+21"
+    }
+  },
+  {
+    "account": "0x4cb7489cdf08c50aa7bfe64be4fdf349dc686d44",
+    "chainId": 1,
+    "amount": "689341135367427583968",
+    "amountsByProgram": {
+      "paraswapGasRefund": "689341135367427583968",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "689341135367427583968"
+    }
+  },
+  {
+    "account": "0x0ffad609d35c4bef104ee245a9c4c891d463aa2a",
+    "chainId": 1,
+    "amount": "1.833934595218990983428e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1833934595218990983428",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.833934595218990983428e+21"
+    }
+  },
+  {
+    "account": "0xd7920cd8a648f9f0dd47c1a8e1b4b0b987335e3e",
+    "chainId": 1,
+    "amount": "770291999029482265000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "770291999029482265000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "770291999029482265000"
+    }
+  },
+  {
+    "account": "0x2f707265e61300e8290c18e38ebcbd129fb0b0f5",
+    "chainId": 1,
+    "amount": "2.9287278747193034595e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2928727874719303459500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.9287278747193034595e+21"
+    }
+  },
+  {
+    "account": "0x912e8664959f69e698c296810e50298a4faaa6c4",
+    "chainId": 1,
+    "amount": "2.1799376235017550572e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2179937623501755057200",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.1799376235017550572e+21"
+    }
+  },
+  {
+    "account": "0x3070f20f86fda706ac380f5060d256028a46ec29",
+    "chainId": 1,
+    "amount": "2.381298600844116524007e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2381298600844116524007",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.381298600844116524007e+21"
+    }
+  },
+  {
+    "account": "0xed62616a7c1dd354801f4e72389299a81493e004",
+    "chainId": 1,
+    "amount": "9497777721053541927",
+    "amountsByProgram": {
+      "paraswapGasRefund": "9497777721053541927",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "9497777721053541927"
+    }
+  },
+  {
+    "account": "0xe3fbd803865f2dad742786fbaac4a32d7ef9f3f5",
+    "chainId": 1,
+    "amount": "1.25740943520480529528e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "12574094352048052952800",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.25740943520480529528e+22"
+    }
+  },
+  {
+    "account": "0x2f573a409666730ded9c02a843abc13c2b357e00",
+    "chainId": 1,
+    "amount": "461374767400119571369",
+    "amountsByProgram": {
+      "paraswapGasRefund": "461374767400119571369",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "461374767400119571369"
+    }
+  },
+  {
+    "account": "0x4d26f0e78c154f8fda7acf6646246fa135507017",
+    "chainId": 1,
+    "amount": "170343282444004332952",
+    "amountsByProgram": {
+      "paraswapGasRefund": "170343282444004332952",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "170343282444004332952"
+    }
+  },
+  {
+    "account": "0xf2e8666155003c8df650df6e6e1866810e81a391",
+    "chainId": 1,
+    "amount": "312117647908888563586",
+    "amountsByProgram": {
+      "paraswapGasRefund": "312117647908888563586",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "312117647908888563586"
+    }
+  },
+  {
+    "account": "0xc609b5595e38acbdde1672f9b482db823f51668a",
+    "chainId": 1,
+    "amount": "931212265582244205000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "931212265582244205000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "931212265582244205000"
+    }
+  },
+  {
+    "account": "0x79d1a51fbc328ec9741bf5026d2ddad9f99f99ca",
+    "chainId": 1,
+    "amount": "471468365576981187777",
+    "amountsByProgram": {
+      "paraswapGasRefund": "471468365576981187777",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "471468365576981187777"
+    }
+  },
+  {
+    "account": "0x6ab880afd1e0c7786cc5d05f4fd9b17761768da8",
+    "chainId": 1,
+    "amount": "213984583456511674478",
+    "amountsByProgram": {
+      "paraswapGasRefund": "213984583456511674478",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "213984583456511674478"
+    }
+  },
+  {
+    "account": "0x83febcf72458393a3957cc9793a9f04ff59a3d45",
+    "chainId": 1,
+    "amount": "627252594356083433052",
+    "amountsByProgram": {
+      "paraswapGasRefund": "627252594356083433052",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "627252594356083433052"
+    }
+  },
+  {
+    "account": "0xd6cb7a7b544e24e5160a948a16c45b1096276f9d",
+    "chainId": 1,
+    "amount": "127938081410100874699",
+    "amountsByProgram": {
+      "paraswapGasRefund": "127938081410100874699",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "127938081410100874699"
+    }
+  },
+  {
+    "account": "0x8e13649613b774ab67d1c1edfc22a2202270fd81",
+    "chainId": 1,
+    "amount": "94455771042006684093",
+    "amountsByProgram": {
+      "paraswapGasRefund": "94455771042006684093",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "94455771042006684093"
+    }
+  },
+  {
+    "account": "0xa32b6685644ca2e4e2d5b205ec31042353912d67",
+    "chainId": 1,
+    "amount": "1.008036837355761287836e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1008036837355761287836",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.008036837355761287836e+21"
+    }
+  },
+  {
+    "account": "0xb7b1cc940cc88640089028d4910de22e39e6d117",
+    "chainId": 1,
+    "amount": "138922735773105304839",
+    "amountsByProgram": {
+      "paraswapGasRefund": "138922735773105304839",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "138922735773105304839"
+    }
+  },
+  {
+    "account": "0xfa8343c666c7b4e617e502c7070a31c52d5a46ec",
+    "chainId": 1,
+    "amount": "546599367789019716537",
+    "amountsByProgram": {
+      "paraswapGasRefund": "546599367789019716537",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "546599367789019716537"
+    }
+  },
+  {
+    "account": "0x9a56033eea1a01fcbc84c9b56ee18b6f075136dd",
+    "chainId": 1,
+    "amount": "967127684409849461757",
+    "amountsByProgram": {
+      "paraswapGasRefund": "967127684409849461757",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "967127684409849461757"
+    }
+  },
+  {
+    "account": "0x80b3d7735bbaa17b27d45acc17c3c233c32f4a59",
+    "chainId": 1,
+    "amount": "393509078966895753121",
+    "amountsByProgram": {
+      "paraswapGasRefund": "393509078966895753121",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "393509078966895753121"
+    }
+  },
+  {
+    "account": "0xe29b7fb40150ea4b7cbc2f22e3acfa67a8da021a",
+    "chainId": 1,
+    "amount": "121083392690033748963",
+    "amountsByProgram": {
+      "paraswapGasRefund": "121083392690033748963",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "121083392690033748963"
+    }
+  },
+  {
+    "account": "0x0edefa91e99da1eddd1372c1743a63b1595fc413",
+    "chainId": 1,
+    "amount": "1.66357693159030563518e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1663576931590305635180",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.66357693159030563518e+21"
+    }
+  },
+  {
+    "account": "0x7715b6902bdef1cd17e535cd29862f01468de741",
+    "chainId": 1,
+    "amount": "210855900872848200000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "210855900872848200000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "210855900872848200000"
+    }
+  },
+  {
+    "account": "0x7ff8d75857a1d4bc845eeef55d6738b58c5d6adb",
+    "chainId": 1,
+    "amount": "817862549346079705000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "817862549346079705000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "817862549346079705000"
+    }
+  },
+  {
+    "account": "0xf4484efb942029b1535eb55d3858145bd6c2a2bc",
+    "chainId": 1,
+    "amount": "754972292894518672474",
+    "amountsByProgram": {
+      "paraswapGasRefund": "754972292894518672474",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "754972292894518672474"
+    }
+  },
+  {
+    "account": "0x8cc1665ee965345e79b132adb124782bad8c78e0",
+    "chainId": 1,
+    "amount": "596521575235044287215",
+    "amountsByProgram": {
+      "paraswapGasRefund": "596521575235044287215",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "596521575235044287215"
+    }
+  },
+  {
+    "account": "0xad657ad54a47430cd25530e4ed5c41b0595c0922",
+    "chainId": 1,
+    "amount": "642853889684842982149",
+    "amountsByProgram": {
+      "paraswapGasRefund": "642853889684842982149",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "642853889684842982149"
+    }
+  },
+  {
+    "account": "0x7ea2bfbadd5bc500166482f7949e4d7f44f9d4ef",
+    "chainId": 1,
+    "amount": "2.19216446030913282493e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2192164460309132824930",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.19216446030913282493e+21"
+    }
+  },
+  {
+    "account": "0x725a31aa2e0649d756def185bbe2494abdfb9544",
+    "chainId": 1,
+    "amount": "4.505795153437700968486e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4505795153437700968486",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4.505795153437700968486e+21"
+    }
+  },
+  {
+    "account": "0x32efd7758c0a2aa8f5f26fd0d4f90db4a0f58704",
+    "chainId": 1,
+    "amount": "695156455459455410295",
+    "amountsByProgram": {
+      "paraswapGasRefund": "695156455459455410295",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "695156455459455410295"
+    }
+  },
+  {
+    "account": "0xb4d349159f4f19fad79f49e39b248377cf2e4cba",
+    "chainId": 1,
+    "amount": "646272644807573069856",
+    "amountsByProgram": {
+      "paraswapGasRefund": "646272644807573069856",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "646272644807573069856"
+    }
+  },
+  {
+    "account": "0x772ceb1580b855a57b3c229a172ed225be00f130",
+    "chainId": 1,
+    "amount": "217911172856722665452",
+    "amountsByProgram": {
+      "paraswapGasRefund": "217911172856722665452",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "217911172856722665452"
+    }
+  },
+  {
+    "account": "0xaec4a987aaf902505c20a19a87abab687b6f5cb0",
+    "chainId": 1,
+    "amount": "932706170939608205000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "932706170939608205000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "932706170939608205000"
+    }
+  },
+  {
+    "account": "0x5d2422d0f59a0078112d5fd9d076770d5393b08c",
+    "chainId": 1,
+    "amount": "400339358743558327710",
+    "amountsByProgram": {
+      "paraswapGasRefund": "400339358743558327710",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "400339358743558327710"
+    }
+  },
+  {
+    "account": "0x32f8c8b40b62a73d514e8be0f58074edba533937",
+    "chainId": 1,
+    "amount": "50854264806534791507",
+    "amountsByProgram": {
+      "paraswapGasRefund": "50854264806534791507",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "50854264806534791507"
+    }
+  },
+  {
+    "account": "0xf1df824419879bb8a7e758173523f88efb7af193",
+    "chainId": 1,
+    "amount": "2.721028738006699574062e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2721028738006699574062",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.721028738006699574062e+21"
+    }
+  },
+  {
+    "account": "0xd292c50842fe5e52adfa20d9fe5dd18d00008fe5",
+    "chainId": 1,
+    "amount": "179129558419233223847",
+    "amountsByProgram": {
+      "paraswapGasRefund": "179129558419233223847",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "179129558419233223847"
+    }
+  },
+  {
+    "account": "0xc327f2f6c5df87673e6e12e674ba26654a25a7b5",
+    "chainId": 1,
+    "amount": "165813049985728043457",
+    "amountsByProgram": {
+      "paraswapGasRefund": "165813049985728043457",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "165813049985728043457"
+    }
+  },
+  {
+    "account": "0xadae0cdb5b7fdbcdb6094b80af96869abf8ad394",
+    "chainId": 1,
+    "amount": "204361671632154860000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "204361671632154860000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "204361671632154860000"
+    }
+  },
+  {
+    "account": "0x964ec70227d920229660109ca759a12e1fbd6b84",
+    "chainId": 1,
+    "amount": "6.1720594721218109773e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6172059472121810977300",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6.1720594721218109773e+21"
+    }
+  },
+  {
+    "account": "0xfb4cb868727d9622258bf2b26a8cfc95f6742669",
+    "chainId": 1,
+    "amount": "295115360934580690000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "295115360934580690000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "295115360934580690000"
+    }
+  },
+  {
+    "account": "0x8be46b25d59616e594f0a9e20147fb14c1b989d9",
+    "chainId": 1,
+    "amount": "37494271763084016908",
+    "amountsByProgram": {
+      "paraswapGasRefund": "37494271763084016908",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "37494271763084016908"
+    }
+  },
+  {
+    "account": "0xa5d223c176daab154a3134369d1c0478c5e6fecf",
+    "chainId": 1,
+    "amount": "477075881489048240800",
+    "amountsByProgram": {
+      "paraswapGasRefund": "477075881489048240800",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "477075881489048240800"
+    }
+  },
+  {
+    "account": "0x7e1ff06fc9adaca7383560f3d674c6b686aef67e",
+    "chainId": 1,
+    "amount": "26334023222707813992",
+    "amountsByProgram": {
+      "paraswapGasRefund": "26334023222707813992",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "26334023222707813992"
+    }
+  },
+  {
+    "account": "0x432f1ec52ae5c6e43d80d4ab4f28e61e2b313ae5",
+    "chainId": 1,
+    "amount": "29119196867300494557",
+    "amountsByProgram": {
+      "paraswapGasRefund": "29119196867300494557",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "29119196867300494557"
+    }
+  },
+  {
+    "account": "0x61fdff48d154c6079e43cbf14027057b367cb3b2",
+    "chainId": 1,
+    "amount": "134677395875245062552",
+    "amountsByProgram": {
+      "paraswapGasRefund": "134677395875245062552",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "134677395875245062552"
+    }
+  },
+  {
+    "account": "0x262cda145d2dc6a12814b4f8f44f1adc1352464c",
+    "chainId": 1,
+    "amount": "59286753071989051057",
+    "amountsByProgram": {
+      "paraswapGasRefund": "59286753071989051057",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "59286753071989051057"
+    }
+  },
+  {
+    "account": "0x6e0b6ff7536100a9e6b7041ca5a98108935932e5",
+    "chainId": 1,
+    "amount": "85996577713228578201",
+    "amountsByProgram": {
+      "paraswapGasRefund": "85996577713228578201",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "85996577713228578201"
+    }
+  },
+  {
+    "account": "0x80f9a836923673bf0461d2068836ef5915d9dc4c",
+    "chainId": 1,
+    "amount": "17496309775228775503",
+    "amountsByProgram": {
+      "paraswapGasRefund": "17496309775228775503",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "17496309775228775503"
+    }
+  },
+  {
+    "account": "0xcc0bb4f6d24918876b9e383955cde95ec26ff0ec",
+    "chainId": 1,
+    "amount": "466894148848705936886",
+    "amountsByProgram": {
+      "paraswapGasRefund": "466894148848705936886",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "466894148848705936886"
+    }
+  },
+  {
+    "account": "0x288457ac35bbdf035845acb7f2a310bbf7a74c52",
+    "chainId": 1,
+    "amount": "9376801197476834840",
+    "amountsByProgram": {
+      "paraswapGasRefund": "9376801197476834840",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "9376801197476834840"
+    }
+  },
+  {
+    "account": "0x7dfe56f30d0c8fe31f2e698920311be6f80a825b",
+    "chainId": 1,
+    "amount": "50534689113627935538",
+    "amountsByProgram": {
+      "paraswapGasRefund": "50534689113627935538",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "50534689113627935538"
+    }
+  },
+  {
+    "account": "0xa605c28fad3e79b93b0003379b1a766ee798e93a",
+    "chainId": 1,
+    "amount": "497308042191639550647",
+    "amountsByProgram": {
+      "paraswapGasRefund": "497308042191639550647",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "497308042191639550647"
+    }
+  },
+  {
+    "account": "0x5d1c90fc7f4ac5edefd58a8f2dc16f204f96497d",
+    "chainId": 1,
+    "amount": "5.938909112454917275369e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5938909112454917275369",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5.938909112454917275369e+21"
+    }
+  },
+  {
+    "account": "0x73b0a8d0d7f947518bb5939e988922d2797888d8",
+    "chainId": 1,
+    "amount": "173598692789277450562",
+    "amountsByProgram": {
+      "paraswapGasRefund": "173598692789277450562",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "173598692789277450562"
+    }
+  },
+  {
+    "account": "0x2af2b2e485e1854fd71590c7ffd104db0f66f8a6",
+    "chainId": 1,
+    "amount": "370525578056492025519",
+    "amountsByProgram": {
+      "paraswapGasRefund": "370525578056492025519",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "370525578056492025519"
+    }
+  },
+  {
+    "account": "0x32882c68ab8832044bbe9b0e9beb738f60ae4e2f",
+    "chainId": 1,
+    "amount": "204575340320030263100",
+    "amountsByProgram": {
+      "paraswapGasRefund": "204575340320030263100",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "204575340320030263100"
+    }
+  },
+  {
+    "account": "0xb999041bbad79e8435286da3a56231e92e98f71a",
+    "chainId": 1,
+    "amount": "52475712271220030413",
+    "amountsByProgram": {
+      "paraswapGasRefund": "52475712271220030413",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "52475712271220030413"
+    }
+  },
+  {
+    "account": "0x380daa3d00d191cba701bb2f766ea0dbad973da7",
+    "chainId": 1,
+    "amount": "64107637961418175318",
+    "amountsByProgram": {
+      "paraswapGasRefund": "64107637961418175318",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "64107637961418175318"
+    }
+  },
+  {
+    "account": "0x94bb80230de02d34d2afb4fa8f8d7781985afb35",
+    "chainId": 1,
+    "amount": "133798066162603486350",
+    "amountsByProgram": {
+      "paraswapGasRefund": "133798066162603486350",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "133798066162603486350"
+    }
+  },
+  {
+    "account": "0x0db5e7924d87d2ec27876882e7af911a58050dd1",
+    "chainId": 1,
+    "amount": "78930673211431670055",
+    "amountsByProgram": {
+      "paraswapGasRefund": "78930673211431670055",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "78930673211431670055"
+    }
+  },
+  {
+    "account": "0x8b6e7c1a343efd9c7d1e9e06cdae24d5a664def3",
+    "chainId": 1,
+    "amount": "46636363639904197546",
+    "amountsByProgram": {
+      "paraswapGasRefund": "46636363639904197546",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "46636363639904197546"
+    }
+  },
+  {
+    "account": "0x7bfee91193d9df2ac0bfe90191d40f23c773c060",
+    "chainId": 1,
+    "amount": "1.741134087933471875375e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1741134087933471875375",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.741134087933471875375e+21"
+    }
+  },
+  {
+    "account": "0x870dc279570833a8c5a72fc7972681db9a96cfb7",
+    "chainId": 1,
+    "amount": "163435200334345994358",
+    "amountsByProgram": {
+      "paraswapGasRefund": "163435200334345994358",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "163435200334345994358"
+    }
+  },
+  {
+    "account": "0x3b15cec2d922ab0ef74688bcc1056461049f89cb",
+    "chainId": 1,
+    "amount": "292754881080937462988",
+    "amountsByProgram": {
+      "paraswapGasRefund": "292754881080937462988",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "292754881080937462988"
+    }
+  },
+  {
+    "account": "0x32f9a1e1125e61bd2756528e7316303f532e4d7f",
+    "chainId": 1,
+    "amount": "823291245573305926620",
+    "amountsByProgram": {
+      "paraswapGasRefund": "823291245573305926620",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "823291245573305926620"
+    }
+  },
+  {
+    "account": "0x947c4efaf086821ed8f5d3980d466808f3fe4808",
+    "chainId": 1,
+    "amount": "624703702639793617510",
+    "amountsByProgram": {
+      "paraswapGasRefund": "624703702639793617510",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "624703702639793617510"
+    }
+  },
+  {
+    "account": "0xabc508dda7517f195e416d77c822a4861961947a",
+    "chainId": 1,
+    "amount": "222034279483049367997",
+    "amountsByProgram": {
+      "paraswapGasRefund": "222034279483049367997",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "222034279483049367997"
+    }
+  },
+  {
+    "account": "0xb97018dc459de6892122019cc6e115997d1651cb",
+    "chainId": 1,
+    "amount": "149023871679075780966",
+    "amountsByProgram": {
+      "paraswapGasRefund": "149023871679075780966",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "149023871679075780966"
+    }
+  },
+  {
+    "account": "0xda47b9707a7b354af829297450772cdf8b23e22b",
+    "chainId": 1,
+    "amount": "1.624498121825377834364e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1624498121825377834364",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.624498121825377834364e+21"
+    }
+  },
+  {
+    "account": "0x6aed19abab347eb07a2c8b264fc5c4c1b002210b",
+    "chainId": 1,
+    "amount": "338075933022593473000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "338075933022593473000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "338075933022593473000"
+    }
+  },
+  {
+    "account": "0x75c108df63381e5b2fae62d610d79a8915911aa8",
+    "chainId": 1,
+    "amount": "197137258940946217639",
+    "amountsByProgram": {
+      "paraswapGasRefund": "197137258940946217639",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "197137258940946217639"
+    }
+  },
+  {
+    "account": "0xcd06c1ebbb8787e7fed20185f65de465731fbdf0",
+    "chainId": 1,
+    "amount": "15653305032065497795",
+    "amountsByProgram": {
+      "paraswapGasRefund": "15653305032065497795",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "15653305032065497795"
+    }
+  },
+  {
+    "account": "0x6c2693f5a936f37ed03cfa8465bf2d8beff19a0f",
+    "chainId": 1,
+    "amount": "151725468483141328691",
+    "amountsByProgram": {
+      "paraswapGasRefund": "151725468483141328691",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "151725468483141328691"
+    }
+  },
+  {
+    "account": "0x1e5c797a569276bda2ee21750186000e01d2bb5b",
+    "chainId": 1,
+    "amount": "3.362148471482548545554e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3362148471482548545554",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3.362148471482548545554e+21"
+    }
+  },
+  {
+    "account": "0x51a125f89cbe0bfbfd62fee8a750aaec8fabc441",
+    "chainId": 1,
+    "amount": "158908227184253713054",
+    "amountsByProgram": {
+      "paraswapGasRefund": "158908227184253713054",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "158908227184253713054"
+    }
+  },
+  {
+    "account": "0x69abc8642415e97bf5294f2299d07445bb40359b",
+    "chainId": 1,
+    "amount": "124598268863953541195",
+    "amountsByProgram": {
+      "paraswapGasRefund": "124598268863953541195",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "124598268863953541195"
+    }
+  },
+  {
+    "account": "0x10dad59905d93ca37cd25a35f25349cb5956ba8e",
+    "chainId": 1,
+    "amount": "232168961223765781189",
+    "amountsByProgram": {
+      "paraswapGasRefund": "232168961223765781189",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "232168961223765781189"
+    }
+  },
+  {
+    "account": "0x537dd7f8fe996da90a9a87945ec4b5fdc54fc6ca",
+    "chainId": 1,
+    "amount": "25521240135243888757",
+    "amountsByProgram": {
+      "paraswapGasRefund": "25521240135243888757",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "25521240135243888757"
+    }
+  },
+  {
+    "account": "0x7aa0afdac9c34f780e349679fe9149ed5772199a",
+    "chainId": 1,
+    "amount": "115482158301202417904",
+    "amountsByProgram": {
+      "paraswapGasRefund": "115482158301202417904",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "115482158301202417904"
+    }
+  },
+  {
+    "account": "0xf6f8a5c7bfe0faab623a63b7e3bd28d704acb29b",
+    "chainId": 1,
+    "amount": "129044524976173538049",
+    "amountsByProgram": {
+      "paraswapGasRefund": "129044524976173538049",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "129044524976173538049"
+    }
+  },
+  {
+    "account": "0xb08f95dbc639621dbaf48a472ae8fce0f6f56a6e",
+    "chainId": 1,
+    "amount": "81079606764549375308",
+    "amountsByProgram": {
+      "paraswapGasRefund": "81079606764549375308",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "81079606764549375308"
+    }
+  },
+  {
+    "account": "0x4c963931f71e6b471a1e4876ead08871ba8059e2",
+    "chainId": 1,
+    "amount": "64892334248284272815",
+    "amountsByProgram": {
+      "paraswapGasRefund": "64892334248284272815",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "64892334248284272815"
+    }
+  },
+  {
+    "account": "0x6957d2139d29e7db7913ac21e813f2a561e47ac8",
+    "chainId": 1,
+    "amount": "18745965679784517076",
+    "amountsByProgram": {
+      "paraswapGasRefund": "18745965679784517076",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "18745965679784517076"
+    }
+  },
+  {
+    "account": "0x6877fdeac0d0d5d61b4ca3bbd42501a2ff02c144",
+    "chainId": 1,
+    "amount": "121016453743318779000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "121016453743318779000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "121016453743318779000"
+    }
+  },
+  {
+    "account": "0x629139ab8997aa96cd7b9b2e5bdbb8325b9d66bf",
+    "chainId": 1,
+    "amount": "78362461958783263139",
+    "amountsByProgram": {
+      "paraswapGasRefund": "78362461958783263139",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "78362461958783263139"
+    }
+  },
+  {
+    "account": "0xda23b2e44baf56bcb8e87a287d739a393b34f56d",
+    "chainId": 1,
+    "amount": "77974511008383382000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "77974511008383382000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "77974511008383382000"
+    }
+  },
+  {
+    "account": "0x35349229f1316f338fa7c87d2defead9135b363f",
+    "chainId": 1,
+    "amount": "145129895380173865225",
+    "amountsByProgram": {
+      "paraswapGasRefund": "145129895380173865225",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "145129895380173865225"
+    }
+  },
+  {
+    "account": "0x58ef3088ef00c7ea0f2fd268ccc1b9fc7a65fde6",
+    "chainId": 1,
+    "amount": "20271232554567722460",
+    "amountsByProgram": {
+      "paraswapGasRefund": "20271232554567722460",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "20271232554567722460"
+    }
+  },
+  {
+    "account": "0x7b9044d2862e1bcf5212f9d41583c291cd5419f6",
+    "chainId": 1,
+    "amount": "15735123773850858405",
+    "amountsByProgram": {
+      "paraswapGasRefund": "15735123773850858405",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "15735123773850858405"
+    }
+  },
+  {
+    "account": "0xdf1d85b68df38c6baedb3831f15e7f1f155b1a3f",
+    "chainId": 1,
+    "amount": "127039942008290858760",
+    "amountsByProgram": {
+      "paraswapGasRefund": "127039942008290858760",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "127039942008290858760"
+    }
+  },
+  {
+    "account": "0x57e51559ea428787b884ef33a6780fa8478d4e58",
+    "chainId": 1,
+    "amount": "15180749043698638552",
+    "amountsByProgram": {
+      "paraswapGasRefund": "15180749043698638552",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "15180749043698638552"
+    }
+  },
+  {
+    "account": "0xda0f18efb51c9a639d37b0dc46ce719db18a33e1",
+    "chainId": 1,
+    "amount": "10606697102709969730",
+    "amountsByProgram": {
+      "paraswapGasRefund": "10606697102709969730",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "10606697102709969730"
+    }
+  },
+  {
+    "account": "0x223e1ab0c693ccdff0b87533b5d859696bc5a071",
+    "chainId": 1,
+    "amount": "136737627238947264400",
+    "amountsByProgram": {
+      "paraswapGasRefund": "136737627238947264400",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "136737627238947264400"
+    }
+  },
+  {
+    "account": "0xbb8fb8fe5198f25d117c0e7b1b9c8260cb19c3c0",
+    "chainId": 1,
+    "amount": "13021083044745265121",
+    "amountsByProgram": {
+      "paraswapGasRefund": "13021083044745265121",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "13021083044745265121"
+    }
+  },
+  {
+    "account": "0x217193651f3508f5839b549c10c5c6c377da725e",
+    "chainId": 1,
+    "amount": "33275567825195394083",
+    "amountsByProgram": {
+      "paraswapGasRefund": "33275567825195394083",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "33275567825195394083"
+    }
+  },
+  {
+    "account": "0xeec7990c2952017b75e1b508dc3929fe4036ecc3",
+    "chainId": 1,
+    "amount": "8970472160243573869",
+    "amountsByProgram": {
+      "paraswapGasRefund": "8970472160243573869",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "8970472160243573869"
+    }
+  },
+  {
+    "account": "0xe805b7459fe13f42e91e9282b8b4af010c9391c5",
+    "chainId": 1,
+    "amount": "25474852465814634315",
+    "amountsByProgram": {
+      "paraswapGasRefund": "25474852465814634315",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "25474852465814634315"
+    }
+  },
+  {
+    "account": "0xfac2f11ba2577d5122dc1ec5301d35b16688251e",
+    "chainId": 1,
+    "amount": "36236021284438687570",
+    "amountsByProgram": {
+      "paraswapGasRefund": "36236021284438687570",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "36236021284438687570"
+    }
+  },
+  {
+    "account": "0x20a05ae8efe1eb91be0cd07356bc20eda9c2e298",
+    "chainId": 1,
+    "amount": "14144274063491689743",
+    "amountsByProgram": {
+      "paraswapGasRefund": "14144274063491689743",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "14144274063491689743"
+    }
+  },
+  {
+    "account": "0x74ae5341eaebe5f60d453e50ee21d1e7049101e2",
+    "chainId": 1,
+    "amount": "19291357771377504476",
+    "amountsByProgram": {
+      "paraswapGasRefund": "19291357771377504476",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "19291357771377504476"
+    }
+  },
+  {
+    "account": "0x168a7ed63aa0219365b174a94ac24384c8b53416",
+    "chainId": 1,
+    "amount": "32269179378486916676",
+    "amountsByProgram": {
+      "paraswapGasRefund": "32269179378486916676",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "32269179378486916676"
+    }
+  },
+  {
+    "account": "0xdd0206010ca82ff22303b58863b3a6f3006c86c4",
+    "chainId": 1,
+    "amount": "7110682974604898558",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7110682974604898558",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7110682974604898558"
+    }
+  },
+  {
+    "account": "0x0e42d32dcc5b83a9bc74523af3b8c3a3b4cf107f",
+    "chainId": 1,
+    "amount": "18937886541399035678",
+    "amountsByProgram": {
+      "paraswapGasRefund": "18937886541399035678",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "18937886541399035678"
+    }
+  },
+  {
+    "account": "0x73975f92c0d594a8872bd329c46d0a8476867f96",
+    "chainId": 1,
+    "amount": "7997733925940715071",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7997733925940715071",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7997733925940715071"
+    }
+  },
+  {
+    "account": "0x5ede2dd2a80c86a88d4fa77cbbfe32ef50379874",
+    "chainId": 1,
+    "amount": "12368168609577406896",
+    "amountsByProgram": {
+      "paraswapGasRefund": "12368168609577406896",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "12368168609577406896"
+    }
+  },
+  {
+    "account": "0x46426750dc069953b3d78979fd5743c28d8f7596",
+    "chainId": 1,
+    "amount": "33454722473421669099",
+    "amountsByProgram": {
+      "paraswapGasRefund": "33454722473421669099",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "33454722473421669099"
+    }
+  },
+  {
+    "account": "0xb4d502361a3c6f823eeb9a99af09e110382206ee",
+    "chainId": 1,
+    "amount": "27395802076760427421",
+    "amountsByProgram": {
+      "paraswapGasRefund": "27395802076760427421",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "27395802076760427421"
+    }
+  },
+  {
+    "account": "0xe793542db8d2c5f0068e7dedf8900c3c53e47ee4",
+    "chainId": 1,
+    "amount": "2874332405219281491",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2874332405219281491",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2874332405219281491"
+    }
+  },
+  {
+    "account": "0x33754049538252bcf4767ef99edbc1ec813cc39b",
+    "chainId": 1,
+    "amount": "6740409389701571614",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6740409389701571614",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6740409389701571614"
+    }
+  },
+  {
+    "account": "0x82f9ea8d814a6eb335cfe17500cdcbb69c7ebbfe",
+    "chainId": 1,
+    "amount": "8791531394749132599",
+    "amountsByProgram": {
+      "paraswapGasRefund": "8791531394749132599",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "8791531394749132599"
+    }
+  },
+  {
+    "account": "0x403d37c861fb54b8f37a3a1870abce335954840b",
+    "chainId": 1,
+    "amount": "17591036604988527328",
+    "amountsByProgram": {
+      "paraswapGasRefund": "17591036604988527328",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "17591036604988527328"
+    }
+  },
+  {
+    "account": "0xa00b0540f43e00a634d016a31b0a39d95170e6bf",
+    "chainId": 1,
+    "amount": "3452720238624475787",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3452720238624475787",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3452720238624475787"
+    }
+  },
+  {
+    "account": "0xaa3279f1e2f9d53ed621e84137b48882caf7fa0a",
+    "chainId": 1,
+    "amount": "45985572271156423565",
+    "amountsByProgram": {
+      "paraswapGasRefund": "45985572271156423565",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "45985572271156423565"
+    }
+  },
+  {
+    "account": "0xd558d49a17f1731821e7f34d03cf9dc842421190",
+    "chainId": 1,
+    "amount": "70322103672739118809",
+    "amountsByProgram": {
+      "paraswapGasRefund": "70322103672739118809",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "70322103672739118809"
+    }
+  },
+  {
+    "account": "0xf9aa0da6e2fa01a17e2f69e878e45bb26c1b34b7",
+    "chainId": 1,
+    "amount": "64842719584137667907",
+    "amountsByProgram": {
+      "paraswapGasRefund": "64842719584137667907",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "64842719584137667907"
+    }
+  },
+  {
+    "account": "0x6ebf46772cf3a32e811d658ede8db8b4b7a4e959",
+    "chainId": 1,
+    "amount": "61723847683869442072",
+    "amountsByProgram": {
+      "paraswapGasRefund": "61723847683869442072",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "61723847683869442072"
+    }
+  },
+  {
+    "account": "0x2f4d5ca0e1f83ff9c22261e35e5e61bc5ea34bb4",
+    "chainId": 1,
+    "amount": "48854665753291245884",
+    "amountsByProgram": {
+      "paraswapGasRefund": "48854665753291245884",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "48854665753291245884"
+    }
+  },
+  {
+    "account": "0x4fdb601aebf2c6ad947d97a00b7eeaf71cc5bf93",
+    "chainId": 1,
+    "amount": "278285145194969400548",
+    "amountsByProgram": {
+      "paraswapGasRefund": "278285145194969400548",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "278285145194969400548"
+    }
+  },
+  {
+    "account": "0x5227085573fdf8ea8654997dec553836a50d3ef0",
+    "chainId": 1,
+    "amount": "49708672986040125035",
+    "amountsByProgram": {
+      "paraswapGasRefund": "49708672986040125035",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "49708672986040125035"
+    }
+  },
+  {
+    "account": "0xd1e676248071578f5e51c16088e44e71c4781555",
+    "chainId": 1,
+    "amount": "54889062472583775081",
+    "amountsByProgram": {
+      "paraswapGasRefund": "54889062472583775081",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "54889062472583775081"
+    }
+  },
+  {
+    "account": "0xb728311c5557f82050cda1bbe98dff6595be969a",
+    "chainId": 1,
+    "amount": "42105090312442207492",
+    "amountsByProgram": {
+      "paraswapGasRefund": "42105090312442207492",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "42105090312442207492"
+    }
+  },
+  {
+    "account": "0x5255ba61aa23d11859d219771201fc8a85c8e9e9",
+    "chainId": 1,
+    "amount": "18581691550952065528",
+    "amountsByProgram": {
+      "paraswapGasRefund": "18581691550952065528",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "18581691550952065528"
+    }
+  },
+  {
+    "account": "0xff5ba0aae3d5e35bc8b6312b0718487585efdc0d",
+    "chainId": 1,
+    "amount": "50625125357312112888",
+    "amountsByProgram": {
+      "paraswapGasRefund": "50625125357312112888",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "50625125357312112888"
+    }
+  },
+  {
+    "account": "0x14d42a5ad9573325cd564f019fbe05896c108b45",
+    "chainId": 1,
+    "amount": "11647197685367438295",
+    "amountsByProgram": {
+      "paraswapGasRefund": "11647197685367438295",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "11647197685367438295"
+    }
+  },
+  {
+    "account": "0x1dc8a6d263043775b26ed713762aa54d588f8852",
+    "chainId": 1,
+    "amount": "41861471142341326392",
+    "amountsByProgram": {
+      "paraswapGasRefund": "41861471142341326392",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "41861471142341326392"
+    }
+  },
+  {
+    "account": "0x1f60e7726d8063b9729496e109c6e4423c0ce669",
+    "chainId": 1,
+    "amount": "188629098965739557500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "188629098965739557500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "188629098965739557500"
+    }
+  },
+  {
+    "account": "0x39c31a899662da8bba43862c82c8ba531dc61390",
+    "chainId": 1,
+    "amount": "19413739124024598472",
+    "amountsByProgram": {
+      "paraswapGasRefund": "19413739124024598472",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "19413739124024598472"
+    }
+  },
+  {
+    "account": "0x3889c85ae55450d14c27a5acc86ff7a4a5c36ae4",
+    "chainId": 1,
+    "amount": "206928228973751736000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "206928228973751736000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "206928228973751736000"
+    }
+  },
+  {
+    "account": "0x1ad14b7abbcf75e98b3f2f21c69477c5cffea6d7",
+    "chainId": 1,
+    "amount": "41633829442976050441",
+    "amountsByProgram": {
+      "paraswapGasRefund": "41633829442976050441",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "41633829442976050441"
+    }
+  },
+  {
+    "account": "0xc59b6f807976bc3d4382d1aebe0dde70595169e2",
+    "chainId": 1,
+    "amount": "38522496802227942500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "38522496802227942500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "38522496802227942500"
+    }
+  },
+  {
+    "account": "0x8ff79922682d42f00f8db5b1a59eb85001656768",
+    "chainId": 1,
+    "amount": "48726267276901625381",
+    "amountsByProgram": {
+      "paraswapGasRefund": "48726267276901625381",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "48726267276901625381"
+    }
+  },
+  {
+    "account": "0x24accd74a3e165b8da652d6edb795bf2887e3928",
+    "chainId": 1,
+    "amount": "48888516087219183138",
+    "amountsByProgram": {
+      "paraswapGasRefund": "48888516087219183138",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "48888516087219183138"
+    }
+  },
+  {
+    "account": "0x41bc7d0687e6cea57fa26da78379dfdc5627c56d",
+    "chainId": 1,
+    "amount": "17688362923538967549",
+    "amountsByProgram": {
+      "paraswapGasRefund": "17688362923538967549",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "17688362923538967549"
+    }
+  },
+  {
+    "account": "0x5ef657ed3ac4b1fbd2cd38a3cf630535d9d30f39",
+    "chainId": 1,
+    "amount": "217703902244043178300",
+    "amountsByProgram": {
+      "paraswapGasRefund": "217703902244043178300",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "217703902244043178300"
+    }
+  },
+  {
+    "account": "0x3ec6732676db7996c1b34e64b0503f941025cb63",
+    "chainId": 1,
+    "amount": "67086410940386719370",
+    "amountsByProgram": {
+      "paraswapGasRefund": "67086410940386719370",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "67086410940386719370"
+    }
+  },
+  {
+    "account": "0x658bb68a1609a9340886c04417478da693b5c5c1",
+    "chainId": 1,
+    "amount": "30511257353810982000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "30511257353810982000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "30511257353810982000"
+    }
+  },
+  {
+    "account": "0x8cc8aa103bfe1cd8755dc80c64539370b587909f",
+    "chainId": 1,
+    "amount": "32929206341464969075",
+    "amountsByProgram": {
+      "paraswapGasRefund": "32929206341464969075",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "32929206341464969075"
+    }
+  },
+  {
+    "account": "0x1b1ed976669f4b33f436e22cb9cd0e85b26be5a0",
+    "chainId": 1,
+    "amount": "18481084005355054435",
+    "amountsByProgram": {
+      "paraswapGasRefund": "18481084005355054435",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "18481084005355054435"
+    }
+  },
+  {
+    "account": "0xdae231a566408673c9a7822173adb7ca80713af4",
+    "chainId": 1,
+    "amount": "100182960177302291376",
+    "amountsByProgram": {
+      "paraswapGasRefund": "100182960177302291376",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "100182960177302291376"
+    }
+  },
+  {
+    "account": "0x129e40392400295337f03228298b7cea73f2e4d6",
+    "chainId": 1,
+    "amount": "20023540722613098898",
+    "amountsByProgram": {
+      "paraswapGasRefund": "20023540722613098898",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "20023540722613098898"
+    }
+  },
+  {
+    "account": "0x99e18243b0c1991fede00efc319a16ebd6c224f4",
+    "chainId": 1,
+    "amount": "40491385988501068157",
+    "amountsByProgram": {
+      "paraswapGasRefund": "40491385988501068157",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "40491385988501068157"
+    }
+  },
+  {
+    "account": "0xced732ca92cb4f040239c4e8c85f14acbb5db000",
+    "chainId": 1,
+    "amount": "149103711669206693123",
+    "amountsByProgram": {
+      "paraswapGasRefund": "149103711669206693123",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "149103711669206693123"
+    }
+  },
+  {
+    "account": "0xaac47eb5f33b5cad8b5637a9f3f024ccbe751653",
+    "chainId": 1,
+    "amount": "31553966838455104226",
+    "amountsByProgram": {
+      "paraswapGasRefund": "31553966838455104226",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "31553966838455104226"
+    }
+  },
+  {
+    "account": "0xade9e51c9e23d64e538a7a38656b78ab6bcc349e",
+    "chainId": 1,
+    "amount": "28473238890990844697",
+    "amountsByProgram": {
+      "paraswapGasRefund": "28473238890990844697",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "28473238890990844697"
+    }
+  },
+  {
+    "account": "0x87061c2ee6981dcd3a5a0ba15284aa53de0d7110",
+    "chainId": 1,
+    "amount": "1733132929056317342",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1733132929056317342",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1733132929056317342"
+    }
+  },
+  {
+    "account": "0x41ca6dbb3fe7da4d263ef7a19af05aa7e756d457",
+    "chainId": 1,
+    "amount": "16229490689227673983",
+    "amountsByProgram": {
+      "paraswapGasRefund": "16229490689227673983",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "16229490689227673983"
+    }
+  },
+  {
+    "account": "0x7a1f36cd575fc2bbe5b3c87f943de8a4bfc7e8d1",
+    "chainId": 1,
+    "amount": "5501155871489419451",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5501155871489419451",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5501155871489419451"
+    }
+  },
+  {
+    "account": "0xe8b384917ed2650f06406e7c7f87dd9df0080fd7",
+    "chainId": 1,
+    "amount": "21914665980633747265",
+    "amountsByProgram": {
+      "paraswapGasRefund": "21914665980633747265",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "21914665980633747265"
+    }
+  },
+  {
+    "account": "0x13fe5a8de64c10540ef840913c5d539ef54f2295",
+    "chainId": 1,
+    "amount": "19215201137469572805",
+    "amountsByProgram": {
+      "paraswapGasRefund": "19215201137469572805",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "19215201137469572805"
+    }
+  },
+  {
+    "account": "0x2f064d92e862f30041dea4667ef8899e07bb4edf",
+    "chainId": 1,
+    "amount": "9057176439001203345",
+    "amountsByProgram": {
+      "paraswapGasRefund": "9057176439001203345",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "9057176439001203345"
+    }
+  },
+  {
+    "account": "0xade3a68c17a36618cc3d94d06dbf17dfab121474",
+    "chainId": 1,
+    "amount": "50560219427593667690",
+    "amountsByProgram": {
+      "paraswapGasRefund": "50560219427593667690",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "50560219427593667690"
+    }
+  },
+  {
+    "account": "0x13df035952316f5fb663c262064ee39e44aa6b43",
+    "chainId": 1,
+    "amount": "7933834813107044720",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7933834813107044720",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7933834813107044720"
+    }
+  },
+  {
+    "account": "0xbd5f593c86319523e6e8afe60dedbefaedbdb8c9",
+    "chainId": 1,
+    "amount": "1858145528435885665",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1858145528435885665",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1858145528435885665"
+    }
+  },
+  {
+    "account": "0x2f354ada47174376a144b74059551f6adc6b1427",
+    "chainId": 1,
+    "amount": "8163639666332468574",
+    "amountsByProgram": {
+      "paraswapGasRefund": "8163639666332468574",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "8163639666332468574"
+    }
+  },
+  {
+    "account": "0x7413556030996ed9f7849716b1fac1d4ba15eeb4",
+    "chainId": 1,
+    "amount": "57046264864730132700",
+    "amountsByProgram": {
+      "paraswapGasRefund": "57046264864730132700",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "57046264864730132700"
+    }
+  },
+  {
+    "account": "0x6ed12bf01fcc212a62fc789c2238f396b64f4e57",
+    "chainId": 1,
+    "amount": "158772353484083133000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "158772353484083133000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "158772353484083133000"
+    }
+  },
+  {
+    "account": "0x8eb3700c8d02abdfa6c4ca5976c7ba86be34422b",
+    "chainId": 10,
+    "amount": "1.8128377558091554971094e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "18128377558091554971094",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.8128377558091554971094e+22"
+    }
+  },
+  {
+    "account": "0xca2c728727ecd1b7676003f82545aebd731d13fd",
+    "chainId": 10,
+    "amount": "7.068591737826050949005e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7068591737826050949005",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7.068591737826050949005e+21"
+    }
+  },
+  {
+    "account": "0xe25988ad824b6b57587b514b0510c63f84ba6bd6",
+    "chainId": 10,
+    "amount": "1.7903597575544118211187e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "17903597575544118211187",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.7903597575544118211187e+22"
+    }
+  },
+  {
+    "account": "0xc02427f0b937f9905c47ddcc661374e0a49c8f03",
+    "chainId": 10,
+    "amount": "1.083464532523337913865e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1083464532523337913865",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.083464532523337913865e+21"
+    }
+  },
+  {
+    "account": "0x0058962144b9ae405ee629b930262c97daa66826",
+    "chainId": 10,
+    "amount": "1.9828667623278738797232e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "19828667623278738797232",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.9828667623278738797232e+22"
+    }
+  },
+  {
+    "account": "0x03314385109cd2036de2488fe0336479b9edd622",
+    "chainId": 10,
+    "amount": "1.3015292541588564863106e+22",
+    "amountsByProgram": {
+      "paraswapGasRefund": "13015292541588564863106",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.3015292541588564863106e+22"
+    }
+  },
+  {
+    "account": "0x17f26c67fd5074d859ae63e00cf5b3fd793c0786",
+    "chainId": 10,
+    "amount": "2.842349347896064330679e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2842349347896064330679",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2.842349347896064330679e+21"
+    }
+  },
+  {
+    "account": "0x2cea51bb1c9df8c26a5aecd3fb792ec6bc8adca6",
+    "chainId": 10,
+    "amount": "3.497620180072079940945e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3497620180072079940945",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3.497620180072079940945e+21"
+    }
+  },
+  {
+    "account": "0xecb032df1ab4fb7cdd486afbd5d1445c7b2e220f",
+    "chainId": 10,
+    "amount": "761378431675420553380",
+    "amountsByProgram": {
+      "paraswapGasRefund": "761378431675420553380",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "761378431675420553380"
+    }
+  },
+  {
+    "account": "0x4ae1d1a1917adf4f12a1f9293f0b93c85b8e2831",
+    "chainId": 10,
+    "amount": "501959484803351335000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "501959484803351335000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "501959484803351335000"
+    }
+  },
+  {
+    "account": "0xd8ef33bddc2716bf46df7142d7068a35eb832e94",
+    "chainId": 10,
+    "amount": "299052876721852057500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "299052876721852057500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "299052876721852057500"
+    }
+  },
+  {
+    "account": "0x391005a527267f1119e12852a95608bfccb3ed0f",
+    "chainId": 10,
+    "amount": "322320696854702805000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "322320696854702805000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "322320696854702805000"
+    }
+  },
+  {
+    "account": "0x689afb320bd2525c565e03fc73e7d5290b977315",
+    "chainId": 10,
+    "amount": "7.765410436814823019421e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7765410436814823019421",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7.765410436814823019421e+21"
+    }
+  },
+  {
+    "account": "0x431b5ddb0ace97ebc3d936403ea25831bad832b6",
+    "chainId": 10,
+    "amount": "115482679403221297190",
+    "amountsByProgram": {
+      "paraswapGasRefund": "115482679403221297190",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "115482679403221297190"
+    }
+  },
+  {
+    "account": "0x445bab4342fafcfee8baaec5bd7d6030770d4011",
+    "chainId": 10,
+    "amount": "1.287246040170945138803e+21",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1287246040170945138803",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1.287246040170945138803e+21"
+    }
+  },
+  {
+    "account": "0xbde0ee0e7f34cf1bc9aead0f01d4d84a7f4e475e",
+    "chainId": 10,
+    "amount": "181601795765779553503",
+    "amountsByProgram": {
+      "paraswapGasRefund": "181601795765779553503",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "181601795765779553503"
+    }
+  },
+  {
+    "account": "0x22d41133029283337ede262782a60365a73d06f0",
+    "chainId": 10,
+    "amount": "33794970524669848540",
+    "amountsByProgram": {
+      "paraswapGasRefund": "33794970524669848540",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "33794970524669848540"
+    }
+  },
+  {
+    "account": "0xed62616a7c1dd354801f4e72389299a81493e004",
+    "chainId": 10,
+    "amount": "278130457374390177573",
+    "amountsByProgram": {
+      "paraswapGasRefund": "278130457374390177573",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "278130457374390177573"
+    }
+  },
+  {
+    "account": "0x8a9113778f7169bd4962f8af43e19f60aa46817d",
+    "chainId": 10,
+    "amount": "826181130866480552086",
+    "amountsByProgram": {
+      "paraswapGasRefund": "826181130866480552086",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "826181130866480552086"
+    }
+  },
+  {
+    "account": "0x4d26f0e78c154f8fda7acf6646246fa135507017",
+    "chainId": 10,
+    "amount": "226539827544578932548",
+    "amountsByProgram": {
+      "paraswapGasRefund": "226539827544578932548",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "226539827544578932548"
+    }
+  },
+  {
+    "account": "0x83febcf72458393a3957cc9793a9f04ff59a3d45",
+    "chainId": 10,
+    "amount": "5698489383210296548",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5698489383210296548",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5698489383210296548"
+    }
+  },
+  {
+    "account": "0x8e13649613b774ab67d1c1edfc22a2202270fd81",
+    "chainId": 10,
+    "amount": "75118307103219330726",
+    "amountsByProgram": {
+      "paraswapGasRefund": "75118307103219330726",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "75118307103219330726"
+    }
+  },
+  {
+    "account": "0x80b3d7735bbaa17b27d45acc17c3c233c32f4a59",
+    "chainId": 10,
+    "amount": "279161551110517444957",
+    "amountsByProgram": {
+      "paraswapGasRefund": "279161551110517444957",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "279161551110517444957"
+    }
+  },
+  {
+    "account": "0x0edefa91e99da1eddd1372c1743a63b1595fc413",
+    "chainId": 10,
+    "amount": "3232410499158049320",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3232410499158049320",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3232410499158049320"
+    }
+  },
+  {
+    "account": "0x32f8c8b40b62a73d514e8be0f58074edba533937",
+    "chainId": 10,
+    "amount": "126523235034899812561",
+    "amountsByProgram": {
+      "paraswapGasRefund": "126523235034899812561",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "126523235034899812561"
+    }
+  },
+  {
+    "account": "0xc327f2f6c5df87673e6e12e674ba26654a25a7b5",
+    "chainId": 10,
+    "amount": "14076021216482968543",
+    "amountsByProgram": {
+      "paraswapGasRefund": "14076021216482968543",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "14076021216482968543"
+    }
+  },
+  {
+    "account": "0x9dc3e0fc228c2455773e70ee9e987ae2a6fbc07d",
+    "chainId": 10,
+    "amount": "74180863547082471780",
+    "amountsByProgram": {
+      "paraswapGasRefund": "74180863547082471780",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "74180863547082471780"
+    }
+  },
+  {
+    "account": "0x7e1ff06fc9adaca7383560f3d674c6b686aef67e",
+    "chainId": 10,
+    "amount": "168467684569026952872",
+    "amountsByProgram": {
+      "paraswapGasRefund": "168467684569026952872",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "168467684569026952872"
+    }
+  },
+  {
+    "account": "0xaf96d0f5eb09ec2dd5c0b9d887acb45201464481",
+    "chainId": 10,
+    "amount": "161271897353883582850",
+    "amountsByProgram": {
+      "paraswapGasRefund": "161271897353883582850",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "161271897353883582850"
+    }
+  },
+  {
+    "account": "0x6e0b6ff7536100a9e6b7041ca5a98108935932e5",
+    "chainId": 10,
+    "amount": "2698123194121699890",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2698123194121699890",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2698123194121699890"
+    }
+  },
+  {
+    "account": "0x288457ac35bbdf035845acb7f2a310bbf7a74c52",
+    "chainId": 10,
+    "amount": "27998888391758228608",
+    "amountsByProgram": {
+      "paraswapGasRefund": "27998888391758228608",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "27998888391758228608"
+    }
+  },
+  {
+    "account": "0x2af2b2e485e1854fd71590c7ffd104db0f66f8a6",
+    "chainId": 10,
+    "amount": "4572205199481229481",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4572205199481229481",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4572205199481229481"
+    }
+  },
+  {
+    "account": "0xa7abef772f118671390a557f1fcdfca4cf0a52ab",
+    "chainId": 10,
+    "amount": "135454208713113896955",
+    "amountsByProgram": {
+      "paraswapGasRefund": "135454208713113896955",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "135454208713113896955"
+    }
+  },
+  {
+    "account": "0xc1af2a378d98b43c574eb2d021e273935707a3ef",
+    "chainId": 10,
+    "amount": "127851698542928584003",
+    "amountsByProgram": {
+      "paraswapGasRefund": "127851698542928584003",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "127851698542928584003"
+    }
+  },
+  {
+    "account": "0x3b15cec2d922ab0ef74688bcc1056461049f89cb",
+    "chainId": 10,
+    "amount": "6510612226784719675",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6510612226784719675",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6510612226784719675"
+    }
+  },
+  {
+    "account": "0xda47b9707a7b354af829297450772cdf8b23e22b",
+    "chainId": 10,
+    "amount": "171722733975154331999",
+    "amountsByProgram": {
+      "paraswapGasRefund": "171722733975154331999",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "171722733975154331999"
+    }
+  },
+  {
+    "account": "0xdbe0c28c273bbb10a632b1aaf65ac2b877bb2b92",
+    "chainId": 10,
+    "amount": "85171465975367821353",
+    "amountsByProgram": {
+      "paraswapGasRefund": "85171465975367821353",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "85171465975367821353"
+    }
+  },
+  {
+    "account": "0xb08f95dbc639621dbaf48a472ae8fce0f6f56a6e",
+    "chainId": 10,
+    "amount": "1766993087464486963",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1766993087464486963",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1766993087464486963"
+    }
+  },
+  {
+    "account": "0x4c963931f71e6b471a1e4876ead08871ba8059e2",
+    "chainId": 10,
+    "amount": "40403816165379378685",
+    "amountsByProgram": {
+      "paraswapGasRefund": "40403816165379378685",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "40403816165379378685"
+    }
+  },
+  {
+    "account": "0xdf1d85b68df38c6baedb3831f15e7f1f155b1a3f",
+    "chainId": 10,
+    "amount": "89292497653056756941",
+    "amountsByProgram": {
+      "paraswapGasRefund": "89292497653056756941",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "89292497653056756941"
+    }
+  },
+  {
+    "account": "0xda0f18efb51c9a639d37b0dc46ce719db18a33e1",
+    "chainId": 10,
+    "amount": "5793722667350546414",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5793722667350546414",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5793722667350546414"
+    }
+  },
+  {
+    "account": "0xbb8fb8fe5198f25d117c0e7b1b9c8260cb19c3c0",
+    "chainId": 10,
+    "amount": "95439312216161666",
+    "amountsByProgram": {
+      "paraswapGasRefund": "95439312216161666",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "95439312216161666"
+    }
+  },
+  {
+    "account": "0x4059457092cc3812d56676df6a75fd21204fbe2f",
+    "chainId": 10,
+    "amount": "246276111193705220000",
+    "amountsByProgram": {
+      "paraswapGasRefund": "246276111193705220000",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "246276111193705220000"
+    }
+  },
+  {
+    "account": "0x90f34091c5330db3bda70e728707879c64e28713",
+    "chainId": 10,
+    "amount": "27069370548100318500",
+    "amountsByProgram": {
+      "paraswapGasRefund": "27069370548100318500",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "27069370548100318500"
+    }
+  },
+  {
+    "account": "0x9c57027b1eca93093a6f446422c59c85a5a3fa52",
+    "chainId": 10,
+    "amount": "7804579080623509609",
+    "amountsByProgram": {
+      "paraswapGasRefund": "7804579080623509609",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "7804579080623509609"
+    }
+  },
+  {
+    "account": "0x74ae5341eaebe5f60d453e50ee21d1e7049101e2",
+    "chainId": 10,
+    "amount": "2183242622137327826",
+    "amountsByProgram": {
+      "paraswapGasRefund": "2183242622137327826",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "2183242622137327826"
+    }
+  },
+  {
+    "account": "0xd075d9cb27e42b279c9f81bf8455fe65108d72d7",
+    "chainId": 10,
+    "amount": "369340952647902560935",
+    "amountsByProgram": {
+      "paraswapGasRefund": "369340952647902560935",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "369340952647902560935"
+    }
+  },
+  {
+    "account": "0x6415a12867ff9c118dd8c4a7fdf41ff0ac879c20",
+    "chainId": 10,
+    "amount": "97548771548618066696",
+    "amountsByProgram": {
+      "paraswapGasRefund": "97548771548618066696",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "97548771548618066696"
+    }
+  },
+  {
+    "account": "0xdd0206010ca82ff22303b58863b3a6f3006c86c4",
+    "chainId": 10,
+    "amount": "20753045065209427",
+    "amountsByProgram": {
+      "paraswapGasRefund": "20753045065209427",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "20753045065209427"
+    }
+  },
+  {
+    "account": "0x6129aeaf582dd8b748772e19fb7a80af26d4c2d3",
+    "chainId": 10,
+    "amount": "6843201727442462966",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6843201727442462966",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6843201727442462966"
+    }
+  },
+  {
+    "account": "0xb4d502361a3c6f823eeb9a99af09e110382206ee",
+    "chainId": 10,
+    "amount": "118204174521689834979",
+    "amountsByProgram": {
+      "paraswapGasRefund": "118204174521689834979",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "118204174521689834979"
+    }
+  },
+  {
+    "account": "0xaa3279f1e2f9d53ed621e84137b48882caf7fa0a",
+    "chainId": 10,
+    "amount": "131353679686631685",
+    "amountsByProgram": {
+      "paraswapGasRefund": "131353679686631685",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "131353679686631685"
+    }
+  },
+  {
+    "account": "0x1b163814ea70a2435a6e19d4b605822e8d3ebeeb",
+    "chainId": 10,
+    "amount": "14118838024460289531",
+    "amountsByProgram": {
+      "paraswapGasRefund": "14118838024460289531",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "14118838024460289531"
+    }
+  },
+  {
+    "account": "0xf9aa0da6e2fa01a17e2f69e878e45bb26c1b34b7",
+    "chainId": 10,
+    "amount": "16512769859089593",
+    "amountsByProgram": {
+      "paraswapGasRefund": "16512769859089593",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "16512769859089593"
+    }
+  },
+  {
+    "account": "0xb728311c5557f82050cda1bbe98dff6595be969a",
+    "chainId": 10,
+    "amount": "17898647701081937433",
+    "amountsByProgram": {
+      "paraswapGasRefund": "17898647701081937433",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "17898647701081937433"
+    }
+  },
+  {
+    "account": "0x5255ba61aa23d11859d219771201fc8a85c8e9e9",
+    "chainId": 10,
+    "amount": "15009107021623839272",
+    "amountsByProgram": {
+      "paraswapGasRefund": "15009107021623839272",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "15009107021623839272"
+    }
+  },
+  {
+    "account": "0xff5ba0aae3d5e35bc8b6312b0718487585efdc0d",
+    "chainId": 10,
+    "amount": "1143915984722882679",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1143915984722882679",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1143915984722882679"
+    }
+  },
+  {
+    "account": "0xbed58fa67bd966a40460b42f065dcccb0fd4fe4f",
+    "chainId": 10,
+    "amount": "146101642246421386707",
+    "amountsByProgram": {
+      "paraswapGasRefund": "146101642246421386707",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "146101642246421386707"
+    }
+  },
+  {
+    "account": "0x39c31a899662da8bba43862c82c8ba531dc61390",
+    "chainId": 10,
+    "amount": "4815730486150958538",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4815730486150958538",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4815730486150958538"
+    }
+  },
+  {
+    "account": "0x1ad14b7abbcf75e98b3f2f21c69477c5cffea6d7",
+    "chainId": 10,
+    "amount": "3608226695840623419",
+    "amountsByProgram": {
+      "paraswapGasRefund": "3608226695840623419",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "3608226695840623419"
+    }
+  },
+  {
+    "account": "0x3ec6732676db7996c1b34e64b0503f941025cb63",
+    "chainId": 10,
+    "amount": "1962373576934783630",
+    "amountsByProgram": {
+      "paraswapGasRefund": "1962373576934783630",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "1962373576934783630"
+    }
+  },
+  {
+    "account": "0xb9557960d25a22288c1581d86d3f5e61209d6176",
+    "chainId": 10,
+    "amount": "5142555215047261276",
+    "amountsByProgram": {
+      "paraswapGasRefund": "5142555215047261276",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "5142555215047261276"
+    }
+  },
+  {
+    "account": "0x99e18243b0c1991fede00efc319a16ebd6c224f4",
+    "chainId": 10,
+    "amount": "12412761565151970043",
+    "amountsByProgram": {
+      "paraswapGasRefund": "12412761565151970043",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "12412761565151970043"
+    }
+  },
+  {
+    "account": "0xced732ca92cb4f040239c4e8c85f14acbb5db000",
+    "chainId": 10,
+    "amount": "27508808344481843377",
+    "amountsByProgram": {
+      "paraswapGasRefund": "27508808344481843377",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "27508808344481843377"
+    }
+  },
+  {
+    "account": "0x87061c2ee6981dcd3a5a0ba15284aa53de0d7110",
+    "chainId": 10,
+    "amount": "4580244901245783329",
+    "amountsByProgram": {
+      "paraswapGasRefund": "4580244901245783329",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "4580244901245783329"
+    }
+  },
+  {
+    "account": "0x499487f6be895b71cf57881c22d5f6d855fcb8a2",
+    "chainId": 10,
+    "amount": "6927513607645826390",
+    "amountsByProgram": {
+      "paraswapGasRefund": "6927513607645826390",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "6927513607645826390"
+    }
+  },
+  {
+    "account": "0x7a1f36cd575fc2bbe5b3c87f943de8a4bfc7e8d1",
+    "chainId": 10,
+    "amount": "518557146674559015",
+    "amountsByProgram": {
+      "paraswapGasRefund": "518557146674559015",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "518557146674559015"
+    }
+  },
+  {
+    "account": "0x2f064d92e862f30041dea4667ef8899e07bb4edf",
+    "chainId": 10,
+    "amount": "9391256069604437103",
+    "amountsByProgram": {
+      "paraswapGasRefund": "9391256069604437103",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "9391256069604437103"
+    }
+  },
+  {
+    "account": "0xbd5f593c86319523e6e8afe60dedbefaedbdb8c9",
+    "chainId": 10,
+    "amount": "23261562145108713266",
+    "amountsByProgram": {
+      "paraswapGasRefund": "23261562145108713266",
+      "auraRewards": "0"
+    },
+    "debugInfo": [],
+    "breakDownGRP": {
+      "1": "23261562145108713266"
+    }
+  }
+]
