@@ -49,6 +49,8 @@ export const GasRefundV2EpochOptimismFlip = 34;
 export const GasRefundV2PIP38 = 38;
 // https://gov.paraswap.network/t/pip-53-streamlining-of-the-staked-psp-incentive-system/1813
 export const GasRefundV2PIP55 = 56;
+// TODO: change it to 57. Had 56 here to test previous distribution as if it was already done on v3 staking system
+export const GasRefundV3EpochFlip = 56;
 
 interface BaseGasRefundData {
   epoch: number;
@@ -150,6 +152,23 @@ export interface GasRefundTransactionData {
   paraBoostFactor: number;
 }
 
+export interface GasRefundTransactionData_V3 {
+  epoch: number;
+  address: string;
+  chainId: number;
+  hash: string;
+  block: number;
+  timestamp: number;
+  gasUsedUSD: string;
+  vlrUsd: number;
+  totalStakeAmountVLR: string;
+  refundedAmountVLR: string;
+  refundedAmountUSD: string;
+  contract: string;
+  status: TransactionStatus;
+  paraBoostFactor: number;
+}
+
 //                                                  psp decimals
 const scale = (num: number) => new BigNumber(num).multipliedBy(1e18);
 
@@ -189,6 +208,19 @@ export const getRefundPercentV1 = (stakedAmount: string): number | undefined =>
 const GRP_MIN_REFUND_ALLOWED = 0.25;
 export const GRP_MAX_REFUND_PERCENT = 0.95;
 
+export const grpV3Func = (x: number): number => {
+  const rawRefundPecent = 0.152003 * Math.log(0.000517947 * x);
+
+  const cappedRefundPercent = Math.min(rawRefundPecent, GRP_MAX_REFUND_PERCENT);
+
+  // TODO: if it's less than 0.25, return 0.25 --> for test purposes for now
+  const cappedRefundPercentWithMin = Math.max(
+    cappedRefundPercent,
+    GRP_MIN_REFUND_ALLOWED,
+  );
+  return cappedRefundPercentWithMin;
+};
+
 export const grpV2Func = (x: number): number => {
   const rawRefundPecent = 0.152003 * Math.log(0.000517947 * x);
 
@@ -206,10 +238,20 @@ export const getRefundPercentV2 = (score: string): number => {
   return refundPercent;
 };
 
+export const getRefundPercentV3 = (score: string): number => {
+  const scoreNorm = +(BigInt(score) / BigInt(10 ** 18)).toString();
+  const refundPercent = grpV3Func(scoreNorm);
+  return refundPercent;
+};
+
 export const getRefundPercent = (
   epoch: number,
   stakedAmount: string,
-): number | undefined =>
-  (epoch < GasRefundV2EpochFlip ? getRefundPercentV1 : getRefundPercentV2)(
-    stakedAmount,
-  );
+): number | undefined => {
+  // TODO: fallback to V2 formula. V3 is currently used just for tests
+  if (epoch > GasRefundV3EpochFlip) return getRefundPercentV3(stakedAmount);
+
+  return (
+    epoch < GasRefundV2EpochFlip ? getRefundPercentV1 : getRefundPercentV2
+  )(stakedAmount);
+};

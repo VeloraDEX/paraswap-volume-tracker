@@ -133,11 +133,17 @@ export async function fetchBlocksTimestamps({
 export const fetchBlockTimestampForEvents = async (
   chainId: number,
   events: Event[],
-): Promise<{ [blockNumber: string]: number }> =>
-  fetchBlocksTimestamps({
-    chainId,
-    blockNumbers: events.map(event => event.blockNumber),
-  });
+): Promise<{ [blockNumber: string]: number }> => {
+  try {
+    return await fetchBlocksTimestamps({
+      chainId,
+      blockNumbers: events.map(event => event.blockNumber),
+    });
+  } catch (e) {
+    debugger;
+    throw new Error(`Failed to fetch block timestamps for events: ${e}`);
+  }
+};
 
 // @testOnly
 export const BNReplacer = (key: string, value: any): any => {

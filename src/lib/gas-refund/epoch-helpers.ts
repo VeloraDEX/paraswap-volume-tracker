@@ -74,7 +74,7 @@ type EpochReseolverV2 = BaseEpochResolver & {
   };
 };
 
-const GRP2EpochResolver: EpochReseolverV2 = {
+export const GRP2EpochResolver: EpochReseolverV2 = {
   init() {
     console.log('PSP2.0: nothing to do on initialising GRP2EpochResolver !');
   },

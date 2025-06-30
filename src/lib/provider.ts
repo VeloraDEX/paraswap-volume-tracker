@@ -3,7 +3,7 @@ import { Web3Provider } from './constants';
 import { retryDecorator } from 'ts-retry-promise';
 
 // these params worked best during indexing
-const TIMEOUT_MS = 300000;
+const TIMEOUT_MS = 30000;
 const DELAY_MS = 2500;
 const RETRY_ATTEMPTS = 5;
 const logger = global.LOGGER('provider');
@@ -26,14 +26,19 @@ export class Provider {
               return async function send(
                 ...args: Parameters<JsonRpcProvider['send']>
               ) {
-                return retryDecorator(fn, {
-                  retries: RETRY_ATTEMPTS,
-                  delay: DELAY_MS,
-                  timeout: TIMEOUT_MS,
-                  logger: msg => {
-                    logger.warn(msg.substring(0, 200), { network });
-                  },
-                })(...args);
+                try {
+                  return retryDecorator(fn, {
+                    retries: RETRY_ATTEMPTS,
+                    delay: DELAY_MS,
+                    timeout: TIMEOUT_MS,
+                    logger: msg => {
+                      logger.error(msg.substring(0, 200), { network });
+                    },
+                  })(...args);
+                } catch (e) {
+                  debugger;
+                  throw e;
+                }
               };
             }
             return Reflect.get(target, prop);

@@ -1,6 +1,6 @@
 /.vscode
 node_modules
-
+.env.staging
 yarn-error.log
 
 .idea
