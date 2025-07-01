@@ -4,9 +4,9 @@ dotenv.config();
 import '../../src/lib/log4js';
 import Database from '../../src/database';
 import { validateTransactions } from './transactions-validation/validateTransactions';
-import { fetchRefundableTransactionsAllChains } from './transactions-indexing/fetchRefundableTransactionsAllChains';
 // import { trackRootUpdate } from '../../src/lib/track-root-update';
 import StakesTracker_V3 from './staking/stakes-tracker_V3';
+import { fetchRefundableTransactionsAllChains_V3 } from './transactions-indexing/fetchRefundableTransactionsAllChains_V3';
 
 const logger = global.LOGGER('GRP_V3');
 
@@ -20,7 +20,7 @@ async function startComputingGasRefundAllChains_V3() {
 
     await StakesTracker_V3.getInstance().loadHistoricalStakes();
 
-    await fetchRefundableTransactionsAllChains();
+    await fetchRefundableTransactionsAllChains_V3();
 
     await validateTransactions();
   });
