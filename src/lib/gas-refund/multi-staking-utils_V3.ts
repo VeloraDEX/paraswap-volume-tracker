@@ -1,17 +1,24 @@
+import { GasRefundTransactionStakeSnapshotData_V3 } from '../../models/GasRefundTransactionStakeSnapshot_V3';
+import { GasRefundTransactionData_V3 } from './gas-refund_V3';
 import * as Sequelize from 'sequelize';
-import { GasRefundTransactionData } from './gas-refund';
-import { GasRefundTransactionStakeSnapshotData } from '../../models/GasRefundTransactionStakeSnapshot';
-import Database from '../../database';
 import BigNumber from 'bignumber.js';
 
-const QUERY = `
+import Database from '../../database';
+import {
+  BigNumberByEpochByChain,
+  ComputationOptions,
+  defaultRounder,
+  toFixed,
+} from './multi-staking-utils';
+
+const QUERY_V3 = `
 select
-	grt.*, grtss.*
+  grt.*, grtss.*
 from
-	"GasRefundTransactions" grt
-left join "GasRefundTransactionStakeSnapshots" grtss on
-	grt.hash = grtss."transactionHash"
-	and grt."chainId" = grtss."transactionChainId"
+  "GasRefundTransaction_V3s" grt
+left join "GasRefundTransactionStakeSnapshot_V3s" grtss on
+  grt.hash = grtss."transactionHash"
+  and grt."chainId" = grtss."transactionChainId"
   -- before Delta, staker field was missing in the GasRefundTransactionStakeSnapshots as txs were 1:1 with stakers
   and ((grtss.staker = grt.address) OR (grtss.staker is NULL))
 where 
@@ -19,25 +26,26 @@ where
     and grt.epoch between :epochFrom and :epochTo
 `;
 
-type PickedStakeSnapshotData = Pick<
-  GasRefundTransactionStakeSnapshotData,
+type PickedStakeSnapshotData_V3 = Pick<
+  GasRefundTransactionStakeSnapshotData_V3,
   | 'stakeChainId'
   | 'stakeScore'
-  | 'bptPSPBalance'
+  | 'bptXYZBalance'
   | 'bptTotalSupply'
-  | 'claimableSePSP1Balance'
-  | 'sePSP1Balance'
-  | 'sePSP2Balance'
+  | 'seXYZBalance'
 >;
-type TransactionWithStakeChainScore = GasRefundTransactionData &
-  PickedStakeSnapshotData;
 
-type TransactionWithStakeChainScoreByStakeChain = GasRefundTransactionData & {
-  stakeByChain: Record<number, PickedStakeSnapshotData>;
-};
+type TransactionWithStakeChainScore_V3 = GasRefundTransactionData_V3 &
+  PickedStakeSnapshotData_V3;
 
-//NB: running into a problem with null not converting into Bigin most likely means that some of the fetched txs don't have a StakeSnapshot match in the LEFT JOIN above
-export async function loadTransactionWithByStakeChainData({
+type TransactionWithStakeChainScoreByStakeChain_V3 =
+  GasRefundTransactionData_V3 & {
+    stakeByChain: Record<number, PickedStakeSnapshotData_V3>;
+  };
+
+//NB: running into a problem with null not converting into Bigint most likely means that some of the fetched txs don't have a StakeSnapshot match in the LEFT JOIN above
+// @TODO: adjust draft
+export async function loadTransactionWithByStakeChainData_V3({
   address,
   epochFrom,
   epochTo,
@@ -45,31 +53,30 @@ export async function loadTransactionWithByStakeChainData({
   address: string;
   epochFrom: number;
   epochTo: number;
-}): Promise<TransactionWithStakeChainScoreByStakeChain[]> {
-  const rows = await Database.sequelize.query<TransactionWithStakeChainScore>(
-    QUERY,
-    {
-      type: Sequelize.QueryTypes.SELECT,
-      raw: true,
-      replacements: {
-        address,
-        epochFrom,
-        epochTo,
+}): Promise<TransactionWithStakeChainScoreByStakeChain_V3[]> {
+  const rows =
+    await Database.sequelize.query<TransactionWithStakeChainScore_V3>(
+      QUERY_V3,
+      {
+        type: Sequelize.QueryTypes.SELECT,
+        raw: true,
+        replacements: {
+          address,
+          epochFrom,
+          epochTo,
+        },
       },
-    },
-  );
+    );
 
   const withByStakeChain = rows.reduce<
-    Record<string, TransactionWithStakeChainScoreByStakeChain>
+    Record<string, TransactionWithStakeChainScoreByStakeChain_V3>
   >((acc, row) => {
     const {
       stakeChainId,
       stakeScore,
-      bptPSPBalance,
+      bptXYZBalance,
       bptTotalSupply,
-      claimableSePSP1Balance,
-      sePSP1Balance,
-      sePSP2Balance,
+      seXYZBalance,
 
       ...originalTransaction
     } = row;
@@ -82,11 +89,9 @@ export async function loadTransactionWithByStakeChainData({
         [stakeChainId]: {
           stakeChainId,
           stakeScore,
-          bptPSPBalance,
+          bptXYZBalance,
           bptTotalSupply,
-          claimableSePSP1Balance,
-          sePSP1Balance,
-          sePSP2Balance,
+          seXYZBalance,
         },
       },
     };
@@ -100,34 +105,26 @@ export async function loadTransactionWithByStakeChainData({
   return results;
 }
 
-type TransactionWithCaimableByStakeChain =
-  TransactionWithStakeChainScoreByStakeChain & {
+type TransactionWithCaimableByStakeChain_V3 =
+  TransactionWithStakeChainScoreByStakeChain_V3 & {
     claimableByStakeChain: { [chainId: number]: BigNumber };
   };
 
-export type BigNumberByEpochByChain = {
-  [epoch: number]: { [chainId: number]: BigNumber };
-};
-
-type ComputedAggregatedEpochData = {
-  transactionsWithClaimable: TransactionWithCaimableByStakeChain[];
+type ComputedAggregatedEpochData_V3 = {
+  transactionsWithClaimable: TransactionWithCaimableByStakeChain_V3[];
 
   refundedByChain: { [chainId: number]: string };
   claimableByChain: { [chainId: number]: string };
 };
-type ComputeAggregatedStakeChainDetailsResult = {
-  [epoch: number]: ComputedAggregatedEpochData;
+type ComputeAggregatedStakeChainDetailsResult_V3 = {
+  [epoch: number]: ComputedAggregatedEpochData_V3;
 };
 
-export type ComputationOptions = { roundBignumber: (v: BigNumber) => BigNumber };
-export const defaultRounder = (v: BigNumber) =>
-  v.decimalPlaces(0, BigNumber.ROUND_DOWN);
-
 // beware, because the operations involve division, the Bignumbers returned would be with non-integers
-export function computeAggregatedStakeChainDetails(
-  transactions: TransactionWithStakeChainScoreByStakeChain[],
+export function computeAggregatedStakeChainDetails_V3(
+  transactions: TransactionWithStakeChainScoreByStakeChain_V3[],
   options?: ComputationOptions,
-): ComputeAggregatedStakeChainDetailsResult {
+): ComputeAggregatedStakeChainDetailsResult_V3 {
   const roundBignumber = options?.roundBignumber ?? defaultRounder;
 
   const refundedByEpochByChain = transactions.reduce<BigNumberByEpochByChain>(
@@ -136,14 +133,14 @@ export function computeAggregatedStakeChainDetails(
       if (!acc[tx.epoch][tx.chainId])
         acc[tx.epoch][tx.chainId] = new BigNumber(0);
       acc[tx.epoch][tx.chainId] = acc[tx.epoch][tx.chainId].plus(
-        tx.refundedAmountPSP,
+        tx.refundedAmountVLR,
       );
       return acc;
     },
     {},
   );
 
-  const transactionsWithClaimableByChain: TransactionWithCaimableByStakeChain[] =
+  const transactionsWithClaimableByChain: TransactionWithCaimableByStakeChain_V3[] =
     transactions.map(tx => {
       const sumStakeScore = Object.values(tx.stakeByChain).reduce(
         (acc, stake) => {
@@ -164,7 +161,7 @@ export function computeAggregatedStakeChainDetails(
             [stake.stakeChainId]: roundBignumber(
               new BigNumber(stake.stakeScore)
                 .div(sumStakeScore.toString())
-                .multipliedBy(tx.refundedAmountPSP),
+                .multipliedBy(tx.refundedAmountVLR),
             ),
           }),
           {},
@@ -196,14 +193,14 @@ export function computeAggregatedStakeChainDetails(
 
   const transactionsWithClaimableByEpoch =
     transactionsWithClaimableByChain.reduce<{
-      [epoch: number]: TransactionWithCaimableByStakeChain[];
+      [epoch: number]: TransactionWithCaimableByStakeChain_V3[];
     }>((acc, curr) => {
       if (!acc[curr.epoch]) acc[curr.epoch] = [];
       acc[curr.epoch].push(curr);
       return acc;
     }, {});
 
-  const entries: [number, ComputedAggregatedEpochData][] = Object.keys(
+  const entries: [number, ComputedAggregatedEpochData_V3][] = Object.keys(
     transactionsWithClaimableByEpoch,
   ).map(_epoch => {
     const epoch = Number(_epoch);
@@ -220,14 +217,4 @@ export function computeAggregatedStakeChainDetails(
   const byEpoch = Object.fromEntries(entries);
 
   return byEpoch;
-}
-
-export function toFixed<K extends string | number | symbol>(
-  dictionary: Record<K, BigNumber>,
-): Record<K, string> {
-  const entries = Object.entries<BigNumber>(dictionary).map(([k, v]) => [
-    k,
-    v.toFixed(),
-  ]);
-  return Object.fromEntries(entries);
 }
