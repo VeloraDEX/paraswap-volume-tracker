@@ -22,7 +22,8 @@ async function startComputingGasRefundAllChains_V3() {
 
     await fetchRefundableTransactionsAllChains_V3();
 
-    await validateTransactions();
+    // TODO: if exceeds budge 500 USD per user - cap it
+    // await validateTransactions();
   });
 }
 
