@@ -9,7 +9,6 @@ import {
   DataType_ADDRESS,
   DataType_KECCAK256_HASHED_VALUE,
 } from '../lib/sql-data-types';
-import { GasRefundTransactionStakeSnapshotData } from './GasRefundTransactionStakeSnapshot';
 
 export interface GasRefundTransactionStakeSnapshotData_V3 {
   transactionChainId: number;
@@ -19,19 +18,7 @@ export interface GasRefundTransactionStakeSnapshotData_V3 {
   stakeScore: string; // should be computed by JS, not by SQL
   seXYZBalance: string;
   bptTotalSupply: string;
-  bptXYZBalance: string;  
-}
-
-export function isGasRefundTransactionStakeSnapshotData_V3(input: GasRefundTransactionStakeSnapshotData_V3 | GasRefundTransactionStakeSnapshotData){
-  return 'seXYZBalance' in input;
-}
-
-export function isGasRefundTransactionStakeSnapshotData_V3_Arr(input: (GasRefundTransactionStakeSnapshotData_V3 | GasRefundTransactionStakeSnapshotData)[]): input is GasRefundTransactionStakeSnapshotData_V3[] {
-  return isGasRefundTransactionStakeSnapshotData_V3(input[0]);
-}
-
-export function isGasRefundTransactionStakeSnapshotData_V2_Arr(input: (GasRefundTransactionStakeSnapshotData_V3 | GasRefundTransactionStakeSnapshotData)[]): input is GasRefundTransactionStakeSnapshotData[] {
-  return isGasRefundTransactionStakeSnapshotData_V3(input[0]);
+  bptXYZBalance: string;
 }
 
 const compositeIndex = createIndexDecorator({
@@ -59,7 +46,7 @@ export class GasRefundTransactionStakeSnapshot_V3 extends Model<GasRefundTransac
   stakeChainId: number;
 
   @Column(DataType.DECIMAL)
-  stakeScore: string; // should be computed by JS, not by SQL  
+  stakeScore: string; // should be computed by JS, not by SQL
 
   @Column(DataType.DECIMAL)
   seXYZBalance: string;
@@ -68,5 +55,5 @@ export class GasRefundTransactionStakeSnapshot_V3 extends Model<GasRefundTransac
   bptTotalSupply: string;
 
   @Column(DataType.DECIMAL)
-  bptXYZBalance: string;  
+  bptXYZBalance: string;
 }
