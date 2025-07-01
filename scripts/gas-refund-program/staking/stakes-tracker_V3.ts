@@ -1,13 +1,8 @@
-import { assert } from 'ts-essentials';
 import {
   OFFSET_CALC_TIME,
   SCRIPT_START_TIME_SEC,
 } from '../../../src/lib/gas-refund/common';
-import {
-  forceStakingChainId,
-  grp2CConfigParticularities,
-  STAKING_V3_TIMESTAMP,
-} from '../../../src/lib/gas-refund/config';
+import { STAKING_V3_TIMESTAMP } from '../../../src/lib/gas-refund/config';
 import {
   CHAIN_ID_BASE,
   CHAIN_ID_MAINNET,
@@ -17,23 +12,9 @@ import {
   getCurrentEpoch,
   getEpochStartCalcTime,
 } from '../../../src/lib/gas-refund/epoch-helpers';
-import {
-  GasRefundGenesisEpoch,
-  GasRefundSafetyModuleAllPSPInBptFixStartEpoch,
-  GasRefundSafetyModuleStartEpoch,
-  GasRefundSPSPStakesAlgoFlipEpoch,
-  GasRefundV2EpochFlip,
-  GasRefundV3EpochFlip,
-  GasRefundVirtualLockupStartEpoch,
-} from '../../../src/lib/gas-refund/gas-refund';
-import { loadEpochToStartFromWithFix } from './2.0/fix';
-import { StakeV2Resolver } from './2.0/StakeV2Resolver';
-import SafetyModuleStakesTracker from './safety-module-stakes-tracker';
-import SPSPStakesTracker from './spsp-stakes-tracker';
 import BigNumber from 'bignumber.js';
 import { StakeV3Resolver } from './2.0/StakeV3Resolver';
 import { GasRefundTransactionStakeSnapshotData_V3 } from '../../../src/models/GasRefundTransactionStakeSnapshot_V3';
-import { getLatestEpochRefunded } from '../persistance/db-persistance';
 
 const logger = global.LOGGER('StakesTracker_V3');
 
@@ -81,10 +62,7 @@ export default class StakesTracker_V3 {
     );
   }
 
-  computeStakeScore(
-    _account: string,
-    timestamp: number,    
-  ): StakedScoreV3 {
+  computeStakeScore(_account: string, timestamp: number): StakedScoreV3 {
     const account = _account.toLowerCase();
     const byNetwork: StakedScoreV3['byNetwork'] = this.chainIds_V3.reduce(
       (acc, chainId) => {
