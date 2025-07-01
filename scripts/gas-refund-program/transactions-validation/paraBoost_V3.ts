@@ -1,18 +1,18 @@
 import { assert } from 'ts-essentials';
 import { GasRefundV2EpochFlip } from '../../../src/lib/gas-refund/gas-refund';
-import { fetchAccountsScores } from '../../../src/lib/utils/staking-supervisor';
+import { fetchAccountsScores_V3 } from '../../../src/lib/utils/staking-supervisor';
 
 export type ParaBoostPerAccount = { [account: string]: number };
 
-async function fetchParaBoostPerAccount(epoch1: number) {
+export async function fetchParaBoostPerAccount_V3(epoch1: number) {
   const epoch2 = epoch1 - GasRefundV2EpochFlip;
 
   assert(epoch2 >= 0, 'epoch2 can never be negative');
-    
-  const data = await fetchAccountsScores(epoch2);
+
+  const data = await fetchAccountsScores_V3(epoch2);
 
   const paraBoostFactorByAccount = data.reduce<ParaBoostPerAccount>(
-    (acc, paraBoostData) => {
+    (acc, paraBoostData: { paraBoostFactor: string; account: string }) => {
       const paraBoostFactor = parseFloat(paraBoostData.paraBoostFactor);
       assert(
         paraBoostFactor >= 1,
@@ -27,7 +27,7 @@ async function fetchParaBoostPerAccount(epoch1: number) {
   return paraBoostFactorByAccount;
 }
 
-export const constructFetchParaBoostPerAccountMem = () => {
+export const constructFetchParaBoostPerAccountMem_V3 = () => {
   let memEpoch1: number;
   let memData: ParaBoostPerAccount;
 
@@ -36,7 +36,7 @@ export const constructFetchParaBoostPerAccountMem = () => {
       assert(memData, 'paraBoost data should be defined here');
       return memData;
     }
-    memData = await fetchParaBoostPerAccount(epoch1);
+    memData = await fetchParaBoostPerAccount_V3(epoch1);
     memEpoch1 = epoch1;
     return memData;
   };
