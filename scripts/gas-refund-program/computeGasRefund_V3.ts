@@ -3,10 +3,10 @@ dotenv.config();
 
 import '../../src/lib/log4js';
 import Database from '../../src/database';
-import StakesTracker from './staking/stakes-tracker';
 import { validateTransactions } from './transactions-validation/validateTransactions';
 import { fetchRefundableTransactionsAllChains } from './transactions-indexing/fetchRefundableTransactionsAllChains';
-import { trackRootUpdate } from '../../src/lib/track-root-update';
+// import { trackRootUpdate } from '../../src/lib/track-root-update';
+import StakesTracker_V3 from './staking/stakes-tracker_V3';
 
 const logger = global.LOGGER('GRP_V3');
 
@@ -18,7 +18,7 @@ async function startComputingGasRefundAllChains_V3() {
     // TODO: disable this piece in previous cronjob, uncomment it in this one
     // await trackRootUpdate();
 
-    await StakesTracker.getInstance().loadHistoricalStakes();
+    await StakesTracker_V3.getInstance().loadHistoricalStakes();
 
     await fetchRefundableTransactionsAllChains();
 
