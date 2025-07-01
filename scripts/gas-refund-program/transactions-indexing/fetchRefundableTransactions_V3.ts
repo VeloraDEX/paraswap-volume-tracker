@@ -22,6 +22,7 @@ import type { Logger } from 'log4js';
 
 import {
   composeGasRefundTransactionStakeSnapshots_V3,
+  fetchLastTimestampTxByContract_V3,
   writeStakeScoreSnapshots_V3,
   writeTransactions_V3,
 } from '../persistance/db-persistance_V3';
@@ -30,6 +31,7 @@ import {
   TxProcessorFn_V3,
 } from './types_V3';
 import StakesTracker_V3 from '../staking/stakes-tracker_V3';
+import { getRefundPercentV3 } from '../../../src/lib/gas-refund/gas-refund_V3';
 
 function constructTransactionsProcessor_V3({
   chainId,
@@ -174,7 +176,7 @@ export async function fetchRefundableTransactions_V3({
 
   logger.info(`start indexing between ${startTimestamp} and ${endTimestamp}`);
 
-  const lastTimestampTxByContract = await fetchLastTimestampTxByContract({
+  const lastTimestampTxByContract = await fetchLastTimestampTxByContract_V3({
     chainId,
     epoch,
   });
@@ -216,7 +218,7 @@ export async function fetchRefundableTransactions_V3({
 
         return await processRawTxs(
           allStakersTransactionsDuringEpoch,
-          (epoch, totalUserScore) => getRefundPercent(epoch, totalUserScore),
+          (epoch, totalUserScore) => getRefundPercentV3(totalUserScore),
         );
       }),
   ]);
