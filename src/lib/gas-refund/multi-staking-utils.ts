@@ -1,5 +1,5 @@
 import * as Sequelize from 'sequelize';
-import { GasRefundTransactionData } from './gas-refund';
+import { GasRefundTransactionData, GasRefundTransactionData_V3 } from './gas-refund';
 import { GasRefundTransactionStakeSnapshotData } from '../../models/GasRefundTransactionStakeSnapshot';
 import Database from '../../database';
 import BigNumber from 'bignumber.js';
@@ -24,7 +24,7 @@ const QUERY_V3 = `
 select
 	grt.*, grtss.*
 from
-	"GasRefundTransactions" grt
+	"GasRefundTransaction_V3s" grt
 left join "GasRefundTransactionStakeSnapshot_V3s" grtss on
 	grt.hash = grtss."transactionHash"
 	and grt."chainId" = grtss."transactionChainId"
@@ -55,11 +55,11 @@ type PickedStakeSnapshotData_V3 = Pick<
   | 'seXYZBalance'
 >;
 
-type TransactionWithStakeChainScore_V3 = GasRefundTransactionData &
+type TransactionWithStakeChainScore_V3 = GasRefundTransactionData_V3 &
   PickedStakeSnapshotData_V3;
 
 type TransactionWithStakeChainScoreByStakeChain_V3 =
-  GasRefundTransactionData & {
+  GasRefundTransactionData_V3 & {
     stakeByChain: Record<number, PickedStakeSnapshotData_V3>;
   };
 
@@ -337,7 +337,7 @@ export function computeAggregatedStakeChainDetails_V3(
       if (!acc[tx.epoch][tx.chainId])
         acc[tx.epoch][tx.chainId] = new BigNumber(0);
       acc[tx.epoch][tx.chainId] = acc[tx.epoch][tx.chainId].plus(
-        tx.refundedAmountPSP,
+        tx.refundedAmountVLR,
       );
       return acc;
     },
@@ -365,7 +365,7 @@ export function computeAggregatedStakeChainDetails_V3(
             [stake.stakeChainId]: roundBignumber(
               new BigNumber(stake.stakeScore)
                 .div(sumStakeScore.toString())
-                .multipliedBy(tx.refundedAmountPSP),
+                .multipliedBy(tx.refundedAmountVLR),
             ),
           }),
           {},
