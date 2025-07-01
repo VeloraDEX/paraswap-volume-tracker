@@ -23,11 +23,12 @@ import { StakingService } from './lib/staking/staking';
 import { assert } from 'ts-essentials';
 import {
   computeAggregatedStakeChainDetails,
-  computeAggregatedStakeChainDetails_V3,
   loadTransactionWithByStakeChainData,
-  loadTransactionWithByStakeChainData_V3,
 } from './lib/gas-refund/multi-staking-utils';
-import { GasRefundDistribution } from './models/GasRefundDistribution';
+import {
+  computeAggregatedStakeChainDetails_V3,
+  loadTransactionWithByStakeChainData_V3,
+} from './lib/gas-refund/multi-staking-utils_V3';
 
 const logger = global.LOGGER();
 
@@ -76,8 +77,7 @@ const handleGasRefundData = async <T>(
   } catch (e) {
     logger.error('something went wrong', e);
     return res.status(400).send({ error: `something went wrong` });
-  }
-  throw new Error('unreachable');
+  }  
 };
 
 export default class Router {
@@ -301,7 +301,7 @@ export default class Router {
             const transactions = await loadTransactionWithByStakeChainData({
               address,
               epochFrom,
-              epochTo: Math.min(epochTo, FIRST_EPOCH_TRACKING_V3 - 1), // cap v2 with epoch 57
+              epochTo,
             });
 
             const _data = computeAggregatedStakeChainDetails(transactions);
