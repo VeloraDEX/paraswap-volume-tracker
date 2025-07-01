@@ -1,4 +1,4 @@
-import { GasRefundTransactionData_V3 } from '../../../src/lib/gas-refund/gas-refund';
+import { GasRefundTransactionData_V3 } from '../../../src/lib/gas-refund/gas-refund_V3';
 import { ExtendedCovalentGasRefundTransaction } from '../../../src/types-from-scripts';
 
 import { StakedScoreV3 } from '../staking/stakes-tracker_V3';

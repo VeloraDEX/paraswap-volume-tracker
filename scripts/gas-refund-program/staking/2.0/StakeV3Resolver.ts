@@ -1,16 +1,11 @@
 import BigNumber from 'bignumber.js';
 import { assert } from 'ts-essentials';
 import { BlockInfo } from '../../../../src/lib/block-info';
-import {  
-  grp2ConfigByChain_V3,  
-  grp3GlobalConfig,
-  grpConfigParticularities_V3,
-  STAKING_V3_TIMESTAMP,
-} from '../../../../src/lib/gas-refund/config';
 import { AbstractStateTracker } from './AbstractStateTracker';
 import ERC20StateTracker from './ERC20StateTracker';
 import BPTStateTracker_V3 from './BPTStateTracker_V3';
 import { StakedScoreV3 } from '../stakes-tracker_V3';
+import { grp2ConfigByChain_V3, grp3GlobalConfig, grpConfigParticularities_V3 } from '../../../../src/lib/gas-refund/config_V3';
 
 export class StakeV3Resolver extends AbstractStateTracker {
   seXYZTracker: ERC20StateTracker;

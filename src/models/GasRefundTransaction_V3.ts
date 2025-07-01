@@ -8,15 +8,13 @@ import {
   Index,
   Default,
 } from 'sequelize-typescript';
-import {
-  GasRefundTransactionData_V3,
-  TransactionStatus,
-} from '../lib/gas-refund/gas-refund';
+import { TransactionStatus } from '../lib/gas-refund/gas-refund';
 
 import {
   DataType_ADDRESS,
   DataType_KECCAK256_HASHED_VALUE,
 } from '../lib/sql-data-types';
+import { GasRefundTransactionData_V3 } from '../lib/gas-refund/gas-refund_V3';
 
 @Table
 export class GasRefundTransaction_V3 extends Model<GasRefundTransactionData_V3> {
