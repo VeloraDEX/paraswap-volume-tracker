@@ -1,15 +1,13 @@
 import BigNumber from 'bignumber.js';
 import { Op, Sequelize } from 'sequelize';
-import {
-  GasRefundTransactionData_V3,
-  TransactionStatus,
-} from '../../../src/lib/gas-refund/gas-refund';
+import { TransactionStatus } from '../../../src/lib/gas-refund/gas-refund';
 import {
   GasRefundTransactionStakeSnapshot_V3,
   GasRefundTransactionStakeSnapshotData_V3,
 } from '../../../src/models/GasRefundTransactionStakeSnapshot_V3';
 import { GasRefundTransaction_V3 } from '../../../src/models/GasRefundTransaction_V3';
 import { StakedScoreV3 } from '../staking/stakes-tracker_V3';
+import { GasRefundTransactionData_V3 } from '../../../src/lib/gas-refund/gas-refund_V3';
 
 export async function fetchLastTimestampTxByContract_V3({
   chainId,

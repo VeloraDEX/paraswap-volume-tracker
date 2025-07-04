@@ -4,10 +4,10 @@ import {
   resolveEpochCalcTimeInterval,
 } from '../../../src/lib/gas-refund/epoch-helpers';
 
-import { fetchPricingAndTransactions } from './fetchPricingAndTransactions';
 import {
   CHAIN_ID_MAINNET,  
 } from '../../../src/lib/constants';
+import { fetchPricingAndTransactions_V3 } from './fetchPricingAndTransactions_V3';
 
 const logger = global.LOGGER('GRP::fetchRefundableTransactionsAllChains_V3');
 
@@ -23,7 +23,7 @@ export async function fetchRefundableTransactionsAllChains_V3() {
   assert(startCalcTime, `could not resolve ${epoch}th epoch start time`);
   assert(endCalcTime, `could not resolve ${epoch}th epoch end time`);
 
-  await fetchPricingAndTransactions({
+  await fetchPricingAndTransactions_V3({
     chainId,
     epoch,
     startTimestamp: startCalcTime,
