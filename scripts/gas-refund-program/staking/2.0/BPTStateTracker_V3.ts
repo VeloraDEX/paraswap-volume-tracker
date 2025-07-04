@@ -46,7 +46,17 @@ interface Transfer extends Event {
   event: 'Transfer';
   args: [from: string, to: string, value: EthersBN];
 }
-// TODO: add LiquidityRemoved events
+interface LiquidityRemoved extends Event {
+  event: 'LiquidityRemoved';
+  args: [
+    pool: string,
+    liquidityProvider: string,
+    kind: string,
+    totalSupply: string,
+    amountsRemovedRaw: EthersBN[],
+    swapFeeAmountsRaw: EthersBN[],
+  ];
+}
 interface LiquidityAdded extends Event {
   event: 'LiquidityAdded';
   args: [
@@ -164,7 +174,7 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
   // adjust to populate eth balance too
   async resolveBPTPoolXYZBalanceChangesFromLP() {
-    // TODO: change it to AddedLiquidity / RemovedLiquidity events
+    // Liquidity Added:
     try {
       let events = (await queryFilterBatched(
         this.bVaultContract,
@@ -216,35 +226,97 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
         this.differentialStates.xyzBalance.push({
           timestamp,
-          value: new BigNumber(xyzAmount.toString()).minus(xyzFees.div(2).toString()),
+          value: new BigNumber(xyzAmount.toString()).minus(
+            xyzFees.div(2).toString(),
+          ),
         });
 
         this.differentialStates.ethBalance.push({
           timestamp,
-          value: new BigNumber(ethAmount.toString()).minus(ethFees.div(2).toString()),
+          value: new BigNumber(ethAmount.toString()).minus(
+            ethFees.div(2).toString(),
+          ),
         });
       });
-
-      this.differentialStates.xyzBalance.sort(timeseriesComparator);
-      this.differentialStates.ethBalance.sort(timeseriesComparator);
-      if (this.chainId === 1) {
-        // const computedXYZ = this.initState.xyzBalance.plus(this.differentialStates.xyzBalance[0].value)
-        // const computedETH = this.initState.ethBalance.plus(this.differentialStates.ethBalance[0].value)
-        // const {ethBalance: ethBalanceATBlock, xyzBalance: xyzBlaanceAtBlock} = await BPTHelper_V3.getInstance(this.chainId).fetchBPtState(events[0].blockNumber+1)
-        // console.log({
-        //   computedETH:computedETH.toFixed(),
-        //   ethBalanceATBlock: ethBalanceATBlock.toFixed(),
-        //   computedXYZ: computedXYZ.toFixed(),
-        //   xyzBlaanceAtBlock: xyzBlaanceAtBlock.toFixed(),
-        // })
-        // debugger;
-      }
-    } catch (e) {
-      debugger;
+    } catch (e) {      
       throw new Error(
-        `Error resolving BPT pool XYZ balance changes from LP for chain ${this.chainId}`,
+        `Error resolving BPT pool XYZ liquidity additions for chain ${this.chainId}`,
       );
     }
+    
+    // Liquidity Removed:
+    try {
+      let events = (await queryFilterBatched(
+        this.bVaultContract,
+        this.bVaultContract.filters.LiquidityRemoved(
+          grp2ConfigByChain_V3[this.chainId].bpt,
+        ),
+        this.startBlock,
+        this.endBlock,
+        { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+      )) as LiquidityRemoved[];
+
+      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+        this.chainId,
+        events,
+      );
+
+      events.forEach(e => {
+        const timestamp = blockNumToTimestamp[e.blockNumber];
+        assert(timestamp, 'block timestamp should be defined');
+
+        assert(
+          e.event === 'LiquidityRemoved',
+          'can only be poolBalanceChanged event',
+        );
+        const [
+          pool,
+          liquidityProvider,
+          kind,
+          totalSupply,
+          amountsRemovedRaw,
+          swapFeeAmountsRaw,
+        ] = e.args;
+        // const tokens = _tokens.map(t => t.toLowerCase());
+
+        // TODO: reliably get orders of the tokens in pool
+        const isXYZToken0 = true;
+        // prev version
+        // const isXYZToken0 =
+        // tokens[0] === XYZ_ADDRESS[this.chainId].toLowerCase();
+
+        // assert(
+        //   tokens.includes(XYZ_ADDRESS[this.chainId].toLowerCase()),
+        //   'xyz should be either token0 or token 1',
+        // );
+
+        const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
+          ? [amountsRemovedRaw, swapFeeAmountsRaw]
+          : [imReverse(amountsRemovedRaw), imReverse(swapFeeAmountsRaw)];
+
+        this.differentialStates.xyzBalance.push({
+          timestamp,
+          value: new BigNumber(xyzAmount.toString()).minus(
+            xyzFees.div(2).toString(),
+          ).negated(),
+        });
+
+        this.differentialStates.ethBalance.push({
+          timestamp,
+          value: new BigNumber(ethAmount.toString()).minus(
+            ethFees.div(2).toString(),
+          ).negated(),
+        });
+      });
+    } catch (e) {    
+      throw new Error(
+        `Error resolving BPT pool XYZ liquidity removals for chain ${this.chainId}`,
+      );
+    }
+
+    this.differentialStates.xyzBalance.sort(timeseriesComparator);
+    this.differentialStates.ethBalance.sort(timeseriesComparator);
+        
   }
 
   async resolveBPTPoolXYZBalanceChangesFromSwaps() {
