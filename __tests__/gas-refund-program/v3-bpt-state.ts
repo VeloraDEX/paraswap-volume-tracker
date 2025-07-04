@@ -19,9 +19,9 @@ describe('V3 bpt state', () => {
       // const timestamp = new Date('2025-06-30 10:31:18 UTC').getTime() / 1000; // still epoch 62...
       // const timestamp = new Date('Jun-10-2025 07:38:35 AM UTC').getTime() / 1000; // still epoch 62. Only one swap happened by now
       // const timestamp = new Date('Jun-22-2025 10:06:11 AM UTC').getTime() / 1000; // still epoch 62. Only one swap + one addLiquidity happened by now
-      // const timestamp = new Date('Jun-30-2025 07:35:59 AM UTC').getTime() / 1000; // still epoch 62. Only one swap + one addLiquidity + one more swap
+      // const timestamp = new Date('Jun-30-2025 07:35:59 AM UTC').getTime() / 1000; // still epoch 62. Only one swap + one addLiquidity + one more swap      
       const timestamp =
-        new Date('Jun-30-2025 01:01:23 PM UTC').getTime() / 1000; // still epoch 62. Only one swap + one addLiquidity + 2 more swap
+        new Date('Jul-02-2025 01:01:23 PM UTC').getTime() / 1000; // still epoch 62. a swap + one addLiquidity + few more swaps + liquidity removal
 
       const {
         startCalcTime: epochStartTime,
