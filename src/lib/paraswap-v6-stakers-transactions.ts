@@ -9,9 +9,6 @@ import { computeOverriddenFieldsForL2IfApplicable } from './utils/l1fee-worakrou
 const PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE =
   process.env.PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE;
 
-const PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3 =
-  process.env.PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3;
-
 type ParaswapTransactionData = {
   chainid: number; // 137,
   initiator: string; // '0xad1a74a31b00ed0403bb7d8b11130e30ae15853c',
@@ -24,7 +21,6 @@ type ParaswapTransactionData = {
   blockhash: string; // '0xb1fdf818d10b1b2d97d82ff421972b03e1e04ceafaa5237c8373e705531e4617',
   txhash: string; //'0xca4c03b4e1fc17553706f9b91a3dd7eaa20202927e3ef77aa31dfdfc04ca4b16'
   delta_fees_usd: null | number;
-  contract: string
 };
 function generateObjectsFromData(data: any): ParaswapTransactionData[] {
   // Dynamically extract column names from the 'cols' array
@@ -45,30 +41,19 @@ function generateObjectsFromData(data: any): ParaswapTransactionData[] {
 const logger = global.LOGGER('paraswap-v6-stakers-transactions');
 
 export async function fetchParaswapV6StakersTransactions(arg0: {
-  staking_version: 2 | 3;
   epoch: number;
   chainId: number;
   address: string;
   timestampGreaterThan?: number;
 }): Promise<ExtendedCovalentGasRefundTransaction[]> {
-  // if (arg0.staking_version === 2) {
   assert(
     PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE,
     'PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE should be defined',
   );
-  // } else if (arg0.staking_version === 3) {
-  assert(
-    PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3,
-    'PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3 should be defined',
-  );
-  // }
-
-  const url = (
-    arg0.staking_version === 2
-      ? PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE
-      : PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3
+  const url = PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE.replace(
+    '{{epoch}}',
+    arg0.epoch.toString(),
   )
-    .replace('{{epoch}}', arg0.epoch.toString())
     .replace('{{chainId}}', arg0.chainId.toString())
     .replace('{{contractAddressLowerCase}}', arg0.address)
     .replace(
@@ -116,7 +101,7 @@ export async function fetchParaswapV6StakersTransactions(arg0: {
           timestamp,
           txGasUsed: item.txgasused.toString(),
           gasSpentInChainCurrencyWei,
-          contract: item.contract,
+          contract: item.augustusaddress,
           txGasUsedUSD: item.delta_fees_usd || undefined,
         };
       },
