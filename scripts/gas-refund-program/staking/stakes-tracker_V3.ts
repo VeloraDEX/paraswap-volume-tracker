@@ -2,7 +2,6 @@ import {
   OFFSET_CALC_TIME,
   SCRIPT_START_TIME_SEC,
 } from '../../../src/lib/gas-refund/common';
-import { STAKING_V3_TIMESTAMP } from '../../../src/lib/gas-refund/config';
 import {
   CHAIN_ID_BASE,
   CHAIN_ID_MAINNET,
@@ -15,6 +14,7 @@ import {
 import BigNumber from 'bignumber.js';
 import { StakeV3Resolver } from './2.0/StakeV3Resolver';
 import { GasRefundTransactionStakeSnapshotData_V3 } from '../../../src/models/GasRefundTransactionStakeSnapshot_V3';
+import { STAKING_V3_TIMESTAMP } from '../../../src/lib/gas-refund/config_V3';
 
 const logger = global.LOGGER('StakesTracker_V3');
 

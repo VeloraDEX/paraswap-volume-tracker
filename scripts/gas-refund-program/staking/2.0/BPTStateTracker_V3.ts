@@ -20,8 +20,8 @@ import { AbstractStateTracker } from './AbstractStateTracker';
 import BigNumber from 'bignumber.js';
 import { imReverse } from '../../../../src/lib/utils';
 import { QUERY_EVENT_BATCH_SIZE_BY_CHAIN, queryFilterBatched } from './utils';
-import { grp2ConfigByChain_V3 } from '../../../../src/lib/gas-refund/config';
 import { balancerV3Abi, BPTHelper_V3 } from './BPTHelper_V3';
+import { grp2ConfigByChain_V3 } from '../../../../src/lib/gas-refund/config_V3';
 
 interface MinERC20 extends Contract {
   totalSupply(overrides?: CallOverrides): Promise<EthersBN>;

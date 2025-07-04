@@ -12,7 +12,7 @@ import { Provider } from '../../../../src/lib/provider';
 import { BigNumber as EthersBN, Contract } from 'ethers';
 import { Interface } from '@ethersproject/abi';
 import BigNumber from 'bignumber.js';
-import { grp2ConfigByChain_V3 } from '../../../../src/lib/gas-refund/config';
+import { grp2ConfigByChain_V3 } from '../../../../src/lib/gas-refund/config_V3';
 
 export type BPTState = {
   bptTotalSupply: BigNumber;
