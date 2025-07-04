@@ -6,6 +6,7 @@ export const CHAIN_ID_BINANCE = 56;
 export const CHAIN_ID_POLYGON = 137;
 export const CHAIN_ID_AVALANCHE = 43114;
 export const CHAIN_ID_FANTOM = 250;
+export const CHAIN_ID_BASE = 8453;
 
 export const PSP_ADDRESS: { [chainId: number]: string } = {
   [CHAIN_ID_MAINNET]: '0xcafe001067cdef266afb7eb5a286dcfd277f3de5',
@@ -15,6 +16,13 @@ export const PSP_ADDRESS: { [chainId: number]: string } = {
   [CHAIN_ID_FANTOM]: '0xcafe001067cdef266afb7eb5a286dcfd277f3de5',
   [CHAIN_ID_POLYGON]: '0x42d61d766b85431666b39b89c43011f24451bff6',
 };
+
+export const XYZ_ADDRESS: { [chainId: number]: string } = {  
+  [CHAIN_ID_MAINNET]: '0x4e107a0000DB66f0E9Fd2039288Bf811dD1f9c74'.toLowerCase(),
+  [CHAIN_ID_OPTIMISM]: '0x4e107a0000DB66f0E9Fd2039288Bf811dD1f9c74'.toLowerCase(),
+  [CHAIN_ID_BASE]: '0x4e107a0000DB66f0E9Fd2039288Bf811dD1f9c74'.toLowerCase(),
+};
+
 
 export const STAKING_CHAIN_IDS = [CHAIN_ID_MAINNET, CHAIN_ID_OPTIMISM];
 export const ETH_NETWORKS = [CHAIN_ID_MAINNET, CHAIN_ID_GOERLI];
@@ -37,6 +45,7 @@ export const Web3Provider: { [network: number]: string } = {
   [CHAIN_ID_POLYGON]: process.env.HTTP_PROVIDER_137 || '',
   [CHAIN_ID_FANTOM]: process.env.HTTP_PROVIDER_250 || '',
   [CHAIN_ID_AVALANCHE]: process.env.HTTP_PROVIDER_43114 || '',
+  [CHAIN_ID_BASE]: process.env.HTTP_PROVIDER_8453 || '',
 };
 
 // TODO: in future we can fetch it from the api directly
@@ -79,9 +88,17 @@ export const MULTICALL_ADDRESS: any = {
   [CHAIN_ID_BINANCE]: '0xdc6e2b14260f972ad4e5a31c68294fba7e720701',
   [CHAIN_ID_POLYGON]: '0xdC6E2b14260F972ad4e5a31c68294Fba7E720701',
   [CHAIN_ID_FANTOM]: '0xdC6E2b14260F972ad4e5a31c68294Fba7E720701',
+  // [CHAIN_ID_BASE]: '0xa82a514bcdc7921f004b087611327aa80bc0fcd9', -- on base multical v 1 is buggy :shrug:
 };
 
+export const MULTICALL_ADDRESS_V3: Record<number,string> = {
+  [CHAIN_ID_MAINNET]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [CHAIN_ID_BASE]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [CHAIN_ID_OPTIMISM]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+}
+
 export type MulticallEncodedData = { returnData: string[] };
+export type MulticallEncodedData_V3 =  {returnData: string }[];
 
 export const DEFAULT_CHAIN_ID = parseInt(process.env.DEFAULT_CHAIN_ID || '1');
 
@@ -95,18 +112,21 @@ export const SAFETY_MODULE_ADDRESS =
 
 //All these must be lower-cased!
 export const AUGUSTUS_V5_ADDRESS = '0xdef171fe48cf0115b1d80b88dc8eab59176fee57';
-export const AUGUSTUS_V6_0_ADDRESS = '0x00000000fdac7708d0d360bddc1bc7d097f47439';
+export const AUGUSTUS_V6_0_ADDRESS = '0x00000000fdac7708d0d360bddc1bc7d097f47439'; 
 export const AUGUSTUS_V6_1_ADDRESS = '0x000db803a70511e09da650d4c0506d0000100000';
 export const AUGUSTUS_V6_2_ADDRESS = '0x6a000f20005980200259b80c5102003040001068';
 
 export const AUGUSTUS_SWAPPERS_V6_OMNICHAIN = new Set([
-  AUGUSTUS_V6_0_ADDRESS,
-  AUGUSTUS_V6_1_ADDRESS,
+  // AUGUSTUS_V6_0_ADDRESS,
+  // AUGUSTUS_V6_1_ADDRESS,
   AUGUSTUS_V6_2_ADDRESS
 ])
 
 export const BalancerVaultAddress =
   '0xba12222222228d8ba445958a75a0704d566bf2c8';
+
+  export const BalancerVaultAddress_V3 =
+  '0xbA1333333333a1BA1108E8412f11850A5C319bA9';
 
 export const Balancer_80PSP_20WETH_poolId: { [chainId: string]: string } = {
   [CHAIN_ID_MAINNET]:
@@ -123,3 +143,4 @@ export const Balancer_80PSP_20WETH_address = Object.fromEntries(
     poolId.substring(0, 42),
   ]),
 );
+
