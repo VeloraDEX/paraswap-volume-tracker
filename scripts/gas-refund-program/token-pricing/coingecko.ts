@@ -23,6 +23,8 @@ export const coingeckoClient = constructHttpClient({
 });
 
 export const PSP_COINGECKO_COIN_ID = 'paraswap';
+// @TODO: change coingecko coin id
+export const VLR_COINGECKO_COIN_ID = 'paraswap';
 
 type ChainsCoinIds = 'ethereum' | 'binancecoin' | 'fantom' | 'matic-network';
 
@@ -45,7 +47,7 @@ export async function fetchHistoricalPriceCoingecko({
   startTimestamp,
   endTimestamp,
 }: {
-  coinId: typeof PSP_COINGECKO_COIN_ID | ChainsCoinIds;
+  coinId: typeof PSP_COINGECKO_COIN_ID | typeof VLR_COINGECKO_COIN_ID | ChainsCoinIds;
   startTimestamp: number;
   endTimestamp: number;
 }): Promise<CoingeckoPriceHistory> {
