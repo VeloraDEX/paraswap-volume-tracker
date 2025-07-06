@@ -1,7 +1,4 @@
-import {
-  constructPriceResolver,
-  fetchDailyPSPChainCurrencyRate,
-} from '../token-pricing/psp-chaincurrency-pricing';
+import { constructPriceResolver_V3, fetchDailyVlrChainCurrencyRate } from '../token-pricing/vlr-chaincurrency-pricing';
 import { fetchRefundableTransactions_V3 } from './fetchRefundableTransactions_V3';
 
 const logger = global.LOGGER('GRP:fetchPricingAndTransactions_V3');
@@ -21,15 +18,15 @@ export async function fetchPricingAndTransactions_V3({
   logger.info(
     `start fetching daily vlr/native currency rate for chainId=${chainId}`,
   );
-  // TODO: move to VLR
-  const pspNativeCurrencyDailyRate = await fetchDailyPSPChainCurrencyRate({
+  
+  const vlrNativeCurrencyDailyRate = await fetchDailyVlrChainCurrencyRate({
     chainId,
     startTimestamp: startTimestamp - 48 * 60 * 60, // overfetch to allow for last 24h avg
     endTimestamp,
   });
 
-  const resolvePrice = constructPriceResolver(
-    pspNativeCurrencyDailyRate,
+  const resolvePrice = constructPriceResolver_V3(
+    vlrNativeCurrencyDailyRate,
     'last24h', // for backward compatibility
   );
 

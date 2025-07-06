@@ -1,22 +1,18 @@
 import { assert } from 'ts-essentials';
 import { BigNumber } from 'bignumber.js';
-import { fetchLastTimestampTxByContract } from '../persistance/db-persistance';
 import { getContractAddresses } from './transaction-resolver';
 import {
   TransactionStatus,
   GasRefundV2EpochFlip,
-  getRefundPercent,
   getMinStake,
   GasRefundV2PIP55,
 } from '../../../src/lib/gas-refund/gas-refund';
 
-import { PriceResolverFn } from '../token-pricing/psp-chaincurrency-pricing';
 import { isTruthy } from '../../../src/lib/utils';
 import {
   AUGUSTUS_SWAPPERS_V6_OMNICHAIN,
   AUGUSTUS_V5_ADDRESS,
 } from '../../../src/lib/constants';
-import { fetchParaswapV6StakersTransactions } from '../../../src/lib/paraswap-v6-stakers-transactions';
 import { ExtendedCovalentGasRefundTransaction } from '../../../src/types-from-scripts';
 import type { Logger } from 'log4js';
 
@@ -32,6 +28,8 @@ import {
 } from './types_V3';
 import StakesTracker_V3 from '../staking/stakes-tracker_V3';
 import { getRefundPercentV3 } from '../../../src/lib/gas-refund/gas-refund_V3';
+import { fetchParaswapV6StakersTransactions_V3 } from '../../../src/lib/paraswap-v6-stakers-transactions_v3';
+import { PriceResolverFn_V3 } from '../token-pricing/vlr-chaincurrency-pricing';
 
 function constructTransactionsProcessor_V3({
   chainId,
@@ -40,13 +38,13 @@ function constructTransactionsProcessor_V3({
 }: {
   chainId: number;
   epoch: number;
-  resolvePrice: PriceResolverFn;
+  resolvePrice: PriceResolverFn_V3;
 }): TxProcessorFn_V3 {
   return async function filterAndFormatRefundableTransactions_V3(
     transactions: ExtendedCovalentGasRefundTransaction[],
     computeRefundPercent: (
       epoch: number,
-      totalPSPorTotalParaboostScore: string,
+      totalVLRorTotalParaboostScore: string,
     ) => number | undefined,
   ) {
     const refundableTransactions: GasRefundTransactionDataWithStakeScore_V3[] =
@@ -78,10 +76,10 @@ function constructTransactionsProcessor_V3({
 
           assert(
             currencyRate,
-            `could not retrieve psp/chaincurrency same day rate for swap at ${transaction.timestamp}`,
+            `could not retrieve vlr/chaincurrency same day rate for swap at ${transaction.timestamp}`,
           );
 
-          const currGasUsedChainCur = transaction.txGasUsedUSD // if USD override is available, most likely it's delta -> adjust spent eth and psp to refund based on that
+          const currGasUsedChainCur = transaction.txGasUsedUSD // if USD override is available, most likely it's delta -> adjust spent eth and vlr to refund based on that
             ? new BigNumber(
                 new BigNumber(transaction.txGasUsedUSD)
                   .multipliedBy(10 ** 18)
@@ -100,14 +98,14 @@ function constructTransactionsProcessor_V3({
                 .multipliedBy(currencyRate.chainPrice)
                 .dividedBy(10 ** 18); // chaincurrency always encoded in 18decimals
 
-          const currGasFeePSP = currGasUsedChainCur.dividedBy(
-            currencyRate.pspToChainCurRate,
+          const currGasFeeVlr = currGasUsedChainCur.dividedBy(
+            currencyRate.vlrToChainCurRate,
           );
 
-          const totalStakeAmountPSP = stakeScore.combined.toFixed(0); // @todo irrelevant?
+          const totalStakeAmountVlr = stakeScore.combined.toFixed(0); // @todo irrelevant?
           const refundPercent = computeRefundPercent(
             epoch,
-            totalStakeAmountPSP,
+            totalStakeAmountVlr,
           );
 
           if (epoch < GasRefundV2EpochFlip) {
@@ -117,15 +115,15 @@ function constructTransactionsProcessor_V3({
             );
           }
 
-          const currRefundedAmountPSP = currGasFeePSP.multipliedBy(
+          const currRefundedAmountVlr = currGasFeeVlr.multipliedBy(
             refundPercent || 0,
           );
 
-          const currRefundedAmountUSD = currRefundedAmountPSP
-            .multipliedBy(currencyRate.pspPrice)
-            .dividedBy(10 ** 18); // psp decimals always encoded in 18decimals
+          const currRefundedAmountUSD = currRefundedAmountVlr
+            .multipliedBy(currencyRate.vlrPrice)
+            .dividedBy(10 ** 18); // vlr decimals always encoded in 18decimals
 
-          if (currRefundedAmountPSP.lt(0)) {
+          if (currRefundedAmountVlr.lt(0)) {
             debugger;
           }
           const refundableTransaction: GasRefundTransactionDataWithStakeScore_V3 =
@@ -137,11 +135,11 @@ function constructTransactionsProcessor_V3({
               block: +transaction.blockNumber,
               timestamp: +transaction.timestamp,
 
-              vlrUsd: currencyRate.pspPrice,
+              vlrUsd: currencyRate.vlrPrice,
 
               gasUsedUSD: currGasUsedUSD.toFixed(), // purposefully not rounded to preserve dollar amount precision - purely debug / avoid 0$ values in db
-              totalStakeAmountVLR: totalStakeAmountPSP, // purposefully not rounded to preserve dollar amount precision [IMPORTANT FOR CALCULATIONS]
-              refundedAmountVLR: currRefundedAmountPSP.toFixed(0),
+              totalStakeAmountVLR: totalStakeAmountVlr, // purposefully not rounded to preserve dollar amount precision [IMPORTANT FOR CALCULATIONS]
+              refundedAmountVLR: currRefundedAmountVlr.toFixed(0),
               refundedAmountUSD: currRefundedAmountUSD.toFixed(), // purposefully not rounded to preserve dollar amount precision [IMPORTANT FOR CALCULCATIONS]
               contract,
               status: TransactionStatus.IDLE,
@@ -168,7 +166,7 @@ export async function fetchRefundableTransactions_V3({
   startTimestamp: number;
   endTimestamp: number;
   epoch: number;
-  resolvePrice: PriceResolverFn;
+  resolvePrice: PriceResolverFn_V3;
 }): Promise<GasRefundTransactionDataWithStakeScore_V3[]> {
   const logger = global.LOGGER(
     `GRP:fetchRefundableTransactions_V3: epoch=${epoch}, chainId=${chainId}`,
@@ -208,8 +206,7 @@ export async function fetchRefundableTransactions_V3({
           lastTimestampTxByContract[contractAddress];
 
         const allStakersTransactionsDuringEpoch =
-          await fetchParaswapV6StakersTransactions({
-            staking_version: 3,
+          await fetchParaswapV6StakersTransactions_V3({
             epoch: epochNewStyle,
             timestampGreaterThan: lastTimestampProcessed,
             chainId,
