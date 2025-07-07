@@ -7,6 +7,7 @@ import { validateTransactions } from './transactions-validation/validateTransact
 // import { trackRootUpdate } from '../../src/lib/track-root-update';
 import StakesTracker_V3 from './staking/stakes-tracker_V3';
 import { fetchRefundableTransactionsAllChains_V3 } from './transactions-indexing/fetchRefundableTransactionsAllChains_V3';
+import { validateTransactions_V3 } from './transactions-validation/validateTransactions_V3';
 
 const logger = global.LOGGER('GRP_V3');
 
@@ -22,8 +23,8 @@ async function startComputingGasRefundAllChains_V3() {
 
     await fetchRefundableTransactionsAllChains_V3();
 
-    // TODO: if exceeds budge 500 USD per user - cap it
-    // await validateTransactions();
+    // if exceeds budget 500 USD per user - cap it
+    await validateTransactions_V3();
   });
 }
 

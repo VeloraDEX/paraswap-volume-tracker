@@ -1,6 +1,6 @@
 import { assert } from 'ts-essentials';
 import { GasRefundV2EpochFlip } from '../../../src/lib/gas-refund/gas-refund';
-import { fetchAccountsScores_V3 } from '../../../src/lib/utils/staking-supervisor';
+import { fetchAccountsScores_V3 } from '../../../src/lib/utils/staking-supervisor_V3';
 
 export type ParaBoostPerAccount = { [account: string]: number };
 
