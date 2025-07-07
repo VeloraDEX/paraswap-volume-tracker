@@ -6,8 +6,7 @@ import {
   GasRefundGenesisEpoch,
   GasRefundPrecisionGlitchRefundedAmountsEpoch,
   GasRefundDeduplicationStartEpoch,
-  GasRefundV2EpochFlip,
-  getRefundPercent,
+  GasRefundV2EpochFlip,  
   TOTAL_EPOCHS_IN_YEAR,
   TransactionStatus,
   GRP_MAX_REFUND_PERCENT,
@@ -32,6 +31,7 @@ import {
 import { GasRefundTransaction_V3 } from '../../../src/models/GasRefundTransaction_V3';
 import { fetchLastEpochRefunded } from '../persistance/db-persistance';
 import { updateTransactionsStatusRefundedAmounts_V3 } from '../persistance/db-persistance_V3';
+import { getRefundPercentV3 } from '../../../src/lib/gas-refund/gas-refund_V3';
 
 /**
  * This function guarantees that the order of transactions refunded will always be stable.
@@ -161,10 +161,10 @@ export async function validateTransactions_V3() {
           .decimalPlaces(0, BigNumber.ROUND_DOWN)
           .toFixed();
 
-        refundPercentage = getRefundPercent(tx.epoch, fullParaBoostScore);
+        refundPercentage = getRefundPercentV3(fullParaBoostScore);
       } else {
         // fall here on GRP1 and GRP2 during epoch
-        refundPercentage = getRefundPercent(tx.epoch, totalStakeAmountVLR);
+        refundPercentage = getRefundPercentV3(totalStakeAmountVLR);
       }
 
       assert(
@@ -183,6 +183,7 @@ export async function validateTransactions_V3() {
       // GRP2.0: like GRP1.0 but also recompute refunded amounts after end of epoch to account for boosts
       let _refundedAmountVlr = new BigNumber(gasUsedUSD)
         .dividedBy(vlrUsd)
+        .multipliedBy(10 ** 18) // before it was based on gasUsedCHainCurrency, which was in wei, so now need to normalize
         .multipliedBy(refundPercentage || 0); // keep it decimals to avoid rounding errors
 
       if (tx.epoch === GasRefundPrecisionGlitchRefundedAmountsEpoch) {
