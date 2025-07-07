@@ -10,7 +10,7 @@ export const ONE_HOUR_SEC = 60 * ONE_MINUTE_SEC;
 const DAY_SEC_MSEC = 1000 * ONE_HOUR_SEC * 24;
 
 export const ZERO_BN = new BigNumber(0);
-
+const logger = global.LOGGER('utils');
 interface SliceCallsInput<T, U> {
   inputArray: T[];
   execute: (inputSlice: T[], sliceIndex: number) => U;
@@ -105,12 +105,19 @@ export async function fetchBlocksTimestamps({
       blocks: blockNumberSliced,
     };
 
-    const {
-      data: { data },
-    } = await thegraphClient.post<{
+    const result = await thegraphClient.post<{
       data: { blocks: [{ number: string; timestamp: string }] };
     }>(subgraphURL, { query, variables });
 
+    const {
+      data: { data },
+    } = result;
+
+    if(!data){
+      logger.error('Empty data', result)
+      throw new Error(`No data returned from subgraph for chainId ${chainId}`);
+    }
+    
     assert(
       data.blocks.length === blockNumberSliced.length,
       `didn't get all the blocks`,
@@ -134,14 +141,16 @@ export const fetchBlockTimestampForEvents = async (
   chainId: number,
   events: Event[],
 ): Promise<{ [blockNumber: string]: number }> => {
+  if (events.length === 0) {
+    return {};
+  }
   try {
     return await fetchBlocksTimestamps({
       chainId,
       blockNumbers: events.map(event => event.blockNumber),
     });
-  } catch (e) {
-    debugger;
-    throw new Error(`Failed to fetch block timestamps for events: ${e}`);
+  } catch (e) {    
+    throw new Error(`Failed to fetch block timestamps for events: ${e.message}`);
   }
 };
 
