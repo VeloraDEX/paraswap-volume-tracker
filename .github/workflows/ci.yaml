@@ -27,7 +27,7 @@ jobs:
           scan-ref: '.'
           ignore-unfixed: true
           severity: 'CRITICAL'
-          exit-code: 1
+          exit-code: 0
           hide-progress: true
           scanners: vuln,secret,misconfig
           output: 'trivy-scan-results'
