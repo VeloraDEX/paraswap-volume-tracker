@@ -11,6 +11,8 @@ dist
 !.env.example
 !.env.sample
 
+.husky/.git-secrets-installed
+
 TODO
 
 tmp
