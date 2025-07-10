@@ -27,6 +27,8 @@ function calculateCategory() {
   return parsed?.fileName.split('.')[0].split(path.sep).join('.');
 }
 
+export const ACCESS_LOG_CATEGORY = 'ACCESS-LOG';
+
 const configuration: log4js.Configuration = {
   appenders: {
     console: {
@@ -45,7 +47,7 @@ const configuration: log4js.Configuration = {
       level: process.env['LOGGER_LEVEL'] || isDev ? 'trace' : 'info',
       enableCallStack: isDev,
     },
-    ACCESS_LOG_CATEGORY: {
+    [ACCESS_LOG_CATEGORY]: {
       appenders: ['console'],
       level: 'info',
     },

@@ -7,7 +7,11 @@ yarn-error.log
 
 dist
 
-.env
+.env*
+!.env.example
+!.env.sample
+
+.husky/.git-secrets-installed
 
 TODO
 
