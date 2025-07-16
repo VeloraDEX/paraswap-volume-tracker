@@ -40,6 +40,18 @@ function generateObjectsFromData(data: any): ParaswapTransactionData[] {
 }
 const logger = global.LOGGER('paraswap-v6-stakers-transactions_v3');
 
+async function fetchV3Data(v3Url: string) {
+  try {
+    return await axios.get(v3Url);
+  } catch (e) {
+    logger.error(
+      'Error fetching paraswap v6 stakers transactions for v3:',
+      e,
+      v3Url,
+    );
+    throw e;
+  }
+}
 export async function fetchParaswapV6StakersTransactions_V3(arg0: {
   epoch: number;
   chainId: number;
@@ -62,8 +74,7 @@ export async function fetchParaswapV6StakersTransactions_V3(arg0: {
       arg0.timestampGreaterThan ? `["${arg0.timestampGreaterThan}"]` : 'null',
     );
 
-  const data = await axios.get(url);
-
+  const data = await fetchV3Data(url);
   logger.info('paraswap v6 stakers txs: url: ', url);
   const formattedAsObjects = generateObjectsFromData(data.data.data);
   logger.info(
