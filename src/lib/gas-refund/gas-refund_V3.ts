@@ -1,9 +1,5 @@
 import { GRP_MAX_REFUND_PERCENT, GRP_MIN_REFUND_ALLOWED, TransactionStatus } from "./gas-refund";
 
-// TODO: change it to 57. Had 56 here to test previous distribution as if it was already done on v3 staking system
-export const GasRefundV3EpochFlip = 56;
-
-
 export interface GasRefundTransactionData_V3 {
   epoch: number;
   address: string;
