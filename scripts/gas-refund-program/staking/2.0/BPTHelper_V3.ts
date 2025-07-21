@@ -1,9 +1,7 @@
 import * as ERC20ABI from '../../../../src/lib/abi/erc20.abi.json';
-// import * as MultiCallerABI from '../../../../src/lib/abi/multicaller.abi.json';
 import * as MulticallV3ABI from '../../../../src/lib/abi/multicall-v3.abi.json';
 import {
-    
-  XYZ_ADDRESS,  
+  XYZ_ADDRESS,
   MULTICALL_ADDRESS_V3,
   MulticallEncodedData_V3,
   BalancerVaultAddress_V3,
@@ -20,7 +18,6 @@ export type BPTState = {
   ethBalance: BigNumber;
 };
 
-
 export const balancerV3Abi = [
   `
   function getPoolTokenInfo(address pool) 
@@ -33,7 +30,7 @@ export const balancerV3Abi = [
         uint256[] lastBalancesLiveScaled18
     )
     `,
-    //sample liquidity added https://etherscan.io/tx/0x3ddcaa3795fc1c836cf6909df989a7db61d655c753a4fad9caee1bdc43be8875#eventlog
+  //sample liquidity added https://etherscan.io/tx/0x3ddcaa3795fc1c836cf6909df989a7db61d655c753a4fad9caee1bdc43be8875#eventlog
   `
   event LiquidityAdded(
     address indexed pool,
@@ -77,50 +74,44 @@ export class BPTHelper_V3 {
     return BPTHelper_V3.instance[chainId];
   }
 
-  multicallContract: Contract;  
+  multicallContract: Contract;
   bVaultIface: Interface;
   erc20Iface: Interface;
 
   constructor(protected chainId: number) {
     const provider = Provider.getJsonRpcProvider(this.chainId);
 
-    
-
-
     this.multicallContract = new Contract(
       MULTICALL_ADDRESS_V3[this.chainId],
       MulticallV3ABI,
-      // isMulticallV3 ? MulticallV3ABI : MultiCallerABI,
       provider,
     );
 
-    this.bVaultIface =  new Interface(balancerV3Abi)
+    this.bVaultIface = new Interface(balancerV3Abi);
     this.erc20Iface = new Interface(ERC20ABI);
   }
 
-  
   async fetchBPtState(blockNumber?: number): Promise<BPTState> {
-    const bpt =  grp2ConfigByChain_V3[this.chainId].bpt
+    const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const multicallData = [
       {
         target: bpt,
         callData: this.erc20Iface.encodeFunctionData('totalSupply', []),
-        allowFailure: false
+        allowFailure: false,
       },
       {
         target: BalancerVaultAddress_V3,
         callData: this.bVaultIface.encodeFunctionData('getPoolTokenInfo', [
           bpt,
         ]),
-        allowFailure: false
+        allowFailure: false,
       },
     ];
 
-    
     const rawResults: MulticallEncodedData_V3 =
       await this.multicallContract.callStatic.aggregate3(multicallData, {
         blockTag: blockNumber,
-      });       
+      });
 
     const bptTotalSupply = new BigNumber(
       this.erc20Iface
@@ -128,13 +119,14 @@ export class BPTHelper_V3 {
         .toString(),
     );
 
-    const { tokens, balancesRaw:balances } = this.bVaultIface.decodeFunctionResult(
-      'getPoolTokenInfo',
-      rawResults[1].returnData,
-    ) as unknown as {
-      tokens: [string, string];
-      balancesRaw: [EthersBN, EthersBN];
-    };
+    const { tokens, balancesRaw: balances } =
+      this.bVaultIface.decodeFunctionResult(
+        'getPoolTokenInfo',
+        rawResults[1].returnData,
+      ) as unknown as {
+        tokens: [string, string];
+        balancesRaw: [EthersBN, EthersBN];
+      };
 
     const isXYZToken0 =
       tokens[0].toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();
