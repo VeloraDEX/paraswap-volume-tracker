@@ -47,14 +47,9 @@ export class AbstractStateTracker {
   }
 
   assertTimestampWithinLoadInterval(timestamp: number) {
-    try {
       assert(
         timestamp >= this.startTimestamp && timestamp <= this.endTimestamp,
         'timestamp is out of range',
       );
-    } catch (e) {
-      debugger;
-      throw e;
-    }
   }
 }
