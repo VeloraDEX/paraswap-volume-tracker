@@ -191,6 +191,10 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
         events,
       );
 
+      const isXYZToken0 = await BPTHelper_V3.getInstance(
+        this.chainId,
+      ).getIsXYZToken0();
+
       events.forEach(e => {
         const timestamp = blockNumToTimestamp[e.blockNumber];
         assert(timestamp, 'block timestamp should be defined');
@@ -207,18 +211,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
           amountsAddedRaw,
           swapFeeAmountsRaw,
         ] = e.args;
-        // const tokens = _tokens.map(t => t.toLowerCase());
-
-        // TODO: reliably get orders of the tokens in pool
-        const isXYZToken0 = true;
-        // prev version
-        // const isXYZToken0 =
-        // tokens[0] === XYZ_ADDRESS[this.chainId].toLowerCase();
-
-        // assert(
-        //   tokens.includes(XYZ_ADDRESS[this.chainId].toLowerCase()),
-        //   'xyz should be either token0 or token 1',
-        // );
 
         const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
           ? [amountsAddedRaw, swapFeeAmountsRaw]
@@ -238,12 +230,12 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
           ),
         });
       });
-    } catch (e) {      
+    } catch (e) {
       throw new Error(
         `Error resolving BPT pool XYZ liquidity additions for chain ${this.chainId}`,
       );
     }
-    
+
     // Liquidity Removed:
     try {
       let events = (await queryFilterBatched(
@@ -261,6 +253,10 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
         events,
       );
 
+      const isXYZToken0 = await BPTHelper_V3.getInstance(
+        this.chainId,
+      ).getIsXYZToken0();
+
       events.forEach(e => {
         const timestamp = blockNumToTimestamp[e.blockNumber];
         assert(timestamp, 'block timestamp should be defined');
@@ -277,18 +273,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
           amountsRemovedRaw,
           swapFeeAmountsRaw,
         ] = e.args;
-        // const tokens = _tokens.map(t => t.toLowerCase());
-
-        // TODO: reliably get orders of the tokens in pool
-        const isXYZToken0 = true;
-        // prev version
-        // const isXYZToken0 =
-        // tokens[0] === XYZ_ADDRESS[this.chainId].toLowerCase();
-
-        // assert(
-        //   tokens.includes(XYZ_ADDRESS[this.chainId].toLowerCase()),
-        //   'xyz should be either token0 or token 1',
-        // );
 
         const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
           ? [amountsRemovedRaw, swapFeeAmountsRaw]
@@ -296,19 +280,19 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
         this.differentialStates.xyzBalance.push({
           timestamp,
-          value: new BigNumber(xyzAmount.toString()).minus(
-            xyzFees.div(2).toString(),
-          ).negated(),
+          value: new BigNumber(xyzAmount.toString())
+            .minus(xyzFees.div(2).toString())
+            .negated(),
         });
 
         this.differentialStates.ethBalance.push({
           timestamp,
-          value: new BigNumber(ethAmount.toString()).minus(
-            ethFees.div(2).toString(),
-          ).negated(),
+          value: new BigNumber(ethAmount.toString())
+            .minus(ethFees.div(2).toString())
+            .negated(),
         });
       });
-    } catch (e) {    
+    } catch (e) {
       throw new Error(
         `Error resolving BPT pool XYZ liquidity removals for chain ${this.chainId}`,
       );
@@ -316,7 +300,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
     this.differentialStates.xyzBalance.sort(timeseriesComparator);
     this.differentialStates.ethBalance.sort(timeseriesComparator);
-        
   }
 
   async resolveBPTPoolXYZBalanceChangesFromSwaps() {

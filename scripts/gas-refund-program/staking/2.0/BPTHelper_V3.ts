@@ -65,7 +65,7 @@ export const balancerV3Abi = [
 ];
 
 export class BPTHelper_V3 {
-  private static instance: { [chainId: number]: BPTHelper_V3 } = {};
+  private static instance: { [chainId: number]: BPTHelper_V3 } = {};  
 
   static getInstance(chainId: number) {
     if (!BPTHelper_V3.instance[chainId]) {
@@ -77,6 +77,7 @@ export class BPTHelper_V3 {
   multicallContract: Contract;
   bVaultIface: Interface;
   erc20Iface: Interface;
+  private isXYZToken0?: boolean = undefined;
 
   constructor(protected chainId: number) {
     const provider = Provider.getJsonRpcProvider(this.chainId);
@@ -89,6 +90,26 @@ export class BPTHelper_V3 {
 
     this.bVaultIface = new Interface(balancerV3Abi);
     this.erc20Iface = new Interface(ERC20ABI);
+  }
+
+  async getIsXYZToken0() {
+    if (this.isXYZToken0 !== undefined) {
+      return this.isXYZToken0;
+    }
+    const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
+    const contract = new Contract(
+      BalancerVaultAddress_V3,
+      balancerV3Abi,
+      Provider.getJsonRpcProvider(this.chainId),
+    );
+
+    const { tokens } = await contract.getPoolTokenInfo(bpt);
+
+    const xyzAddressLowercased = XYZ_ADDRESS[this.chainId].toLowerCase();
+
+    this.isXYZToken0 = tokens[0].toLowerCase() === xyzAddressLowercased;
+
+    return this.isXYZToken0;
   }
 
   async fetchBPtState(blockNumber?: number): Promise<BPTState> {
