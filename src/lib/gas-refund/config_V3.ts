@@ -5,28 +5,10 @@ import {
 } from '../constants';
 import { GRP2ConfigByChain } from './config';
 
-// epoch 56 from/to: 1734955200	1737374400	12/23/2024 12:00:00	1/20/2025 12:00:00
-// epoch 57 from/to: 1737374400	1739793600	1/20/2025 12:00:00	2/17/2025 12:00:00
-
-// TODO: set correct epoch when time comes, for now setting it to 56 to test previous distribution as if it happened on v3 staking
-export const STAKING_V3_TIMESTAMP = 1734955200;
-
-type GRPV3GlobalConfig = {
-  startEpochTimestamp: number;
-  epochDuration: number;
-  seXYZPowerMultiplier: number;
-};
-
-export const grp3GlobalConfig: GRPV3GlobalConfig = {
-  startEpochTimestamp: STAKING_V3_TIMESTAMP,
-  epochDuration: 4 * 7 * 24 * 60 * 60,
-  seXYZPowerMultiplier: 2.5,
-};
-
 export const grpConfigParticularities_V3: {
-  [network: number]: GRP2ConfigByChain;
+  [network: number]: Required<GRP2ConfigByChain>;
 } = {
-  // @TODO: adjust here
+  // @TODO: adjust here -- should correspond to the date of deploying seVLR contracts
   [CHAIN_ID_MAINNET]: {
     stakingStartCalcTimestamp:
       Math.round(new Date('May-14-2025 06:47:47 AM UTC').getTime() / 1000) + 5, // tx that deploys seVLR https://etherscan.io/tx/0xc6f5077dc180b570211fd3e381bbe2b568466bfd46aa3f0c68310d8e2bfd7efc
@@ -39,6 +21,26 @@ export const grpConfigParticularities_V3: {
     stakingStartCalcTimestamp:
       Math.round(new Date('May-14-2025 07:04:53 AM UTC').getTime() / 1000) + 5, // tx that deploys seVLR https://optimistic.etherscan.io/tx/0xfc19542ceccbdf6e0f1e7e62930f834600f7941b4204aaec52b0c38dc37bbe02
   },
+};
+
+// purpose of this const - cutoff line - no point in trying to compute v3 stake until this timestamp
+export const STAKING_V3_TIMESTAMP = Math.min(
+  ...Object.values(grpConfigParticularities_V3).map(
+    c => c.stakingStartCalcTimestamp,
+  ),
+);
+
+
+type GRPV3GlobalConfig = {
+  startEpochTimestamp: number;
+  epochDuration: number;
+  seXYZPowerMultiplier: number;
+};
+
+export const grp3GlobalConfig: GRPV3GlobalConfig = {
+  startEpochTimestamp: STAKING_V3_TIMESTAMP,
+  epochDuration: 4 * 7 * 24 * 60 * 60,
+  seXYZPowerMultiplier: 2.5,
 };
 
 type GRPV2ConfigByChain_V3 = {
