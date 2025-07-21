@@ -9,6 +9,8 @@ import { GasRefundTransaction_V3 } from '../../../src/models/GasRefundTransactio
 import { StakedScoreV3 } from '../staking/stakes-tracker_V3';
 import { GasRefundTransactionData_V3 } from '../../../src/lib/gas-refund/gas-refund_V3';
 
+const logger = global.LOGGER('db-persistence-v3');
+
 export async function fetchLastTimestampTxByContract_V3({
   chainId,
   epoch,
@@ -100,9 +102,9 @@ export const writeTransactions_V3 = async (
   for (const transaction of newRefundableTransactions) {
     try {
       await GasRefundTransaction_V3.create(transaction);
-      console.log(`Transaction created: ${JSON.stringify(transaction)}`);
+      logger.info(`Transaction created: ${JSON.stringify(transaction)}`);
     } catch (error) {
-      console.error(
+      logger.error(
         `Error creating transaction: ${JSON.stringify(transaction)}`,
         error,
       );
@@ -158,9 +160,9 @@ export async function writeStakeScoreSnapshots_V3(
   for (const item of items) {
     try {
       await GasRefundTransactionStakeSnapshot_V3.create(item);
-      console.log(`V3 Snapshot created or updated: ${JSON.stringify(item)}`);
+      logger.info(`V3 Snapshot created or updated: ${JSON.stringify(item)}`);
     } catch (error) {
-      console.error(
+      logger.error(
         `Error creating or updating V3 snapshot: ${JSON.stringify(item)}`,
         error,
       );
