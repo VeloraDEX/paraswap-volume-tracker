@@ -7,6 +7,7 @@ import Database from '../../database';
 import { GasRefundParticipation } from '../../models/GasRefundParticipation';
 import { GasRefundDistribution } from '../../models/GasRefundDistribution';
 import {
+  CHAIN_ID_BASE,
   CHAIN_ID_BINANCE,
   CHAIN_ID_FANTOM,
   CHAIN_ID_GOERLI,
@@ -50,10 +51,21 @@ export const MerkleRedeemAddressSePSP1: { [chainId: number]: string } = {
   [CHAIN_ID_OPTIMISM]: '0xd57Fd755F53666Ce2d3ED8c862A8D06e38C21ce6',
 };
 
+// TODO: put correct contracts addresses here
+export const MerkleRedeemAddressVLR: { [chainId: number]: string } = {
+  // [CHAIN_ID_MAINNET]: '0x0ecb7de52096638c01757180c88b74e4474473ab',
+  [CHAIN_ID_OPTIMISM]:
+    '0x75548EDFE6b2f341b49e8700B8E29Fc60FC596bf'.toLowerCase(),
+  // [CHAIN_ID_BASE]: '0xd57Fd755F53666Ce2d3ED8c862A8D06e38C21ce6',
+};
+
 export const EPOCH_WHEN_SWITCHED_TO_SE_PSP1: Record<number, number> = {
   1: 32,
   10: 38,
 };
+
+// TODO: set to first epoch when SEVLR is enabled
+export const EPOCH_WHEN_SWITCHED_TO_SEVLR = 70;
 
 const OPTIMISM_STAKING_START_TIMESTAMP =
   grp2CConfigParticularities[CHAIN_ID_OPTIMISM].stakingStartCalcTimestamp;
@@ -307,9 +319,11 @@ export class GasRefundApi {
           const { refundedAmountPSP, ...rClaim } = claim;
 
           const contract =
-            (claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SE_PSP1[this.network] &&
-              MerkleRedeemAddressSePSP1[this.network]) ||
-            MerkleRedeemAddress[this.network];
+            claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SEVLR
+              ? MerkleRedeemAddressVLR[this.network]
+              : (claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SE_PSP1[this.network] &&
+                  MerkleRedeemAddressSePSP1[this.network]) ||
+                MerkleRedeemAddress[this.network];
           acc.claims.push({ ...rClaim, amount: refundedAmountPSP, contract });
           acc.totalClaimable += BigInt(refundedAmountPSP);
 
