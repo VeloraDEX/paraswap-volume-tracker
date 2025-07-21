@@ -44,7 +44,6 @@ type TransactionWithStakeChainScoreByStakeChain_V3 =
   };
 
 //NB: running into a problem with null not converting into Bigint most likely means that some of the fetched txs don't have a StakeSnapshot match in the LEFT JOIN above
-// @TODO: adjust draft
 export async function loadTransactionWithByStakeChainData_V3({
   address,
   epochFrom,
