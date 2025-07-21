@@ -52,14 +52,6 @@ function constructTransactionsProcessor_V3({
         .map(transaction => {
           const address = transaction.txOrigin;
 
-          // TODO: cleanup this quick tmp workaround
-          if (
-            +transaction.timestamp <
-            new Date('2025-02-15').getTime() / 1000
-          ) {
-            return;
-          }
-
           const stakeScore = StakesTracker_V3.getInstance().computeStakeScore(
             address,
             +transaction.timestamp,
