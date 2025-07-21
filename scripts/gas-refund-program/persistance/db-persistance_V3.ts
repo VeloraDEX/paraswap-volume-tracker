@@ -148,12 +148,9 @@ export async function writeStakeScoreSnapshots_V3(
   const indices = items.map(item => Object.values(item).join(','));
   const unique = new Set<string>(indices);
   if (unique.size !== items.length) {
-    // throw new Error('Duplicated items in stake score snapshots');
-
     const dupes = indices.filter(
       (item, index) => indices.indexOf(item) != index,
     );
-    debugger;
     throw new Error(`Duplicated items in v3 stake score snapshots: ${dupes}`);
   }
 
