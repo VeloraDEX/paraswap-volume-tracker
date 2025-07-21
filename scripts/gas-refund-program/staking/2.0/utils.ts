@@ -21,7 +21,7 @@ export const QUERY_EVENT_BATCH_SIZE_BY_CHAIN: {
 } = {
   1: 10_000,
   10: 10_000,
-  [CHAIN_ID_BASE]: 20_000, // this costed me 2 hours of debugging :/
+  [CHAIN_ID_BASE]: 20_000,
 };
 
 interface QueryFilterOptions {
@@ -50,8 +50,7 @@ export async function queryFilterBatched(
     const results = await Promise.all(queryRequests);
 
     return results.flat();
-  } catch (e) {
-    debugger;
+  } catch (e) {    
     throw new Error(
       `Error in queryFilterBatched: ${e.message} for contract ${contract.address} from block ${startBlock} to ${endBlock}`,
     );

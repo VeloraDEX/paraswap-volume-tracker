@@ -142,15 +142,17 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
     try {
       await this.loadInitialState();
     } catch (e) {
-      debugger;
-      throw e;
+      throw new Error(
+        `Error loading initial state for BPTStateTracker_V3 on chain ${this.chainId}: ${e.message}`,
+      );
     }
 
     try {
       await this.loadStateChanges();
     } catch (e) {
-      debugger;
-      throw e;
+      throw new Error(
+        `Error loading state changes for BPTStateTracker_V3 on chain ${this.chainId}: ${e.message}`,
+      );
     }
   }
 
@@ -366,7 +368,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
       this.differentialStates.xyzBalance.sort(timeseriesComparator);
       this.differentialStates.ethBalance.sort(timeseriesComparator);
     } catch (e) {
-      debugger;
       throw new Error(
         `Error resolving BPT pool XYZ balance changes from swaps for chain ${this.chainId}`,
       );
@@ -425,7 +426,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
         this.differentialStates.totalSupply.concat(totalSupplyChanges);
       this.differentialStates.totalSupply.sort(timeseriesComparator);
     } catch (e) {
-      debugger;
       throw new Error(
         `Error resolving BPT pool supply changes for chain ${this.chainId}`,
       );

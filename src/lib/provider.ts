@@ -26,19 +26,14 @@ export class Provider {
               return async function send(
                 ...args: Parameters<JsonRpcProvider['send']>
               ) {
-                try {
-                  return retryDecorator(fn, {
-                    retries: RETRY_ATTEMPTS,
-                    delay: DELAY_MS,
-                    timeout: TIMEOUT_MS,
-                    logger: msg => {
-                      logger.error(msg.substring(0, 200), { network });
-                    },
-                  })(...args);
-                } catch (e) {
-                  debugger;
-                  throw e;
-                }
+                return retryDecorator(fn, {
+                  retries: RETRY_ATTEMPTS,
+                  delay: DELAY_MS,
+                  timeout: TIMEOUT_MS,
+                  logger: msg => {
+                    logger.error(msg.substring(0, 200), { network });
+                  },
+                })(...args);
               };
             }
             return Reflect.get(target, prop);

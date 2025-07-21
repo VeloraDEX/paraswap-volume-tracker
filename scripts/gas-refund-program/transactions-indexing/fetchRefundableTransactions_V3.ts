@@ -116,7 +116,9 @@ function constructTransactionsProcessor_V3({
             .dividedBy(10 ** 18); // vlr decimals always encoded in 18decimals
 
           if (currRefundedAmountVlr.lt(0)) {
-            debugger;
+            throw new Error(
+              `Logic Error: negative refunded amount for ${address} on epoch ${epoch} with refund percent ${refundPercent} and vlr price ${currencyRate.vlrPrice}`,
+            );
           }
           const refundableTransaction: GasRefundTransactionDataWithStakeScore_V3 =
             {

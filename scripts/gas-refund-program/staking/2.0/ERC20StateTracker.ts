@@ -77,8 +77,9 @@ export default class ERC20StateTracker extends AbstractStateTracker {
     try {
       await Promise.all([this.loadInitialState(), this.loadStateChanges()]);
     } catch (e) {
-      debugger;
-      throw e;
+      throw new Error(
+        `Error loading states for contract ${this.contractAddress} on chain ${this.chainId}: ${e.message}`,
+      );
     }
   }
 
@@ -101,8 +102,7 @@ export default class ERC20StateTracker extends AbstractStateTracker {
         acc[curr.address.toLowerCase()] = new BigNumber(curr.balance);
         return acc;
       }, {});
-    } catch (e) {
-      debugger;
+    } catch (e) {      
       throw new Error(
         `Error loading initial state for contract ${this.contractAddress} on chain ${this.chainId}: ${e.message}`,
       );
@@ -164,8 +164,7 @@ export default class ERC20StateTracker extends AbstractStateTracker {
       logger.info(
         `loadStateChanges: completed handling token ${this.contract.address} balance related events for all pools`,
       );
-    } catch (e) {
-      debugger;
+    } catch (e) {      
       throw new Error(
         `Error loading state changes for contract ${this.contractAddress} on chain ${this.chainId}: ${e.message}`,
       );
