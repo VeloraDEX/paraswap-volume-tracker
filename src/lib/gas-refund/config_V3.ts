@@ -41,8 +41,6 @@ export const grpConfigParticularities_V3: {
   },
 };
 
-console.log(grpConfigParticularities_V3);
-
 type GRPV2ConfigByChain_V3 = {
   seXYZ: string;
   bpt: string;
