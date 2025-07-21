@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as parser from 'body-parser';
-import * as compression from 'compression';
-import * as cookie from 'cookie-parser';
+import AccessLogMiddleware from './access-log';
 
 const logger = global.LOGGER();
 
@@ -39,6 +38,9 @@ export default class Middleware {
      */
     app.use(parser.json({ strict: false }));
     app.use(parser.text());
+
+    // generates access log message
+    app.use(AccessLogMiddleware());
 
     app.get('/robots.txt', function (req, res) {
       res.type('text/plain');

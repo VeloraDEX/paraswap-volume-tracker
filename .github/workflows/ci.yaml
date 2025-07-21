@@ -1,0 +1,41 @@
+name: CI
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['22.x']
+    name: Node ${{ matrix.node }} sample
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@0.29.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          ignore-unfixed: true
+          severity: 'CRITICAL'
+          exit-code: 0
+          hide-progress: true
+          scanners: vuln,secret,misconfig
+          output: 'trivy-scan-results'
+
+      - name: Upload Trivy report as a Github artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: '${{ github.workspace }}/trivy-scan-results'
+          retention-days: 7
