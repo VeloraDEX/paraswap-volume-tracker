@@ -34,7 +34,7 @@ const logger = global.LOGGER();
 
 const router = express.Router({});
 
-const FIRST_EPOCH_TRACKING_V3 = 58;
+const FIRST_EPOCH_TRACKING_V3 = 65;
 
 const handleGasRefundData = async <T>(
   req: express.Request,
@@ -77,7 +77,7 @@ const handleGasRefundData = async <T>(
   } catch (e) {
     logger.error('something went wrong', e);
     return res.status(400).send({ error: `something went wrong` });
-  }  
+  }
 };
 
 export default class Router {
@@ -337,7 +337,7 @@ export default class Router {
           async ({ address, epochFrom, epochTo, showTransactions }) => {
             const transactions = await loadTransactionWithByStakeChainData_V3({
               address,
-              epochFrom: Math.max(epochFrom, FIRST_EPOCH_TRACKING_V3), // 58 is the first v3 epoch
+              epochFrom: Math.max(epochFrom, FIRST_EPOCH_TRACKING_V3), // 65 is the first v3 epoch
               epochTo,
             });
 
@@ -374,11 +374,16 @@ export default class Router {
           const byNetworkId = Object.fromEntries(
             await Promise.all(
               GRP_SUPPORTED_CHAINS.map(async network => {
-                const gasRefundApi = GasRefundApi.getInstance(network);
-                return [
-                  network,
-                  await gasRefundApi.getAllGasRefundDataForAddress(address),
-                ];
+                try {
+                  const gasRefundApi = GasRefundApi.getInstance(network);
+                  return [
+                    network,
+                    await gasRefundApi.getAllGasRefundDataForAddress(address),
+                  ];
+                } catch (e) {
+                  logger.error('GasRefundApi.getInstance error', e);
+                  throw e;
+                }
               }),
             ),
           );
