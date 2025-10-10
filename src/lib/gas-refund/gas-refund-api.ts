@@ -53,10 +53,11 @@ export const MerkleRedeemAddressSePSP1: { [chainId: number]: string } = {
 
 // TODO: put correct contracts addresses here
 export const MerkleRedeemAddressVLR: { [chainId: number]: string } = {
-  // [CHAIN_ID_MAINNET]: '0x0ecb7de52096638c01757180c88b74e4474473ab',
+  [CHAIN_ID_MAINNET]:
+    '0x945229af4d1fff9f51d1c8e9f62fe03bb4db706c'.toLowerCase(),
   [CHAIN_ID_OPTIMISM]:
-    '0x75548EDFE6b2f341b49e8700B8E29Fc60FC596bf'.toLowerCase(),
-  // [CHAIN_ID_BASE]: '0xd57Fd755F53666Ce2d3ED8c862A8D06e38C21ce6',
+    '0xe236a30D822484d47d6eeac5B49b46D39F41975d'.toLowerCase(),
+  [CHAIN_ID_BASE]: '0x3399E676cdF93F47993ad2921624f8568dF03a84'.toLowerCase(),
 };
 
 export const EPOCH_WHEN_SWITCHED_TO_SE_PSP1: Record<number, number> = {
@@ -65,7 +66,7 @@ export const EPOCH_WHEN_SWITCHED_TO_SE_PSP1: Record<number, number> = {
 };
 
 // TODO: set to first epoch when SEVLR is enabled
-export const EPOCH_WHEN_SWITCHED_TO_SEVLR = 70;
+export const EPOCH_WHEN_SWITCHED_TO_SEVLR = 65;
 
 const OPTIMISM_STAKING_START_TIMESTAMP =
   grp2CConfigParticularities[CHAIN_ID_OPTIMISM].stakingStartCalcTimestamp;
@@ -147,18 +148,34 @@ type GasRefundClaimWithAmountsByProgram = GasRefundClaim & {
 export class GasRefundApi {
   merkleRedem: MerkleRedeem;
   merkleRedemSePSP1?: MerkleRedeem;
+  merkleRedemSeVLR?: MerkleRedeem;
 
   static instances: { [network: number]: GasRefundApi } = {};
 
   constructor(protected network: number) {
-    this.merkleRedem = new Contract(
-      MerkleRedeemAddress[network],
-      MerkleRedeemAbi,
-      Provider.getJsonRpcProvider(this.network),
-    ) as unknown as MerkleRedeem;
+    if (network != CHAIN_ID_BASE) {
+      this.merkleRedem = new Contract(
+        MerkleRedeemAddress[network],
+        MerkleRedeemAbi,
+        Provider.getJsonRpcProvider(this.network),
+      ) as unknown as MerkleRedeem;
+    }
+
     if (network === CHAIN_ID_MAINNET || network === CHAIN_ID_OPTIMISM) {
       this.merkleRedemSePSP1 = new Contract(
         MerkleRedeemAddressSePSP1[network],
+        MerkleRedeemAbi,
+        Provider.getJsonRpcProvider(this.network),
+      ) as unknown as MerkleRedeem;
+    }
+
+    if (
+      network === CHAIN_ID_MAINNET ||
+      network === CHAIN_ID_OPTIMISM ||
+      network === CHAIN_ID_BASE
+    ) {
+      this.merkleRedemSeVLR = new Contract(
+        MerkleRedeemAddressVLR[network],
         MerkleRedeemAbi,
         Provider.getJsonRpcProvider(this.network),
       ) as unknown as MerkleRedeem;
@@ -220,20 +237,30 @@ export class GasRefundApi {
     endEpoch: number,
   ): Promise<Record<number, boolean>> {
     if (this.network === CHAIN_ID_GOERLI) return {};
-    const [claimStatusPSP, claimStatusSePSP1] = await Promise.all([
-      this.merkleRedem.callStatic.claimStatus(address, startEpoch, endEpoch),
-      this.merkleRedemSePSP1?.callStatic.claimStatus(
-        address,
-        startEpoch,
-        endEpoch,
-      ) || [],
-    ]);
+    const [claimStatusPSP, claimStatusSePSP1, claimStatusSeVLR] =
+      await Promise.all([
+        this.merkleRedem?.callStatic.claimStatus(
+          address,
+          startEpoch,
+          endEpoch,
+        ) || [],
+        this.merkleRedemSePSP1?.callStatic.claimStatus(
+          address,
+          startEpoch,
+          endEpoch,
+        ) || [],
+        this.merkleRedemSeVLR?.callStatic.claimStatus(
+          address,
+          startEpoch,
+          endEpoch,
+        ) || [],
+      ]);
 
     let epochToClaimed: Record<string, boolean> = {};
 
     for (let i = 0; i < endEpoch - startEpoch + 1; i++) {
       epochToClaimed[startEpoch + i] = Boolean(
-        claimStatusPSP[i] || claimStatusSePSP1[i],
+        claimStatusPSP[i] || claimStatusSePSP1[i] || claimStatusSeVLR[i],
       );
     }
 
@@ -296,76 +323,82 @@ export class GasRefundApi {
   async getAllGasRefundDataForAddress(
     address: string,
   ): Promise<GasRefundClaimsResponse> {
-    const lastEpoch = getCurrentEpoch() - 1;
+    try {
+      const lastEpoch = getCurrentEpoch() - 1;
 
-    const startEpoch = GasRefundGenesisEpoch;
-    const endEpoch = Math.max(lastEpoch, GasRefundGenesisEpoch);
+      const startEpoch = GasRefundGenesisEpoch;
+      const endEpoch = Math.max(lastEpoch, GasRefundGenesisEpoch);
 
-    const [
-      merkleData,
-      epochToClaimed,
-      { totalPendingRefundAmount, pendingRefundBreakdownPerEpoch },
-    ] = await Promise.all([
-      this._fetchMerkleData(address),
-      this._getClaimStatus(address, startEpoch, endEpoch),
-      this._getCurrentEpochPendingRefundedAmount(address),
-    ]);
+      const [
+        merkleData,
+        epochToClaimed,
+        { totalPendingRefundAmount, pendingRefundBreakdownPerEpoch },
+      ] = await Promise.all([
+        this._fetchMerkleData(address),
+        this._getClaimStatus(address, startEpoch, endEpoch),
+        this._getCurrentEpochPendingRefundedAmount(address),
+      ]);
 
-    const { totalClaimable, claims } =
-      merkleData.reduce<GasRefundClaimsResponseAcc>(
-        (acc, claim) => {
-          if (epochToClaimed[claim.epoch]) return acc;
+      const { totalClaimable, claims } =
+        merkleData.reduce<GasRefundClaimsResponseAcc>(
+          (acc, claim) => {
+            if (epochToClaimed[claim.epoch]) return acc;
 
-          const { refundedAmountPSP, ...rClaim } = claim;
+            const { refundedAmountPSP, ...rClaim } = claim;
 
-          const contract =
-            claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SEVLR
-              ? MerkleRedeemAddressVLR[this.network]
-              : (claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SE_PSP1[this.network] &&
-                  MerkleRedeemAddressSePSP1[this.network]) ||
-                MerkleRedeemAddress[this.network];
-          acc.claims.push({ ...rClaim, amount: refundedAmountPSP, contract });
-          acc.totalClaimable += BigInt(refundedAmountPSP);
+            const contract =
+              claim.epoch >= EPOCH_WHEN_SWITCHED_TO_SEVLR
+                ? MerkleRedeemAddressVLR[this.network]
+                : (claim.epoch >=
+                    EPOCH_WHEN_SWITCHED_TO_SE_PSP1[this.network] &&
+                    MerkleRedeemAddressSePSP1[this.network]) ||
+                  MerkleRedeemAddress[this.network];
+            acc.claims.push({ ...rClaim, amount: refundedAmountPSP, contract });
+            acc.totalClaimable += BigInt(refundedAmountPSP);
 
-          return acc;
-        },
-        {
-          totalClaimable: BigInt(0),
-          claims: [],
-        },
-      );
+            return acc;
+          },
+          {
+            totalClaimable: BigInt(0),
+            claims: [],
+          },
+        );
 
-    const data = !claims.length
-      ? null
-      : claims.length == 1
-      ? this.merkleRedem.interface.encodeFunctionData('claimWeek', [
-          address,
-          claims[0].epoch,
-          claims[0].amount,
-          claims[0].merkleProofs,
-        ])
-      : this.merkleRedem.interface.encodeFunctionData('claimWeeks', [
-          address,
-          claims.map(({ epoch, merkleProofs, amount }) => ({
-            week: epoch,
-            balance: amount,
-            merkleProof: merkleProofs,
-          })),
-        ]);
+      const data = !claims.length
+        ? null
+        : claims.length == 1
+        ? this.merkleRedem.interface.encodeFunctionData('claimWeek', [
+            address,
+            claims[0].epoch,
+            claims[0].amount,
+            claims[0].merkleProofs,
+          ])
+        : this.merkleRedem.interface.encodeFunctionData('claimWeeks', [
+            address,
+            claims.map(({ epoch, merkleProofs, amount }) => ({
+              week: epoch,
+              balance: amount,
+              merkleProof: merkleProofs,
+            })),
+          ]);
 
-    return {
-      claims,
-      // starting from distribution 38 (in the new style it's 07) the pending and totalClimable numbers below don't any more indicate the amounts to be claimed on this network.
-      // instead they indicate just aggregated amounts of refund for transactions made on this chain (same as earlier).
-      // the amounts to be claimed on this network are the ones in the claims array:
-      //  -- for non-staking network the array will only include legacy proofs (for old epochs)
-      //  -- for staking networks the array will include both legacy proofs (for old epochs) and the new ones.
-      // The new participations on staking networks inlcude refunds for transactions made on all GRP-supported the chains, proportionaly to the stakeScore on this paritcular network compared to total combined stakeScore on all staking chains
-      // refer to the related PIP fo more details: https://snapshot.org/#/paraswap-dao.eth/proposal/0x7605b06b97c9412a22c506d828f8d1bb3b60971c8b907c3ba962eab995bcaa53
-      totalClaimable: totalClaimable.toString(),
-      pendingClaimable: totalPendingRefundAmount.toString(),
-      pendingRefundBreakdownPerEpoch,
-    };
+      return {
+        claims,
+        // starting from distribution 38 (in the new style it's 07) the pending and totalClimable numbers below don't any more indicate the amounts to be claimed on this network.
+        // instead they indicate just aggregated amounts of refund for transactions made on this chain (same as earlier).
+        // the amounts to be claimed on this network are the ones in the claims array:
+        //  -- for non-staking network the array will only include legacy proofs (for old epochs)
+        //  -- for staking networks the array will include both legacy proofs (for old epochs) and the new ones.
+        // The new participations on staking networks inlcude refunds for transactions made on all GRP-supported the chains, proportionaly to the stakeScore on this paritcular network compared to total combined stakeScore on all staking chains
+        // refer to the related PIP fo more details: https://snapshot.org/#/paraswap-dao.eth/proposal/0x7605b06b97c9412a22c506d828f8d1bb3b60971c8b907c3ba962eab995bcaa53
+        totalClaimable: totalClaimable.toString(),
+        pendingClaimable: totalPendingRefundAmount.toString(),
+        pendingRefundBreakdownPerEpoch,
+      };
+    } catch (e) {
+      console.error('Error in getAllGasRefundDataForAddress', e);
+      throw e;
+    }
   }
 
   async getAllEntriesForEpoch(
