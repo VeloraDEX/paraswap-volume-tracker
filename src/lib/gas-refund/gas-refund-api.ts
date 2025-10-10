@@ -51,7 +51,6 @@ export const MerkleRedeemAddressSePSP1: { [chainId: number]: string } = {
   [CHAIN_ID_OPTIMISM]: '0xd57Fd755F53666Ce2d3ED8c862A8D06e38C21ce6',
 };
 
-// TODO: put correct contracts addresses here
 export const MerkleRedeemAddressVLR: { [chainId: number]: string } = {
   [CHAIN_ID_MAINNET]:
     '0x945229af4d1fff9f51d1c8e9f62fe03bb4db706c'.toLowerCase(),
