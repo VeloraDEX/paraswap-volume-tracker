@@ -19,6 +19,8 @@ const logger = global.LOGGER('TrackRootUpdate');
 const IPFS_FOLDER_BY_EPOCH: Record<string, string> = {
   61: 'https://copper-total-fly-652.mypinata.cloud/ipfs/bafybeidvcmiikh6dg3ihn433mowktqhfcucvpqcr73ydm43vg77xglkkbe',
   62: 'https://copper-total-fly-652.mypinata.cloud/ipfs/bafybeigswk6aggt62j46dhvfgewe5lvwytoelczzqkip62l4bj75ariqra',
+  63: 'https://copper-total-fly-652.mypinata.cloud/ipfs/bafybeigct4wqoskwvbncfqtktav6j2hcluojt56dpyv2lotnc5lssdejzy',
+  64: 'https://copper-total-fly-652.mypinata.cloud/ipfs/bafybeianmosoakrrga2pb3yin4336sfyl5lejzu44b7z642tg4x5uuovye',
 };
 export async function trackRootUpdate() {
   const epoch = getCurrentEpoch();
