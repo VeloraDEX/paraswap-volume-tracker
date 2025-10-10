@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import {
+  CHAIN_ID_BASE,
   CHAIN_ID_BINANCE,
   CHAIN_ID_FANTOM,
   CHAIN_ID_GOERLI,
@@ -14,6 +15,7 @@ export const isMainnetStaking = true; // TODO FIXME move to env var
 
 export const GRP_SUPPORTED_CHAINS = [
   isMainnetStaking ? undefined : CHAIN_ID_GOERLI,
+  CHAIN_ID_BASE,
   CHAIN_ID_MAINNET,
   CHAIN_ID_OPTIMISM,
   CHAIN_ID_POLYGON,
