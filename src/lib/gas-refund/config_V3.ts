@@ -30,7 +30,6 @@ export const STAKING_V3_TIMESTAMP = Math.min(
   ),
 );
 
-
 type GRPV3GlobalConfig = {
   startEpochTimestamp: number;
   epochDuration: number;
@@ -49,6 +48,7 @@ type GRPV2ConfigByChain_V3 = {
   // psp1ToPsp2Migrator?: string;  // unlike with v1->v2, we don't refund migration v2->v3 txs
 };
 const l = (s: string) => s.toLowerCase();
+// TODO: need to be reverted back to BP2 pools it eneded up being
 export const grp2ConfigByChain_V3: {
   [chainId: number]: GRPV2ConfigByChain_V3;
 } = {
