@@ -12,8 +12,9 @@
     "build:grp": "NODE_ENV=production tsc --project scripts/gas-refund-program/tsconfig.json",
     "start": "NODE_ENV=production && node ./dist",
     "store-airdrop-data": "NODE_ENV=development ts-node scripts/store-airdrop-data.ts",
-    "gas-refund:dev:compute-gas-refund-save-db": "patch-package && NODE_ENV=development ts-node scripts/gas-refund-program/computeGasRefund",
-    "gas-refund:prod:compute-gas-refund-save-db": "node scripts/gas-refund-program/computeGasRefund.js",
+    "gas-refund:dev:compute-gas-refund-save-db-legacy-sePSP": "patch-package && NODE_ENV=development ts-node scripts/gas-refund-program/computeGasRefund",
+    "gas-refund:dev:compute-gas-refund-save-db": "patch-package && NODE_ENV=development ts-node scripts/gas-refund-program/computeGasRefund_V3",
+    "gas-refund:prod:compute-gas-refund-save-db": "node scripts/gas-refund-program/computeGasRefund_V3.js",
     "gas-refund:computeDistributionDataAndPersistDB": "patch-package && NODE_ENV=development ts-node scripts/gas-refund-program/distribution/computeDistributionDataAndPersistDB",
     "gas-refund:computeDistributionDataAndPersistDB-epoch-47": "DISTRIBUTED_EPOCH=47 yarn gas-refund:computeDistributionDataAndPersistDB",
     "gas-refund:computeDistributionFilesAndPersistIPFS": "patch-package && NODE_ENV=development ts-node scripts/gas-refund-program/distribution/computeDistributionFilesAndPersistIPFS",
@@ -50,7 +51,7 @@
     "prettier": "2.4.1",
     "pretty-quick": "3.1.1",
     "ts-jest": "^27.1.3",
-    "typescript": "4.4.4"
+    "typescript": "5.7.3"
   },
   "dependencies": {
     "@ethersproject/abi": "5.5.0",

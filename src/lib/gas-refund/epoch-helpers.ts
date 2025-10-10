@@ -3,7 +3,7 @@ import { CHAIN_ID_MAINNET } from '../constants';
 import { EpochInfo } from '../epoch-info';
 import { GasRefundV2EpochFlip } from './gas-refund';
 import { OFFSET_CALC_TIME, SCRIPT_START_TIME_SEC } from './common';
-import { grp2CConfigParticularities, grp2GlobalConfig } from './config';
+import { grp2GlobalConfig } from './config';
 
 type EpochCalcTime = {
   startCalcTime: number;
@@ -74,7 +74,7 @@ type EpochReseolverV2 = BaseEpochResolver & {
   };
 };
 
-const GRP2EpochResolver: EpochReseolverV2 = {
+export const GRP2EpochResolver: EpochReseolverV2 = {
   init() {
     console.log('PSP2.0: nothing to do on initialising GRP2EpochResolver !');
   },

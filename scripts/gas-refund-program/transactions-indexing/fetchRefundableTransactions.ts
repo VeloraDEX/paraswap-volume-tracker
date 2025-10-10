@@ -265,7 +265,7 @@ export async function fetchRefundableTransactions({
       const lastTimestampProcessed = lastTimestampTxByContract[contractAddress];
 
       const allStakersTransactionsDuringEpoch =
-        await fetchParaswapV6StakersTransactions({
+        await fetchParaswapV6StakersTransactions({          
           epoch: epochNewStyle,
           timestampGreaterThan: lastTimestampProcessed,
           chainId,

@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import {
+  CHAIN_ID_BASE,
   CHAIN_ID_BINANCE,
   CHAIN_ID_FANTOM,
   CHAIN_ID_GOERLI,
@@ -14,6 +15,7 @@ export const isMainnetStaking = true; // TODO FIXME move to env var
 
 export const GRP_SUPPORTED_CHAINS = [
   isMainnetStaking ? undefined : CHAIN_ID_GOERLI,
+  CHAIN_ID_BASE,
   CHAIN_ID_MAINNET,
   CHAIN_ID_OPTIMISM,
   CHAIN_ID_POLYGON,
@@ -186,7 +188,7 @@ export const getRefundPercentV1 = (stakedAmount: string): number | undefined =>
   )?.refundPercent;
 
 // as voted in https://vote.paraswap.network/#/proposal/0xa288047720c94db99b0405b665d3724dc0329d11968420ba1357ccbb2225ab39
-const GRP_MIN_REFUND_ALLOWED = 0.25;
+export const GRP_MIN_REFUND_ALLOWED = 0.25;
 export const GRP_MAX_REFUND_PERCENT = 0.95;
 
 export const grpV2Func = (x: number): number => {

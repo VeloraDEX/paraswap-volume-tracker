@@ -25,11 +25,60 @@ import {
   computeAggregatedStakeChainDetails,
   loadTransactionWithByStakeChainData,
 } from './lib/gas-refund/multi-staking-utils';
-import { GasRefundDistribution } from './models/GasRefundDistribution';
+import {
+  computeAggregatedStakeChainDetails_V3,
+  loadTransactionWithByStakeChainData_V3,
+} from './lib/gas-refund/multi-staking-utils_V3';
 
 const logger = global.LOGGER();
 
 const router = express.Router({});
+
+const FIRST_EPOCH_TRACKING_V3 = 65;
+
+const handleGasRefundData = async <T>(
+  req: express.Request,
+  res: express.Response,
+  prepareDataToReturn: (input: {
+    address: string;
+    epochFrom: number;
+    epochTo: number;
+    showTransactions: boolean;
+  }) => Promise<T>,
+): Promise<express.Response> => {
+  const address = req.params.address.toLowerCase();
+  const epochFrom = req.params.epochFrom
+    ? parseInt(req.params.epochFrom)
+    : undefined;
+  const epochTo = req.params.epochTo ? parseInt(req.params.epochTo) : undefined;
+  const showTransactions = req.query.showTransactions === 'true';
+
+  if (!address) {
+    return res
+      .status(400)
+      .send({ error: `address param is required: ${address}` });
+  }
+
+  if (!epochFrom || !epochTo) {
+    return res
+      .status(400)
+      .send({ error: `epochFrom and epochTo params are required` });
+  }
+
+  try {
+    const data = await prepareDataToReturn({
+      address,
+      epochFrom,
+      epochTo,
+      showTransactions,
+    });
+
+    return res.json(data);
+  } catch (e) {
+    logger.error('something went wrong', e);
+    return res.status(400).send({ error: `something went wrong` });
+  }
+};
 
 export default class Router {
   app: express.Express;
@@ -241,62 +290,81 @@ export default class Router {
     );
 
     // NB: this endpoint will return approximate amounts. They will differ from the ones in merkle tree
+    // Accumulated / Pending -- current / previous
     router.get(
       '/gas-refund/by-network/:address/:epochFrom/:epochTo',
       async (req, res) => {
-        const address = req.params.address.toLowerCase();
-        const epochFrom = req.params.epochFrom
-          ? parseInt(req.params.epochFrom)
-          : undefined;
-        const epochTo = req.params.epochTo
-          ? parseInt(req.params.epochTo)
-          : undefined;
+        return await handleGasRefundData(
+          req,
+          res,
+          async ({ address, epochFrom, epochTo, showTransactions }) => {
+            const transactions = await loadTransactionWithByStakeChainData({
+              address,
+              epochFrom,
+              epochTo,
+            });
 
-        const showTransactions = req.query.showTransactions === 'true';
+            const _data = computeAggregatedStakeChainDetails(transactions);
+            const data = showTransactions
+              ? _data
+              : Object.fromEntries(
+                  Object.entries(_data).map(([key, value]) => {
+                    const withoutTransactions: any = {
+                      ...value,
+                    };
+                    delete withoutTransactions.transactionsWithClaimable;
+                    return [key, withoutTransactions];
+                  }),
+                );
 
-        if (!address)
-          return res
-            .status(400)
-            .send({ error: `address param is required: ${address}` });
-
-        if (!epochFrom || !epochTo)
-          return res
-            .status(400)
-            .send({ error: `epochFrom and epochTo params are required` });
-
-        try {
-          const transactions = await loadTransactionWithByStakeChainData({
-            address,
-            epochFrom,
-            epochTo,
-          });
-
-          const _data = computeAggregatedStakeChainDetails(transactions);
-          const data = showTransactions
-            ? _data
-            : Object.fromEntries(
-                Object.entries(_data).map(([key, value]) => {
-                  const withoutTransactions: any = {
-                    ...value,
-                  };
-                  delete withoutTransactions.transactionsWithClaimable;
-                  return [key, withoutTransactions];
-                }),
-              );
-
-          const latestDistributedEpoch = await loadLatestDistributedEpoch();
-
-          return res.json({
-            latestDistributedEpoch,
-            byEpoch: data,
-          });
-        } catch (e) {
-          logger.error('something went wrong', e);
-          return res.status(400).send({ error: `something went wrong` });
-        }
+            const latestDistributedEpoch = await loadLatestDistributedEpoch();
+            return {
+              latestDistributedEpoch,
+              byEpoch: data,
+            };
+          },
+        );
       },
     );
 
+    // Accumulated / Pending -- current / previous
+    router.get(
+      '/gas-refund/v3/by-network/:address/:epochFrom/:epochTo',
+      async (req, res) => {
+        return await handleGasRefundData(
+          req,
+          res,
+          async ({ address, epochFrom, epochTo, showTransactions }) => {
+            const transactions = await loadTransactionWithByStakeChainData_V3({
+              address,
+              epochFrom: Math.max(epochFrom, FIRST_EPOCH_TRACKING_V3), // 65 is the first v3 epoch
+              epochTo,
+            });
+
+            const _data = computeAggregatedStakeChainDetails_V3(transactions);
+            const data = showTransactions
+              ? _data
+              : Object.fromEntries(
+                  Object.entries(_data).map(([key, value]) => {
+                    const withoutTransactions: any = {
+                      ...value,
+                    };
+                    delete withoutTransactions.transactionsWithClaimable;
+                    return [key, withoutTransactions];
+                  }),
+                );
+
+            const latestDistributedEpoch = await loadLatestDistributedEpoch();
+            return {
+              latestDistributedEpoch,
+              byEpoch: data,
+            };
+          },
+        );
+      },
+    );
+
+    // participations / all networks consolidated
     router.get(
       '/gas-refund/user-data/consolidated/:address',
       async (req, res) => {
@@ -306,11 +374,16 @@ export default class Router {
           const byNetworkId = Object.fromEntries(
             await Promise.all(
               GRP_SUPPORTED_CHAINS.map(async network => {
-                const gasRefundApi = GasRefundApi.getInstance(network);
-                return [
-                  network,
-                  await gasRefundApi.getAllGasRefundDataForAddress(address),
-                ];
+                try {
+                  const gasRefundApi = GasRefundApi.getInstance(network);
+                  return [
+                    network,
+                    await gasRefundApi.getAllGasRefundDataForAddress(address),
+                  ];
+                } catch (e) {
+                  logger.error('GasRefundApi.getInstance error', e);
+                  throw e;
+                }
               }),
             ),
           );
@@ -325,6 +398,7 @@ export default class Router {
       },
     );
 
+    // participations (by network)
     router.get('/gas-refund/user-data/:network/:address', async (req, res) => {
       const address = req.params.address.toLowerCase();
 

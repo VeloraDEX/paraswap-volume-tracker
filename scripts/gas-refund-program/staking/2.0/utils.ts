@@ -1,3 +1,4 @@
+import { CHAIN_ID_BASE } from '../../../../src/lib/constants';
 import { sePSPMigrations } from '../../../../src/models/sePSPMigrations';
 import { Contract, EventFilter } from 'ethers';
 
@@ -15,12 +16,13 @@ export const fetchMigrationsTxHashesSet = async () => {
   return txHashes;
 };
 
-export const QUERY_EVENT_BATCH_SIZE_BY_CHAIN : {
-  [chainId: number]: number
+export const QUERY_EVENT_BATCH_SIZE_BY_CHAIN: {
+  [chainId: number]: number;
 } = {
   1: 10_000,
-  10: 20_000
-}
+  10: 10_000,
+  [CHAIN_ID_BASE]: 20_000,
+};
 
 interface QueryFilterOptions {
   batchSize: number;
@@ -32,19 +34,25 @@ export async function queryFilterBatched(
   endBlock: number,
   options: QueryFilterOptions = { batchSize: 10000 },
 ) {
-  const { batchSize } = options;
-  let iteratorStart = startBlock;
-  const queryRequests = [];
+  try {
+    const { batchSize } = options;
+    let iteratorStart = startBlock;
+    const queryRequests = [];
 
-  while (iteratorStart < endBlock) {
-    const intervalEnd = Math.min(iteratorStart + batchSize, endBlock);
-    queryRequests.push(
-      contract.queryFilter(eventFilter, iteratorStart, intervalEnd),
+    while (iteratorStart < endBlock) {
+      const intervalEnd = Math.min(iteratorStart + batchSize, endBlock);
+      queryRequests.push(
+        contract.queryFilter(eventFilter, iteratorStart, intervalEnd),
+      );
+      iteratorStart = intervalEnd + 1;
+    }
+
+    const results = await Promise.all(queryRequests);
+
+    return results.flat();
+  } catch (e) {    
+    throw new Error(
+      `Error in queryFilterBatched: ${e.message} for contract ${contract.address} from block ${startBlock} to ${endBlock}`,
     );
-    iteratorStart = intervalEnd + 1;
   }
-
-  const results = await Promise.all(queryRequests);
-
-  return results.flat();
 }

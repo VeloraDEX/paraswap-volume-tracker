@@ -20,7 +20,7 @@ export const grp2GlobalConfig: GRPV2GlobalConfig = {
   sePSP2PowerMultiplier: 2.5,
 };
 
-type GRP2ConfigByChain = {
+export type GRP2ConfigByChain = {
   stakingStartCalcTimestamp?: number; // the timestamp of staking enabling for a particular chain
 };
 

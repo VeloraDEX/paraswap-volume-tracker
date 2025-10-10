@@ -5,6 +5,7 @@ import {
   CHAIN_ID_FANTOM,
   CHAIN_ID_GOERLI,
   CHAIN_ID_OPTIMISM,
+  CHAIN_ID_BASE,
 } from './constants';
 import { Utils } from './utils';
 import { thegraphClient } from './utils/data-providers-clients';
@@ -19,6 +20,9 @@ export const SUBGRAPH_URL: { [network: number]: string } = {
   [CHAIN_ID_OPTIMISM]: createSubgraphURL(
     'Dmht4UnVSfpuLcVr8i6TkNe93BSKWRD4iu2ZFY1Da4jj',
   ),
+  [CHAIN_ID_BASE]: createSubgraphURL(
+    '6f2Z8rTvsBQinEMwRSBxbyg3BP2LTFiEA1hjPZxmy3xs',
+  ),
   [CHAIN_ID_BINANCE]: '', // not used (check GRP_V2_SUPPORTED_CHAINS_STAKING)
   [CHAIN_ID_GOERLI]: '', // not used (check GRP_V2_SUPPORTED_CHAINS_STAKING)
   [CHAIN_ID_POLYGON]: '', // not used (check GRP_V2_SUPPORTED_CHAINS_STAKING)
@@ -28,9 +32,9 @@ export const SUBGRAPH_URL: { [network: number]: string } = {
 const SUBGRAPH_TIMEOUT = 10000;
 
 export class BlockInfo {
-  blockInfo: { [block: number]: number } = {};
+  blockInfo: { [block: number]: number } = {};  
 
-  constructor(private subgraphURL: string) {}
+  constructor(private subgraphURL: string, private networkId: number) {}
 
   static instances: { [network: number]: BlockInfo } = {};
 
@@ -39,7 +43,7 @@ export class BlockInfo {
       if (!SUBGRAPH_URL[network]) {
         throw new Error(`Subgraph URL is not available for network ${network}`);
       }
-      this.instances[network] = new BlockInfo(SUBGRAPH_URL[network]);
+      this.instances[network] = new BlockInfo(SUBGRAPH_URL[network], network);
     }
     return this.instances[network];
   }
