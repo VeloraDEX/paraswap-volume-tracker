@@ -363,23 +363,23 @@ export class GasRefundApi {
           },
         );
 
-      const data = !claims.length
-        ? null
-        : claims.length == 1
-        ? this.merkleRedem.interface.encodeFunctionData('claimWeek', [
-            address,
-            claims[0].epoch,
-            claims[0].amount,
-            claims[0].merkleProofs,
-          ])
-        : this.merkleRedem.interface.encodeFunctionData('claimWeeks', [
-            address,
-            claims.map(({ epoch, merkleProofs, amount }) => ({
-              week: epoch,
-              balance: amount,
-              merkleProof: merkleProofs,
-            })),
-          ]);
+      // const data = !claims.length
+      //   ? null
+      //   : claims.length == 1
+      //   ? this.merkleRedem.interface.encodeFunctionData('claimWeek', [
+      //       address,
+      //       claims[0].epoch,
+      //       claims[0].amount,
+      //       claims[0].merkleProofs,
+      //     ])
+      //   : this.merkleRedem.interface.encodeFunctionData('claimWeeks', [
+      //       address,
+      //       claims.map(({ epoch, merkleProofs, amount }) => ({
+      //         week: epoch,
+      //         balance: amount,
+      //         merkleProof: merkleProofs,
+      //       })),
+      //     ]);
 
       return {
         claims,
