@@ -1,12 +1,14 @@
 import { BigNumber as EthersBN, CallOverrides, Contract, Event } from 'ethers';
 import { assert } from 'ts-essentials';
 import {
-  BalancerVaultAddress_V3,
+  BalancerVaultAddress,
+  // BalancerVaultAddress_V3,
   NULL_ADDRESS,
   XYZ_ADDRESS,
 } from '../../../../src/lib/constants';
 import { Provider } from '../../../../src/lib/provider';
 import * as ERC20ABI from '../../../../src/lib/abi/erc20.abi.json';
+import * as BVaultABI from '../../../../src/lib/abi/balancer-vault.abi.json';
 import {
   fetchBlockTimestampForEvents,
   ZERO_BN,
@@ -28,59 +30,82 @@ interface MinERC20 extends Contract {
 }
 
 interface BVaultContract extends Contract {
-  // getPoolTokenInfo(
-  //   poolId: string,
-  //   token: string,
-  //   overrides?: CallOverrides,
-  // ): Promise<
-  //   [
-  //     cash: EthersBN,
-  //     managed: EthersBN,
-  //     lastChangeBlock: EthersBN,
-  //     assetManager: string,
-  //   ]
-  // >;
+  getPoolTokenInfo(
+    poolId: string,
+    token: string,
+    overrides?: CallOverrides,
+  ): Promise<
+    [
+      cash: EthersBN,
+      managed: EthersBN,
+      lastChangeBlock: EthersBN,
+      assetManager: string,
+    ]
+  >;
 }
 
 interface Transfer extends Event {
   event: 'Transfer';
   args: [from: string, to: string, value: EthersBN];
 }
-interface LiquidityRemoved extends Event {
-  event: 'LiquidityRemoved';
+
+// interface LiquidityRemoved extends Event {
+//   event: 'LiquidityRemoved';
+//   args: [
+//     pool: string,
+//     liquidityProvider: string,
+//     kind: string,
+//     totalSupply: string,
+//     amountsRemovedRaw: EthersBN[],
+//     swapFeeAmountsRaw: EthersBN[],
+//   ];
+// }
+// interface LiquidityAdded extends Event {
+//   event: 'LiquidityAdded';
+//   args: [
+//     pool: string,
+//     liquidityProvider: string,
+//     kind: string,
+//     totalSupply: string,
+//     amountsAddedRaw: EthersBN[],
+//     swapFeeAmountsRaw: EthersBN[],
+//   ];
+// }
+
+interface PoolBalanceChanged extends Event {
+  event: 'PoolBalanceChanged';
   args: [
-    pool: string,
-    liquidityProvider: string,
-    kind: string,
-    totalSupply: string,
-    amountsRemovedRaw: EthersBN[],
-    swapFeeAmountsRaw: EthersBN[],
-  ];
-}
-interface LiquidityAdded extends Event {
-  event: 'LiquidityAdded';
-  args: [
-    pool: string,
-    liquidityProvider: string,
-    kind: string,
-    totalSupply: string,
-    amountsAddedRaw: EthersBN[],
-    swapFeeAmountsRaw: EthersBN[],
+    poolId: string,
+    sender: string,
+    tokens: string[],
+    amountsInOrOut: EthersBN[],
+    paidProtocolSwapFeeAmounts: EthersBN[],
   ];
 }
 
 interface Swap extends Event {
   event: 'Swap';
   args: [
-    pool: string,
+    poolId: string,
     tokenIn: string,
     tokenOut: string,
-    amountIn: EthersBN,
+    amountInt: EthersBN,
     amountOut: EthersBN,
-    swapFeePercentage: EthersBN,
-    swapFeeAmount: EthersBN,
   ];
 }
+
+// interface Swap extends Event {
+//   event: 'Swap';
+//   args: [
+//     pool: string,
+//     tokenIn: string,
+//     tokenOut: string,
+//     amountIn: EthersBN,
+//     amountOut: EthersBN,
+//     swapFeePercentage: EthersBN,
+//     swapFeeAmount: EthersBN,
+//   ];
+// }
 
 type InitState = {
   xyzBalance: BigNumber;
@@ -115,8 +140,8 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
     super(chainId);
 
     this.bVaultContract = new Contract(
-      BalancerVaultAddress_V3, // same address for all chains
-      balancerV3Abi,
+      BalancerVaultAddress, // same address for all chains
+      BVaultABI,
       Provider.getJsonRpcProvider(this.chainId),
     ) as BVaultContract;
 
@@ -180,13 +205,13 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
     try {
       let events = (await queryFilterBatched(
         this.bVaultContract,
-        this.bVaultContract.filters.LiquidityAdded(
+        this.bVaultContract.filters.PoolBalanceChanged(
           grp2ConfigByChain_V3[this.chainId].bpt,
         ),
         this.startBlock,
         this.endBlock,
         { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-      )) as LiquidityAdded[];
+      )) as PoolBalanceChanged[];
 
       const blockNumToTimestamp = await fetchBlockTimestampForEvents(
         this.chainId,
@@ -202,21 +227,23 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
         assert(timestamp, 'block timestamp should be defined');
 
         assert(
-          e.event === 'LiquidityAdded',
+          e.event === 'PoolBalanceChanged',
           'can only be poolBalanceChanged event',
         );
-        const [
-          pool,
-          liquidityProvider,
-          kind,
-          totalSupply,
-          amountsAddedRaw,
-          swapFeeAmountsRaw,
-        ] = e.args;
+        // const [
+        //   pool,
+        //   liquidityProvider,
+        //   kind,
+        //   totalSupply,
+        //   amountsAddedRaw,
+        //   swapFeeAmountsRaw,
+        // ] = e.args;
+        const [, , _tokens, amountsInOrOut, paidProtocolSwapFeeAmounts] = e.args;
+        const tokens = _tokens.map(t => t.toLowerCase());
 
         const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
-          ? [amountsAddedRaw, swapFeeAmountsRaw]
-          : [imReverse(amountsAddedRaw), imReverse(swapFeeAmountsRaw)];
+          ? [amountsInOrOut, paidProtocolSwapFeeAmounts]
+          : [imReverse(amountsInOrOut), imReverse(paidProtocolSwapFeeAmounts)];
 
         this.differentialStates.xyzBalance.push({
           timestamp,
@@ -234,71 +261,71 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
       });
     } catch (e) {
       throw new Error(
-        `Error resolving BPT pool XYZ liquidity additions for chain ${this.chainId}`,
+        `Error resolving BPT pool XYZ PoolBalanceChanged for chain ${this.chainId}`,
       );
     }
 
     // Liquidity Removed:
-    try {
-      let events = (await queryFilterBatched(
-        this.bVaultContract,
-        this.bVaultContract.filters.LiquidityRemoved(
-          grp2ConfigByChain_V3[this.chainId].bpt,
-        ),
-        this.startBlock,
-        this.endBlock,
-        { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
-      )) as LiquidityRemoved[];
+    // try {
+    //   let events = (await queryFilterBatched(
+    //     this.bVaultContract,
+    //     this.bVaultContract.filters.LiquidityRemoved(
+    //       grp2ConfigByChain_V3[this.chainId].bpt,
+    //     ),
+    //     this.startBlock,
+    //     this.endBlock,
+    //     { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
+    //   )) as LiquidityRemoved[];
 
-      const blockNumToTimestamp = await fetchBlockTimestampForEvents(
-        this.chainId,
-        events,
-      );
+    //   const blockNumToTimestamp = await fetchBlockTimestampForEvents(
+    //     this.chainId,
+    //     events,
+    //   );
 
-      const isXYZToken0 = await BPTHelper_V3.getInstance(
-        this.chainId,
-      ).getIsXYZToken0();
+    //   const isXYZToken0 = await BPTHelper_V3.getInstance(
+    //     this.chainId,
+    //   ).getIsXYZToken0();
 
-      events.forEach(e => {
-        const timestamp = blockNumToTimestamp[e.blockNumber];
-        assert(timestamp, 'block timestamp should be defined');
+    //   events.forEach(e => {
+    //     const timestamp = blockNumToTimestamp[e.blockNumber];
+    //     assert(timestamp, 'block timestamp should be defined');
 
-        assert(
-          e.event === 'LiquidityRemoved',
-          'can only be poolBalanceChanged event',
-        );
-        const [
-          pool,
-          liquidityProvider,
-          kind,
-          totalSupply,
-          amountsRemovedRaw,
-          swapFeeAmountsRaw,
-        ] = e.args;
+    //     assert(
+    //       e.event === 'LiquidityRemoved',
+    //       'can only be poolBalanceChanged event',
+    //     );
+    //     const [
+    //       pool,
+    //       liquidityProvider,
+    //       kind,
+    //       totalSupply,
+    //       amountsRemovedRaw,
+    //       swapFeeAmountsRaw,
+    //     ] = e.args;
 
-        const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
-          ? [amountsRemovedRaw, swapFeeAmountsRaw]
-          : [imReverse(amountsRemovedRaw), imReverse(swapFeeAmountsRaw)];
+    //     const [[xyzAmount, ethAmount], [xyzFees, ethFees]] = isXYZToken0
+    //       ? [amountsRemovedRaw, swapFeeAmountsRaw]
+    //       : [imReverse(amountsRemovedRaw), imReverse(swapFeeAmountsRaw)];
 
-        this.differentialStates.xyzBalance.push({
-          timestamp,
-          value: new BigNumber(xyzAmount.toString())
-            .minus(xyzFees.div(2).toString())
-            .negated(),
-        });
+    //     this.differentialStates.xyzBalance.push({
+    //       timestamp,
+    //       value: new BigNumber(xyzAmount.toString())
+    //         .minus(xyzFees.div(2).toString())
+    //         .negated(),
+    //     });
 
-        this.differentialStates.ethBalance.push({
-          timestamp,
-          value: new BigNumber(ethAmount.toString())
-            .minus(ethFees.div(2).toString())
-            .negated(),
-        });
-      });
-    } catch (e) {
-      throw new Error(
-        `Error resolving BPT pool XYZ liquidity removals for chain ${this.chainId}`,
-      );
-    }
+    //     this.differentialStates.ethBalance.push({
+    //       timestamp,
+    //       value: new BigNumber(ethAmount.toString())
+    //         .minus(ethFees.div(2).toString())
+    //         .negated(),
+    //     });
+    //   });
+    // } catch (e) {
+    //   throw new Error(
+    //     `Error resolving BPT pool XYZ liquidity removals for chain ${this.chainId}`,
+    //   );
+    // }
 
     this.differentialStates.xyzBalance.sort(timeseriesComparator);
     this.differentialStates.ethBalance.sort(timeseriesComparator);
@@ -325,16 +352,16 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
         const timestamp = blockNumToTimestamp[e.blockNumber];
         assert(timestamp, 'block timestamp should be defined');
         assert(e.event === 'Swap', 'can only be Swap Event event');
-
-        const [
-          ,
-          tokenIn,
-          tokenOut,
-          amountIn,
-          amountOut,
-          swapFeePercentage,
-          swapFeeAmount,
-        ] = e.args;
+        const [, tokenIn, tokenOut, amountIn, amountOut] = e.args;
+        // const [
+        //   ,
+        //   tokenIn,
+        //   tokenOut,
+        //   amountIn,
+        //   amountOut,
+        //   swapFeePercentage,
+        //   swapFeeAmount,
+        // ] = e.args;
 
         const isXYZTokenIn =
           tokenIn.toLowerCase() === XYZ_ADDRESS[this.chainId].toLowerCase();

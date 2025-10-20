@@ -17,12 +17,12 @@ async function startComputingGasRefundAllChains_V3() {
     // TODO: disable this piece in previous cronjob after migrating to new one
     await trackRootUpdate_V3();
 
-    // await StakesTracker_V3.getInstance().loadHistoricalStakes();
+    await StakesTracker_V3.getInstance().loadHistoricalStakes();
 
-    // await fetchRefundableTransactionsAllChains_V3();
+    await fetchRefundableTransactionsAllChains_V3();
 
     // // if exceeds budget 500 USD per user - cap it
-    // await validateTransactions_V3();
+    await validateTransactions_V3();
   });
 }
 

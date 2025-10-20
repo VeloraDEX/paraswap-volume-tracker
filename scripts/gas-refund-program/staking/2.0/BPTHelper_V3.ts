@@ -1,10 +1,12 @@
 import * as ERC20ABI from '../../../../src/lib/abi/erc20.abi.json';
+import * as BVaultABI from '../../../../src/lib/abi/balancer-vault.abi.json';
 import * as MulticallV3ABI from '../../../../src/lib/abi/multicall-v3.abi.json';
 import {
   XYZ_ADDRESS,
   MULTICALL_ADDRESS_V3,
   MulticallEncodedData_V3,
-  BalancerVaultAddress_V3,
+  BalancerVaultAddress,
+  // BalancerVaultAddress_V3,
 } from '../../../../src/lib/constants';
 import { Provider } from '../../../../src/lib/provider';
 import { BigNumber as EthersBN, Contract } from 'ethers';
@@ -88,7 +90,7 @@ export class BPTHelper_V3 {
       provider,
     );
 
-    this.bVaultIface = new Interface(balancerV3Abi);
+    this.bVaultIface = new Interface(BVaultABI);
     this.erc20Iface = new Interface(ERC20ABI);
   }
 
@@ -98,8 +100,8 @@ export class BPTHelper_V3 {
     }
     const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const contract = new Contract(
-      BalancerVaultAddress_V3,
-      balancerV3Abi,
+      BalancerVaultAddress,
+      BVaultABI,
       Provider.getJsonRpcProvider(this.chainId),
     );
 
@@ -121,7 +123,7 @@ export class BPTHelper_V3 {
         allowFailure: false,
       },
       {
-        target: BalancerVaultAddress_V3,
+        target: BalancerVaultAddress,
         callData: this.bVaultIface.encodeFunctionData('getPoolTokenInfo', [
           bpt,
         ]),
