@@ -375,19 +375,19 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
         const isEthTokenIn = isXYZTokenOut;
 
-        const amountInWithFeeAccountedFor = amountIn.sub(swapFeeAmount.div(2));
+        // const amountInWithFeeAccountedFor = amountIn.sub(swapFeeAmount.div(2));
 
         this.differentialStates.xyzBalance.push({
           timestamp,
           value: isXYZTokenIn
-            ? new BigNumber(amountInWithFeeAccountedFor.toString())
+            ? new BigNumber(amountIn.toString())
             : new BigNumber(amountOut.toString()).negated(),
         });
 
         this.differentialStates.ethBalance.push({
           timestamp,
           value: isEthTokenIn
-            ? new BigNumber(amountInWithFeeAccountedFor.toString())
+            ? new BigNumber(amountIn.toString())
             : new BigNumber(amountOut.toString()).negated(),
         });
       });
