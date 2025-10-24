@@ -5,6 +5,8 @@ import {
   XYZ_ADDRESS,
   MULTICALL_ADDRESS_V3,
   MulticallEncodedData_V3,
+  Balancer_80VLR_20WETH_address,
+  Balancer_80VLR_20WETH_poolId,
   BalancerVaultAddress,
   // BalancerVaultAddress_V3,
 } from '../../../../src/lib/constants';
@@ -115,17 +117,17 @@ export class BPTHelper_V3 {
   }
 
   async fetchBPtState(blockNumber?: number): Promise<BPTState> {
-    const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
+    // const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const multicallData = [
       {
-        target: bpt,
+        target: Balancer_80VLR_20WETH_address[this.chainId],// bpt,
         callData: this.erc20Iface.encodeFunctionData('totalSupply', []),
-        allowFailure: false,
+        // allowFailure: false,
       },
       {
         target: BalancerVaultAddress,
-        callData: this.bVaultIface.encodeFunctionData('getPoolTokenInfo', [
-          bpt,
+        callData: this.bVaultIface.encodeFunctionData('getPoolTokens', [
+          Balancer_80VLR_20WETH_poolId[this.chainId]// bpt,
         ]),
         allowFailure: false,
       },
