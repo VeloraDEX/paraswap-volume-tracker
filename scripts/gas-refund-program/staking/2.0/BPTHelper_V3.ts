@@ -120,16 +120,16 @@ export class BPTHelper_V3 {
     // const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const multicallData = [
       {
-        target: Balancer_80VLR_20WETH_address[this.chainId],// bpt,
+        target: Balancer_80VLR_20WETH_address[this.chainId], // bpt,
         callData: this.erc20Iface.encodeFunctionData('totalSupply', []),
         // allowFailure: false,
       },
       {
         target: BalancerVaultAddress,
         callData: this.bVaultIface.encodeFunctionData('getPoolTokens', [
-          Balancer_80VLR_20WETH_poolId[this.chainId]// bpt,
+          Balancer_80VLR_20WETH_poolId[this.chainId] // bpt,
         ]),
-        allowFailure: false,
+        // allowFailure: false,
       },
     ];
 
@@ -144,13 +144,13 @@ export class BPTHelper_V3 {
         .toString(),
     );
 
-    const { tokens, balancesRaw: balances } =
+    const { tokens, balances } =
       this.bVaultIface.decodeFunctionResult(
-        'getPoolTokenInfo',
+        'getPoolTokens',
         rawResults[1].returnData,
       ) as unknown as {
         tokens: [string, string];
-        balancesRaw: [EthersBN, EthersBN];
+        balances: [EthersBN, EthersBN];
       };
 
     const isXYZToken0 =

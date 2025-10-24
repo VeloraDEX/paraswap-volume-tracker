@@ -1,8 +1,10 @@
-import { BigNumber as EthersBN, CallOverrides, Contract, Event } from 'ethers';
+import { BigNumber as EthersBN, CallOverrides, Contract, Event, logger } from 'ethers';
 import { assert } from 'ts-essentials';
 import {
   BalancerVaultAddress,
   // BalancerVaultAddress_V3,
+  Balancer_80VLR_20WETH_address,
+  Balancer_80VLR_20WETH_poolId,
   NULL_ADDRESS,
   XYZ_ADDRESS,
 } from '../../../../src/lib/constants';
@@ -183,7 +185,6 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
   async loadInitialState() {
     const initBlock = this.startBlock - 1;
-
     const { bptTotalSupply, xyzBalance, ethBalance } =
       await BPTHelper_V3.getInstance(this.chainId).fetchBPtState(initBlock);
     this.initState.totalSupply = bptTotalSupply;
@@ -201,27 +202,27 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
 
   // adjust to populate eth balance too
   async resolveBPTPoolXYZBalanceChangesFromLP() {
-    // Liquidity Added:
     try {
+      logger.debug(`about to launch queryFilterBatched on ${this.chainId}`)
       let events = (await queryFilterBatched(
         this.bVaultContract,
         this.bVaultContract.filters.PoolBalanceChanged(
-          grp2ConfigByChain_V3[this.chainId].bpt,
+          Balancer_80VLR_20WETH_poolId[this.chainId] // grp2ConfigByChain_V3[this.chainId].bpt,
         ),
         this.startBlock,
         this.endBlock,
         { batchSize: QUERY_EVENT_BATCH_SIZE_BY_CHAIN[this.chainId] },
       )) as PoolBalanceChanged[];
-
+      logger.debug(`finished launch queryFilterBatched on ${this.chainId}`)
       const blockNumToTimestamp = await fetchBlockTimestampForEvents(
         this.chainId,
         events,
       );
-
+      logger.debug(`about to launch isXYZToken0 on ${this.chainId}`)
       const isXYZToken0 = await BPTHelper_V3.getInstance(
         this.chainId,
       ).getIsXYZToken0();
-
+      logger.debug(`finished launch isXYZToken0 on ${this.chainId}`)
       events.forEach(e => {
         const timestamp = blockNumToTimestamp[e.blockNumber];
         assert(timestamp, 'block timestamp should be defined');
@@ -336,7 +337,7 @@ export default class BPTStateTracker_V3 extends AbstractStateTracker {
       const events = (await queryFilterBatched(
         this.bVaultContract,
         this.bVaultContract.filters.Swap(
-          grp2ConfigByChain_V3[this.chainId].bpt,
+           Balancer_80VLR_20WETH_poolId[this.chainId], // grp2ConfigByChain_V3[this.chainId].bpt,
         ),
         this.startBlock,
         this.endBlock,
