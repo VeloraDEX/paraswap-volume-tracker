@@ -107,7 +107,7 @@ export class BPTHelper_V3 {
       Provider.getJsonRpcProvider(this.chainId),
     );
 
-    const { tokens } = await contract.getPoolTokenInfo(bpt);
+    const { tokens } = await contract.getPoolTokens(Balancer_80VLR_20WETH_poolId[this.chainId]);
 
     const xyzAddressLowercased = XYZ_ADDRESS[this.chainId].toLowerCase();
 
