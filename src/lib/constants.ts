@@ -141,8 +141,24 @@ export const Balancer_80PSP_20WETH_poolId: { [chainId: string]: string } = {
     '0x11f0b5cca01b0f0a9fe6265ad6e8ee3419c684400002000000000000000000d4',
 };
 
+export const Balancer_80VLR_20WETH_poolId: { [chainId: string]: string } = {
+  [CHAIN_ID_MAINNET]:
+    '0x4446d101e91d042b5d08b62fde126e307f1acd570002000000000000000006f9',
+  [CHAIN_ID_BASE]:
+    '0x44d46a43ceb5a1e04ef12b5731de5f9917f0ec8a000200000000000000000208',
+  [CHAIN_ID_OPTIMISM]:
+    '0x9620b74077e2a9f118cd37ef60001aeb327ec1a7000200000000000000000171',
+};
+
 export const Balancer_80PSP_20WETH_address = Object.fromEntries(
   Object.entries(Balancer_80PSP_20WETH_poolId).map(([chainId, poolId]) => [
+    chainId,
+    poolId.substring(0, 42),
+  ]),
+);
+
+export const Balancer_80VLR_20WETH_address = Object.fromEntries(
+  Object.entries(Balancer_80VLR_20WETH_poolId).map(([chainId, poolId]) => [
     chainId,
     poolId.substring(0, 42),
   ]),

@@ -1,10 +1,14 @@
 import * as ERC20ABI from '../../../../src/lib/abi/erc20.abi.json';
+import * as BVaultABI from '../../../../src/lib/abi/balancer-vault.abi.json';
 import * as MulticallV3ABI from '../../../../src/lib/abi/multicall-v3.abi.json';
 import {
   XYZ_ADDRESS,
   MULTICALL_ADDRESS_V3,
   MulticallEncodedData_V3,
-  BalancerVaultAddress_V3,
+  Balancer_80VLR_20WETH_address,
+  Balancer_80VLR_20WETH_poolId,
+  BalancerVaultAddress,
+  // BalancerVaultAddress_V3,
 } from '../../../../src/lib/constants';
 import { Provider } from '../../../../src/lib/provider';
 import { BigNumber as EthersBN, Contract } from 'ethers';
@@ -88,7 +92,7 @@ export class BPTHelper_V3 {
       provider,
     );
 
-    this.bVaultIface = new Interface(balancerV3Abi);
+    this.bVaultIface = new Interface(BVaultABI);
     this.erc20Iface = new Interface(ERC20ABI);
   }
 
@@ -98,12 +102,12 @@ export class BPTHelper_V3 {
     }
     const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const contract = new Contract(
-      BalancerVaultAddress_V3,
-      balancerV3Abi,
+      BalancerVaultAddress,
+      BVaultABI,
       Provider.getJsonRpcProvider(this.chainId),
     );
 
-    const { tokens } = await contract.getPoolTokenInfo(bpt);
+    const { tokens } = await contract.getPoolTokens(Balancer_80VLR_20WETH_poolId[this.chainId]);
 
     const xyzAddressLowercased = XYZ_ADDRESS[this.chainId].toLowerCase();
 
@@ -113,19 +117,19 @@ export class BPTHelper_V3 {
   }
 
   async fetchBPtState(blockNumber?: number): Promise<BPTState> {
-    const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
+    // const bpt = grp2ConfigByChain_V3[this.chainId].bpt;
     const multicallData = [
       {
-        target: bpt,
+        target: Balancer_80VLR_20WETH_address[this.chainId], // bpt,
         callData: this.erc20Iface.encodeFunctionData('totalSupply', []),
-        allowFailure: false,
+        // allowFailure: false,
       },
       {
-        target: BalancerVaultAddress_V3,
-        callData: this.bVaultIface.encodeFunctionData('getPoolTokenInfo', [
-          bpt,
+        target: BalancerVaultAddress,
+        callData: this.bVaultIface.encodeFunctionData('getPoolTokens', [
+          Balancer_80VLR_20WETH_poolId[this.chainId] // bpt,
         ]),
-        allowFailure: false,
+        // allowFailure: false,
       },
     ];
 
@@ -140,13 +144,13 @@ export class BPTHelper_V3 {
         .toString(),
     );
 
-    const { tokens, balancesRaw: balances } =
+    const { tokens, balances } =
       this.bVaultIface.decodeFunctionResult(
-        'getPoolTokenInfo',
+        'getPoolTokens',
         rawResults[1].returnData,
       ) as unknown as {
         tokens: [string, string];
-        balancesRaw: [EthersBN, EthersBN];
+        balances: [EthersBN, EthersBN];
       };
 
     const isXYZToken0 =

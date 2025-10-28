@@ -63,16 +63,46 @@ export async function fetchParaswapV6StakersTransactions_V3(arg0: {
     'PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3 should be defined',
   );
 
-  const url = PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3.replace(
-    '{{epoch}}',
-    arg0.epoch.toString(),
-  )
-    .replace('{{chainId}}', arg0.chainId.toString())
-    .replace('{{contractAddressLowerCase}}', arg0.address)
-    .replace(
-      '{{timestampGreaterThan}}',
-      arg0.timestampGreaterThan ? `["${arg0.timestampGreaterThan}"]` : 'null',
-    );
+  // const url = PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3.replace(
+  //   '{{epoch}}',
+  //   arg0.epoch.toString(),
+  // )
+  //   .replace('{{chainId}}', arg0.chainId.toString())
+  //   .replace('{{contractAddressLowerCase}}', arg0.address)
+  //   .replace(
+  //     '{{timestampGreaterThan}}',
+  //     arg0.timestampGreaterThan ? `["${arg0.timestampGreaterThan}"]` : "0",
+  //   );
+
+  const params = [
+    {
+      type: 'number/=',
+      value: [Number(arg0.epoch)],
+      target: ['variable', ['template-tag', 'epoch_number']],
+      id: '02d349b0-6ab5-269f-38fe-23192b5a7416',
+    },
+    {
+      type: 'category',
+      value: arg0.address.toLowerCase(),
+      target: ['variable', ['template-tag', 'contractAddress']],
+      id: '9f898e81-3265-9a25-2b8b-182ad51e5e01',
+    },
+    {
+      type: 'category',
+      value: String(arg0.chainId),
+      target: ['variable', ['template-tag', 'chainId']],
+      id: 'e3998f23-c14c-13d2-bcd6-55fecb6393dd',
+    },
+    {
+      type: 'number/=',
+      value: [Number(arg0.timestampGreaterThan ?? 0)],
+      target: ['variable', ['template-tag', 'timestampGreaterThan']],
+      id: 'fc96084c-daa4-41ee-a373-1febfc0ee607',
+    },
+  ];
+  
+  const url = `https://dashboard.paraswap.io/api/public/card/f466c16d-66f7-4185-b250-420d69d6acad/query?parameters=${encodeURIComponent(JSON.stringify(params))}`;
+  
 
   const data = await fetchV3Data(url);
   logger.info('paraswap v6 stakers txs: url: ', url);
