@@ -10,7 +10,6 @@ export async function fetchParaBoostPerAccount_V3(epoch1: number) {
   assert(epoch2 >= 0, 'epoch2 can never be negative');
 
   const data = await fetchAccountsScores_V3(epoch2);
-
   const paraBoostFactorByAccount = data.reduce<ParaBoostPerAccount>(
     (acc, paraBoostData: { paraBoostFactor: string; account: string }) => {
       const paraBoostFactor = parseFloat(paraBoostData.paraBoostFactor);

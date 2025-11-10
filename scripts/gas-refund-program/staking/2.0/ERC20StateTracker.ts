@@ -87,15 +87,12 @@ export default class ERC20StateTracker extends AbstractStateTracker {
     try {
       logger.info('Loading initial state');
       const initBlock = this.startBlock - 1;
-
       const options = {
         token: this.contractAddress,
         chainId: this.chainId,
         blockHeight: String(initBlock),
       };
-
       const stakes = await getTokenHolders(options);
-
       this.initState.balance = stakes.reduce<{
         [accountAddress: string]: BigNumber;
       }>((acc, curr) => {
@@ -179,7 +176,6 @@ export default class ERC20StateTracker extends AbstractStateTracker {
       this.initState.balance[account],
       this.differentialStates.balance[account],
     );
-
     return balance;
   }
 }

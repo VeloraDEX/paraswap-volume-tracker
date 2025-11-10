@@ -97,9 +97,8 @@ export class StakeV3Resolver extends AbstractStateTracker {
     account: string,
   ): StakedScoreV3['byNetwork'][number] {
     this.assertTimestampWithinLoadInterval(timestamp);
-
+    
     const seXYZBalance = this.seXYZTracker.getBalance(timestamp, account);
-
     const { xyzBalance: bptXYZBalance, totalSupply: bptTotalSupply } =
       this.bptTracker.getBPTState(timestamp);
 

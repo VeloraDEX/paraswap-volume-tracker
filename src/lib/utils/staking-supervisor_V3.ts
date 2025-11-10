@@ -13,7 +13,7 @@ export async function fetchAccountsScores_V3(
   epochv2: number,
 ): Promise<MinParaBoostData_V3[]> {
   const { data } = await axios.get<MinParaBoostData_V3[]>(
-    `${process.env.PARABOOST_V3_API_BASE_URL}/paraboost/v3/list?epoch=${epochv2}`,
+    `${process.env.VELORA_API_BASE_URL}/stk/paraboost/v3/list?epoch=${epochv2}`,
   );
 
   assert(
