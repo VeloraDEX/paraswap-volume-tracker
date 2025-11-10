@@ -57,6 +57,7 @@ export const GasRefundV2EpochOptimismFlip = 34;
 export const GasRefundV2PIP38 = 38;
 // https://gov.paraswap.network/t/pip-53-streamlining-of-the-staked-psp-incentive-system/1813
 export const GasRefundV2PIP55 = 56;
+export const GasRefundV3 = 65;
 
 interface BaseGasRefundData {
   epoch: number;

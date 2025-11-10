@@ -176,7 +176,6 @@ export default class ERC20StateTracker extends AbstractStateTracker {
       this.initState.balance[account],
       this.differentialStates.balance[account],
     );
-
     return balance;
   }
 }
