@@ -18,6 +18,7 @@ import { EpochInfo } from './lib/epoch-info';
 import {
   GRP_SUPPORTED_CHAINS,
   GRP_V2_SUPPORTED_CHAINS_STAKING,
+  GRP_V3_SUPPORTED_CHAINS,
 } from './lib/gas-refund/gas-refund';
 import { StakingService } from './lib/staking/staking';
 import { assert } from 'ts-essentials';
@@ -373,7 +374,7 @@ export default class Router {
         try {
           const byNetworkId = Object.fromEntries(
             await Promise.all(
-              GRP_SUPPORTED_CHAINS.map(async network => {
+              GRP_V3_SUPPORTED_CHAINS.map(async network => {
                 try {
                   const gasRefundApi = GasRefundApi.getInstance(network);
                   return [
@@ -404,7 +405,7 @@ export default class Router {
 
       try {
         const network = Number(req.params.network);
-        if (!GRP_SUPPORTED_CHAINS.includes(network))
+        if (!GRP_V3_SUPPORTED_CHAINS.includes(network))
           return res
             .status(400)
             .send({ error: `Unsupported network: ${network}` });

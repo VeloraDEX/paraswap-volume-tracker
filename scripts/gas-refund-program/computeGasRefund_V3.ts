@@ -15,14 +15,18 @@ async function startComputingGasRefundAllChains_V3() {
 
   return Database.sequelize.transaction(async () => {
     // TODO: disable this piece in previous cronjob after migrating to new one
+    logger.debug("trackRootUpdateV3");
     await trackRootUpdate_V3();
 
-    // await StakesTracker_V3.getInstance().loadHistoricalStakes();
+    logger.debug("loadHistoricalStakes");
+    await StakesTracker_V3.getInstance().loadHistoricalStakes();
 
-    // await fetchRefundableTransactionsAllChains_V3();
+    logger.debug("fetchRefundableTransactionsAllChains_V3");
+    await fetchRefundableTransactionsAllChains_V3();
 
+    logger.debug("validateTransactions_V3");
     // // if exceeds budget 500 USD per user - cap it
-    // await validateTransactions_V3();
+    await validateTransactions_V3();
   });
 }
 

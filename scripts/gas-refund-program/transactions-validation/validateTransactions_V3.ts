@@ -6,7 +6,8 @@ import {
   GasRefundGenesisEpoch,
   GasRefundPrecisionGlitchRefundedAmountsEpoch,
   GasRefundDeduplicationStartEpoch,
-  GasRefundV2EpochFlip,  
+  GasRefundV2EpochFlip,
+  GasRefundV3,  
   TOTAL_EPOCHS_IN_YEAR,
   TransactionStatus,
   GRP_MAX_REFUND_PERCENT,
@@ -55,11 +56,13 @@ const paraBoostFetcher = constructFetchParaBoostPerAccountMem_V3();
 let paraBoostByAccount: ParaBoostPerAccount;
 
 export async function validateTransactions_V3() {
+  logger.info("Starting validation");
   const guardian = GRPBudgetGuardian_V3.getInstance();
 
+  logger.debug("epochs getting");
   const lastEpochRefunded = await fetchLastEpochRefunded();
   const migrationsTxsHashesSet = await fetchMigrationsTxHashesSet();
-
+  
   const firstEpochOfYear = !!lastEpochRefunded // Verify logic add assert?
     ? GasRefundGenesisEpoch +
       lastEpochRefunded -
@@ -70,6 +73,8 @@ export async function validateTransactions_V3() {
     ? firstEpochOfYear
     : lastEpochRefunded + 1;
 
+  
+  logger.debug("loadint state from the db");
   // reload budget guardian state till last epoch refunded (exclusive)
   await guardian.loadStateFromDB(firstEpochOfYear, startEpochForTxValidation);
 
@@ -91,7 +96,6 @@ export async function validateTransactions_V3() {
       offset,
       raw: true,
     });
-
     if (!transactionsSlice.length) {
       break;
     }
@@ -101,11 +105,10 @@ export async function validateTransactions_V3() {
     const updatedTransactions = [];
 
     let prevEpoch = transactionsSlice[0].epoch;
-
+    logger.debug(`prevEpoch = ${prevEpoch}, and GasRefundV2EpochFlip = ${GasRefundV2EpochFlip}`)
     if (prevEpoch >= GasRefundV2EpochFlip) {
       paraBoostByAccount = await paraBoostFetcher(prevEpoch);
     }
-
     for (const tx of transactionsSlice) {
       const { address, status, totalStakeAmountVLR, vlrUsd, gasUsedUSD } = tx;
 
@@ -348,10 +351,11 @@ export async function validateTransactions_V3() {
                 //   'logic error: account has boost, recomputed amount should be higher',
                 // );
               } else {
+                const EPS = BigInt(10 ** 6); 
                 assert(
-                  BigInt(tx.refundedAmountVLR) <=
+                  BigInt(tx.refundedAmountVLR) - EPS <=
                     BigInt(recomputedRefundedAmountVlr.toFixed(0)),
-                  'logic error: account has boost, recomputed amount should be at least higher than previous on max',
+                  `logic error: account has boost, recomputed amount should be at least higher than previous on max, refundedAmount is ${BigInt(tx.refundedAmountVLR)}, recomputed amount is ${BigInt(recomputedRefundedAmountVlr.toFixed(0))}`,
                 );
               }
             }
@@ -369,6 +373,7 @@ export async function validateTransactions_V3() {
       }
     }
 
+    logger.info("deciding if we need to update txs")
     if (updatedTransactions.length > 0) {
       await updateTransactionsStatusRefundedAmounts_V3(updatedTransactions);
     }

@@ -51,7 +51,7 @@ function constructTransactionsProcessor_V3({
       transactions
         .map(transaction => {
           const address = transaction.txOrigin;
-
+        
           const stakeScore = StakesTracker_V3.getInstance().computeStakeScore(
             address,
             +transaction.timestamp,
@@ -206,7 +206,7 @@ export async function fetchRefundableTransactions_V3({
             chainId,
             address: contractAddress,
           });
-
+        logger.debug(`allStakersTransactionsDuringEpoch.length ${allStakersTransactionsDuringEpoch.length}`)
         return await processRawTxs(
           allStakersTransactionsDuringEpoch,
           (epoch, totalUserScore) => getRefundPercentV3(totalUserScore),
@@ -215,7 +215,9 @@ export async function fetchRefundableTransactions_V3({
   ]);
 
   const txsWithScores = allTxsAndV6Combined.flat();
-
+  logger.debug("storeTxs_v3")
+  logger.debug(`allTxsAndV6Combined.length ${allTxsAndV6Combined.length}`)
+  logger.debug(`txsWithScores.length ${txsWithScores.length}`)
   await storeTxs_V3({
     txsWithScores,
     logger,

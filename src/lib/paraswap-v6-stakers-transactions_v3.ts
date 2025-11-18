@@ -58,21 +58,50 @@ export async function fetchParaswapV6StakersTransactions_V3(arg0: {
   address: string;
   timestampGreaterThan?: number;
 }): Promise<ExtendedCovalentGasRefundTransaction[]> {
-  assert(
-    PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3,
-    'PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3 should be defined',
-  );
+  // assert(
+  //   PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3,
+  //   'PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3 should be defined',
+  // );
 
-  const url = PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3.replace(
-    '{{epoch}}',
-    arg0.epoch.toString(),
-  )
-    .replace('{{chainId}}', arg0.chainId.toString())
-    .replace('{{contractAddressLowerCase}}', arg0.address)
-    .replace(
-      '{{timestampGreaterThan}}',
-      arg0.timestampGreaterThan ? `["${arg0.timestampGreaterThan}"]` : 'null',
-    );
+  // const url = PARASWAP_V6_STAKERS_TRANSACTIONS_URL_TEMPLATE_V3.replace(
+  //   '{{epoch}}',
+  //   arg0.epoch.toString(),
+  // )
+  //   .replace('{{chainId}}', arg0.chainId.toString())
+  //   .replace('{{contractAddressLowerCase}}', arg0.address)
+  //   .replace(
+  //     '{{timestampGreaterThan}}',
+  //     arg0.timestampGreaterThan ? `["${arg0.timestampGreaterThan}"]` : "0",
+  //   );
+
+  const params = [
+    {
+      type: 'number/=',
+      value: [Number(arg0.epoch)],
+      target: ['variable', ['template-tag', 'epoch_number']],
+      id: 'fec1c36f-fb4e-4fb2-8d9e-b073c7d284a1',
+    },
+    {
+      type: 'category',
+      value: arg0.address.toLowerCase(),
+      target: ['variable', ['template-tag', 'contractAddress']],
+      id: '4276832b-0634-461d-a091-769545547ba4',
+    },
+    {
+      type: 'category',
+      value: String(arg0.chainId),
+      target: ['variable', ['template-tag', 'chainId']],
+      id: '6d1476f3-1a0c-4b6a-86b7-88dcc7ad92cd',
+    },
+    {
+      type: 'number/=',
+      value: [Number(arg0.timestampGreaterThan ?? 0)],
+      target: ['variable', ['template-tag', 'timestampGreaterThan']],
+      id: '84800f0d-f1ed-490a-ae73-b6e2ad9147ec',
+    },
+  ];
+  const url = `https://dashboard.paraswap.io/api/public/card/719dc1d2-83b6-4d76-98a1-b3c4259f51b3/query?parameters=${encodeURIComponent(JSON.stringify(params))}`;
+  
 
   const data = await fetchV3Data(url);
   logger.info('paraswap v6 stakers txs: url: ', url);
