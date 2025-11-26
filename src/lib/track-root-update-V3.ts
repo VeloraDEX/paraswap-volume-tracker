@@ -21,6 +21,7 @@ const IPFS_FOLDER_BY_EPOCH: Record<string, string> = {
   // 70: 'http://localhost:3232/tmp',
   65: 'https://vlr-wakeuplabs.mypinata.cloud/ipfs/bafybeift4l4qvwszcuytypyy3ypg5syp2wtsigip5aofjetxwl43u54zam',
   66: 'https://vlr-wakeuplabs.mypinata.cloud/ipfs/bafybeifau2auwdq56kisv3k72kt546a5m375kghd6i4nhb4wne6nnjlxve',
+  67: 'https://vlr-wakeuplabs.mypinata.cloud/ipfs/bafybeicls2yuuxm6pfjcd7mwk2go324afsx2jtguf3gkmg4l3f6lhpfz44',
 };
 export async function trackRootUpdate_V3() {
   const epoch = getCurrentEpoch();
