@@ -1,9 +1,11 @@
 name: Build and deploy Gas Refund Program
 
 on:
-  push:
-    branches:
-      - master
+  # we deprecate GRP
+  # https://snapshot.box/#/s:paraswap-dao.eth/proposal/0x616f8093efd3cb639c8531f704ebeba91ada8295277721f30dbfe9f386e4921b
+  # push:
+  #   branches:
+  #     - master
   workflow_dispatch:
     inputs:
       target_env:
